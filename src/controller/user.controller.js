@@ -1,23 +1,27 @@
+// src/controller/user.controller.js
 const UserService = require('../services/user.service');
+const ApiResponse = require('../utils/response');
+const throwError = require('../utils/throwError');
 
 class UserController {
-    static async getUsers(req, res) {
+    static async getUsers(req, res, next) {
         try {
             const users = await UserService.getAllUsers();
-            res.status(200).json(users);
+            return ApiResponse.success(res, "Fetched all users successfully", users);
         } catch (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Failed to fetch users' });
+            next(err); // ✅ đẩy sang global errorHandler
         }
     }
 
-    static async createUser(req, res) {
+    static async createUser(req, res, next) {
         try {
+            const { name, email } = req.body;
+            if (!name || !email) throwError("VALIDATION_ERROR", "Missing name or email");
+
             const user = await UserService.createUser(req.body);
-            res.status(201).json(user);
+            return ApiResponse.success(res, "User created successfully", user, 201);
         } catch (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Failed to create user' });
+            next(err);
         }
     }
 }
