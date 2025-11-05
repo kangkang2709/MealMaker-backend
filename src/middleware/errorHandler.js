@@ -1,6 +1,6 @@
 // src/middleware/errorHandler.js
 module.exports = (err, req, res, next) => {
-    console.error("🔥 Global Error Handler:", {
+    console.error("Global Error Handler:", {
         path: req.path,
         method: req.method,
         message: err.message,

@@ -1,18 +1,17 @@
 const express = require('express');
-const multer = require('multer');
 const { uploadImage } = require('../services/upload.service');
+const upload = require('../middleware/upload');
 
 const router = express.Router();
 
-// Lưu file tạm vào thư mục uploads/
-const upload = multer({ dest: 'uploads/' });
-
-router.post('/', upload.single('image'), async (req, res) => {
+// Upload 1 ảnh tự do
+router.post('/', upload.single('image'), async (req, res, next) => {
     try {
+        if (!req.file) throw new Error('No file uploaded');
         const result = await uploadImage(req.file.path);
-        res.json({ success: true, imageUrl: result.url });
+        res.json({ success: true, url: result.url, public_id: result.public_id });
     } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
+        next(err);
     }
 });
 

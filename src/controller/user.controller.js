@@ -1,25 +1,47 @@
-// src/controller/user.controller.js
 const UserService = require('../services/user.service');
 const ApiResponse = require('../utils/response');
-const throwError = require('../utils/throwError');
 
 class UserController {
-    static async getUsers(req, res, next) {
+    static async createUser(req, res, next) {
         try {
-            const users = await UserService.getAllUsers();
-            return ApiResponse.success(res, "Fetched all users successfully", users);
+            const user = await UserService.createUser(req.body, req.file);
+            return ApiResponse.success(res, 'User created successfully', user, 201);
         } catch (err) {
-            next(err); // ✅ đẩy sang global errorHandler
+            next(err);
         }
     }
 
-    static async createUser(req, res, next) {
+    static async updateUser(req, res, next) {
         try {
-            const { name, email } = req.body;
-            if (!name || !email) throwError("VALIDATION_ERROR", "Missing name or email");
+            const user = await UserService.updateUser(req.params.id, req.body, req.file);
+            return ApiResponse.success(res, 'User updated successfully', user);
+        } catch (err) {
+            next(err);
+        }
+    }
 
-            const user = await UserService.createUser(req.body);
-            return ApiResponse.success(res, "User created successfully", user, 201);
+    static async getAllUsers(req, res, next) {
+        try {
+            const users = await UserService.getAllUsers();
+            return ApiResponse.success(res, 'Users fetched successfully', users);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async getUserById(req, res, next) {
+        try {
+            const user = await UserService.getUserById(req.params.id);
+            return ApiResponse.success(res, 'User fetched successfully', user);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async deleteUser(req, res, next) {
+        try {
+            const result = await UserService.deleteUser(req.params.id);
+            return ApiResponse.success(res, 'User deleted successfully', result);
         } catch (err) {
             next(err);
         }

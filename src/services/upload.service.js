@@ -1,3 +1,5 @@
+// Service để upload ảnh lên Cloudinary
+// src/services/upload.service.js
 const cloudinary = require('../config/cloudinary.config');
 const fs = require('fs');
 
