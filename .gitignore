@@ -1,0 +1,88 @@
+firebase-service-account.json
+
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+*.lcov
+
+# Build output
+dist/
+build/
+out/
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# dotenv environment variables
+.env
+.env.test
+.env.production.local
+.env.development.local
+.env.local
+
+# IDE & editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Next.js / Nuxt / Remix / etc.
+.next/
+.nuxt/
+out/
+.cache/
+.tmp/
+
+# Temporary files
+tmp/
+temp/
+
+# Yarn v2+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Lock files (chọn theo trình quản lý bạn dùng)
+package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
