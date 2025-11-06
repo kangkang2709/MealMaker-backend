@@ -8,7 +8,6 @@ class User {
         this.avatar_url = avatar_url;      // string
         this.fridge = fridge;              // array
         this.weekly_menu = weekly_menu;    // object
-        this.recipes = recipes;            // array of recipe IDs
         this.blogs = blogs;                // array of blog IDs
         this.created_at = new Date();
         this.updated_at = new Date();

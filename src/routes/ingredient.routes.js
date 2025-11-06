@@ -1,18 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const IngredientController = require('../controller/ingredient.controller');
-const upload = require('../middleware/upload');
+const IngredientController = require("../controller/ingredient.controller");
 
-// tạo ingredient (tùy chọn ảnh)
-router.post('/', upload.single('image'), IngredientController.createIngredient);
 
-// cập nhật ingredient
-router.put('/:id', upload.single('image'), IngredientController.updateIngredient);
 
-// lấy tất cả ingredients
-router.get('/', IngredientController.getAllIngredients);
+// ✅ USDA
+router.get("/data/:id", IngredientController.searchExternalIngredient);
 
-// lấy ingredient theo id
-router.get('/:id', IngredientController.getIngredientById);
+router.get("/", IngredientController.getAllIngredients);
+router.post("/", IngredientController.createIngredient);
+
+router.get("/raw", IngredientController.getIngredientRaw);
+
+
 
 module.exports = router;
