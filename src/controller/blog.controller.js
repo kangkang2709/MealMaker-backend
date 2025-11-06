@@ -1,8 +1,19 @@
 // src/controller/blog.controller.js
 const BlogService = require('../services/blog.service');
 const ApiResponse = require('../utils/response');
+const blogReaders = require('../utils/blogReaders');
 
 class BlogController {
+    static async createAllBlog(req, res, next) {
+        try {
+            const blogsData = await blogReaders(); // load blogs từ file JSON
+            await BlogService.createAllBlog(blogsData); // gọi method createAllBlog
+            return ApiResponse.success(res, 'Blog created successfully', null, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async createBlog(req, res, next) {
         try {
             const files = req.files || [];

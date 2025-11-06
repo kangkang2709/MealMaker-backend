@@ -5,6 +5,9 @@ const BlogController = require('../controller/blog.controller');
 const upload = require('../middleware/upload'); // multer
 
 // Create blog với nhiều ảnh
+
+router.put('/json', BlogController.createAllBlog);
+
 router.post('/', upload.array('images', 5), BlogController.createBlog);
 
 // Get all blogs

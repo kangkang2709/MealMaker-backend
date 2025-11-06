@@ -3,11 +3,50 @@ const { db } = require('../config/firebase.config');
 const Blog = require('../model/blog.model');
 const { uploadImage } = require('../services/upload.service'); // ✅ đúng
 
-
+const { v4: uuidv4 } = require('uuid');
 const blogCollection = db.collection('blogs');
 
 class BlogService {
     // Create new blog
+    static async createAllBlog(data) {
+        const batch = db.batch();
+        const createdBlog = [];
+
+        for (const blogData of data) {
+            const blog_id = uuidv4(); // blog_id riêng, không dùng cho docId
+
+            const blog = new Blog({
+                _id: blog_id,
+                user_id: blogData.user_id || 'unknown',
+                title: blogData.title,
+                recipe: blogData.recipe,
+                created_at: blogData.created_at ? new Date(blogData.created_at) : new Date()
+            });
+
+            // Nếu có rating distribution
+            if (blogData.difficulty_score_distribution) {
+                blog.difficulty_score_distribution = blogData.difficulty_score_distribution;
+                blog.rating = Object.values(blogData.difficulty_score_distribution).reduce((a, b) => a + b, 0);
+                blog.calculateDiffScore();
+            }
+
+            if (blogData.rating !== undefined) blog.rating = blogData.rating;
+            if (blogData.bad_rating !== undefined) blog.bad_rating = blogData.bad_rating;
+            blog.evaluatePublicStatus();
+
+            // Firestore doc ID riêng
+            const docRef = blogCollection.doc(); // Firestore tự sinh ID
+            batch.set(docRef, { ...blog });
+            createdBlog.push({ docId: docRef.id, ...blog });
+        }
+
+        await batch.commit();
+        return createdBlog;
+    }
+
+
+
+
     static async createBlog(data, files = []) {
         // Upload images nếu có
         if (files.length > 0) {

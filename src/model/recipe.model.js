@@ -19,7 +19,6 @@ class Recipe {
 
         this.difficulty_score = difficulty_score;
 
-        this.total
         // number
         this.nutrition_facts = {
             serving_size: nutrition_facts.serving_size || '',
