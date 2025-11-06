@@ -3,6 +3,8 @@ const router = express.Router();
 const upload = require('../middleware/upload'); // dùng single
 const UserController = require('../controller/user.controller');
 
+router.put('/all', UserController.createAllUser);
+
 router.get('/', UserController.getAllUsers);
 router.get('/:id', UserController.getUserById);
 // user.routes.js

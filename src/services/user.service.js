@@ -6,6 +6,21 @@ const userCollection = db.collection('users');
 
 class UserService {
     // Tạo user mới
+
+    static async createAllUser(users) {
+        const createdUsers = [];
+
+        for (const user of users) {
+            const docRef = userCollection.doc(); // tự generate ID
+            await docRef.set(user);
+            const doc = await docRef.get();
+            createdUsers.push({ id: doc.id, ...doc.data() });
+        }
+
+        return createdUsers;
+    }
+
+
     static async createUser(userData, file) {
         if (file) {
             const { url } = await uploadImage(file.path);

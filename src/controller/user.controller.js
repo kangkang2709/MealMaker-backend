@@ -1,7 +1,19 @@
 const UserService = require('../services/user.service');
 const ApiResponse = require('../utils/response');
+const usersReader = require('../utils/userReaders');
 
 class UserController {
+
+    static async createAllUser(req, res, next) {
+        try {
+            const users = await usersReader();
+            await UserService.createAllUser(users);
+            return ApiResponse.success(res, 'User created successfully', null, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async createUser(req, res, next) {
         try {
             const user = await UserService.createUser(req.body, req.file);
@@ -10,6 +22,8 @@ class UserController {
             next(err);
         }
     }
+
+
 
     static async updateUser(req, res, next) {
         try {

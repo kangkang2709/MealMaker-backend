@@ -5,7 +5,6 @@ class Blog {
         user_id,
         title,
         receipt,   // id of the recipe
-        tags = [],
         reject_reason = '',
         created_at = new Date(),
     }) {
