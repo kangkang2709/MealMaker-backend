@@ -7,8 +7,16 @@ class User {
         avatar_url = '',
         fridge = [],
         weekly_menu = {},
-        ai_profile = {}, //first personality profile 
-        weekly_shopping_list = {} //generated from weekly_menu //subtracting ingredients already in fridge
+        ai_profile = {}, /*
+        {
+            region:[Vietnamese, Italian, ...],
+            favorite_dishes:[...],  
+            favorite_ingredients:[...],
+            diet:[Vegetarian, Keto, ...],
+            cooking_skill_level: 10,
+        }
+         */
+        weekly_shopping_list = {}
     }) {
         this._id = _id;
         this.user_name = user_name;

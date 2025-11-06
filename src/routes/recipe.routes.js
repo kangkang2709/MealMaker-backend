@@ -7,6 +7,9 @@ const upload = require('../middleware/upload');
 // tạo recipe (nhiều ảnh)
 router.post('/', upload.array('images', 5), RecipeController.createRecipe);
 
+
+router.post('/json', RecipeController.createAllRecipe);
+
 // cập nhật recipe
 router.put('/:id', upload.array('images', 5), RecipeController.updateRecipe);
 

@@ -1,0 +1,192 @@
+[
+  {
+    "recipe_id": "R001",
+    "title": "Spaghetti Aglio e Olio",
+    "image_url": "https://images.unsplash.com/photo‑1589302168068‑964664d93dc0",
+    "ingredients_list": ["spaghetti 200g", "olive oil 4 tbsp", "garlic 4 cloves", "red pepper flakes ½ tsp", "parsley chopped", "salt"],
+    "instructions": "Cook spaghetti in salted water until al dente. While pasta cooks, sauté garlic in olive oil until golden, add red pepper flakes. Toss pasta with oil, garlic mix and chopped parsley. Serve hot.",
+    "time_minutes": 20,
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 plate",
+      "calories": 450,
+      "protein_g": 12,
+      "fat_total_g": 18,
+      "carbohydrates_g": 58,
+      "fiber_g": 3,
+      "sugar_g": 2
+    },
+    "tags": ["Italian", "quick", "vegetarian", "pasta"]
+  },
+  {
+    "recipe_id": "R002",
+    "title": "Chicken Teriyaki Bowl",
+    "image_url": "https://images.unsplash.com/photo‑1604908177524‑579c3e805dbf",
+    "ingredients_list": ["chicken breast 300g", "soy sauce 3 tbsp", "mirin 2 tbsp", "sugar 1 tbsp", "ginger grated 1 tsp", "garlic 1 clove", "rice 2 cups", "sesame seeds", "spring onions"],
+    "instructions": "Cook rice according to package instructions. Cut chicken into strips. Mix soy sauce, mirin, sugar, ginger, garlic to make teriyaki sauce. Sear chicken until cooked then pour sauce and reduce until thick. Serve chicken over rice, sprinkle sesame seeds and chopped spring onions.",
+    "time_minutes": 30,
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 bowl",
+      "calories": 520,
+      "protein_g": 38,
+      "fat_total_g": 14,
+      "carbohydrates_g": 65,
+      "fiber_g": 4,
+      "sugar_g": 12
+    },
+    "tags": ["Japanese", "chicken", "rice bowl", "main course"]
+  },
+  {
+    "recipe_id": "R003",
+    "title": "Vegan Buddha Bowl",
+    "image_url": "https://images.unsplash.com/photo‑1598514981626‑2e7499f9f973",
+    "ingredients_list": ["quinoa 1 cup", "chickpeas 1 can", "sweet potato diced", "kale leaves", "avocado", "tahini dressing"],
+    "instructions": "Cook quinoa and roast sweet potato until tender. Rinse and drain chickpeas, lightly season and bake if preferred. Assemble quinoa in bowl, add kale, sweet potato, chickpeas, avocado slices. Drizzle with tahini dressing.",
+    "time_minutes": 25,
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 bowl",
+      "calories": 480,
+      "protein_g": 16,
+      "fat_total_g": 22,
+      "carbohydrates_g": 54,
+      "fiber_g": 12,
+      "sugar_g": 5
+    },
+    "tags": ["vegan", "healthy", "bowl", "gluten‑free"]
+  },
+  {
+    "recipe_id": "R004",
+    "title": "Classic Margherita Pizza",
+    "image_url": "https://images.unsplash.com/photo‑1548365328‑12bb1c6c68b4",
+    "ingredients_list": ["pizza dough", "tomato sauce", "mozzarella cheese", "fresh basil", "olive oil", "salt"],
+    "instructions": "Pre‑heat oven to 250°C. Stretch dough onto pizza peel. Spread tomato sauce, top with mozzarella slices, fresh basil leaves, drizzle olive oil and sprinkle salt. Bake 10‑12 minutes until crust is golden and cheese bubbly.",
+    "time_minutes": 40,
+    "difficulty_score": 4,
+    "nutrition_facts": {
+      "serving_size": "1 whole pizza (approx.)",
+      "calories": 900,
+      "protein_g": 34,
+      "fat_total_g": 36,
+      "carbohydrates_g": 102,
+      "fiber_g": 6,
+      "sugar_g": 7
+    },
+    "tags": ["Italian", "pizza", "vegetarian", "dinner"]
+  },
+  {
+    "recipe_id": "R005",
+    "title": "Beef Tacos with Pico de Gallo",
+    "image_url": "https://images.unsplash.com/photo‑1577484864843‑176b33f03639",
+    "ingredients_list": ["ground beef 400g", "taco shells 8", "onion diced", "taco seasoning", "tomato diced", "onion diced", "cilantro chopped", "lime", "lettuce shredded", "cheddar cheese"],
+    "instructions": "Cook ground beef with diced onion and taco seasoning until browned. Warm taco shells. Make pico de gallo by mixing diced tomato, onion, cilantro, lime juice, salt. Assemble tacos with beef, lettuce, cheese, pico de gallo.",
+    "time_minutes": 30,
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "2 tacos",
+      "calories": 550,
+      "protein_g": 28,
+      "fat_total_g": 30,
+      "carbohydrates_g": 40,
+      "fiber_g": 5,
+      "sugar_g": 4
+    },
+    "tags": ["Mexican", "beef", "tacos", "party"]
+  },
+  {
+    "recipe_id": "R006",
+    "title": "Thai Green Curry with Tofu",
+    "image_url": "https://images.unsplash.com/photo‑1562967916‑50a5faaa04ef",
+    "ingredients_list": ["green curry paste 2 tbsp", "coconut milk 400ml", "tofu cubed", "bamboo shoots", "bell pepper sliced", "thai basil", "fish sauce or soy sauce", "lime leaves", "jasmine rice"],
+    "instructions": "Heat a little oil, fry green curry paste until fragrant. Add coconut milk and bring to simmer. Add tofu, bamboo shoots, bell pepper, lime leaves. Cook until vegetables tender. Season with fish sauce or soy sauce, garnish with Thai basil. Serve with jasmine rice.",
+    "time_minutes": 35,
+    "difficulty_score": 4,
+    "nutrition_facts": {
+      "serving_size": "1 bowl",
+      "calories": 600,
+      "protein_g": 20,
+      "fat_total_g": 34,
+      "carbohydrates_g": 60,
+      "fiber_g": 7,
+      "sugar_g": 6
+    },
+    "tags": ["Thai", "curry", "tofu", "spicy"]
+  },
+  {
+    "recipe_id": "R007",
+    "title": "Salmon Teriyaki Salad",
+    "image_url": "https://images.unsplash.com/photo‑1582458138572‑0d42f354e8e8",
+    "ingredients_list": ["salmon fillet 200g", "soy sauce 2 tbsp", "honey 1 tbsp", "ginger 1 tsp", "mixed salad greens", "cucumber slices", "carrot ribbons", "sesame seeds", "rice wine vinegar"],
+    "instructions": "Mix soy sauce, honey, ginger to marinate salmon for 10 minutes. Pan sear salmon until cooked through, set aside. Toss salad greens, cucumber, carrot ribbons, drizzle rice wine vinegar and olive oil. Top salad with salmon, sprinkle sesame seeds.",
+    "time_minutes": 25,
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 salad bowl",
+      "calories": 450,
+      "protein_g": 32,
+      "fat_total_g": 20,
+      "carbohydrates_g": 28,
+      "fiber_g": 5,
+      "sugar_g": 8
+    },
+    "tags": ["salad", "fish", "healthy", "quick"]
+  },
+  {
+    "recipe_id": "R008",
+    "title": "Chocolate Lava Cake",
+    "image_url": "https://images.unsplash.com/photo‑1589718059395‑7c8f2c754682",
+    "ingredients_list": ["dark chocolate 100g", "butter 100g", "sugar 2/3 cup", "eggs 2", "flour ¼ cup", "vanilla extract 1 tsp"],
+    "instructions": "Pre‑heat oven to 200°C. Melt chocolate and butter together. Whisk eggs, sugar, vanilla until pale, fold in melted chocolate mix, then flour. Pour into greased ramekins and bake 10‑12 minutes until edges set but center is gooey. Serve immediately.",
+    "time_minutes": 20,
+    "difficulty_score": 5,
+    "nutrition_facts": {
+      "serving_size": "1 cake",
+      "calories": 390,
+      "protein_g": 6,
+      "fat_total_g": 26,
+      "carbohydrates_g": 34,
+      "fiber_g": 3,
+      "sugar_g": 24
+    },
+    "tags": ["dessert", "chocolate", "cake", "special"]
+  },
+  {
+    "recipe_id": "R009",
+    "title": "Greek Moussaka",
+    "image_url": "https://images.unsplash.com/photo‑1604908175792‑85e1d47fbb97",
+    "ingredients_list": ["eggplants sliced", "potatoes sliced", "ground lamb 500g", "tomato paste", "onion chopped", "garlic minced", "béchamel sauce", "grated cheese"],
+    "instructions": "Pre‑heat oven to 190°C. Fry eggplant and potato slices until softened. In separate pan cook lamb with onion, garlic, tomato paste until done. Layer potatoes, eggplants, lamb mix in baking dish, top with béchamel and grated cheese. Bake ~40 minutes until golden on top. Let rest before serving.",
+    "time_minutes": 70,
+    "difficulty_score": 5,
+    "nutrition_facts": {
+      "serving_size": "1 large slice",
+      "calories": 650,
+      "protein_g": 30,
+      "fat_total_g": 38,
+      "carbohydrates_g": 45,
+      "fiber_g": 7,
+      "sugar_g": 6
+    },
+    "tags": ["Greek", "baked", "lamb", "traditional"]
+  },
+  {
+    "recipe_id": "R010",
+    "title": "Avocado & Banana Smoothie Bowl",
+    "image_url": "https://images.unsplash.com/photo‑1588675606730‑802f0f89c384",
+    "ingredients_list": ["avocado 1", "banana 1", "almond milk 1 cup", "spinach handful", "chia seeds 1 tbsp", "honey 1 tsp", "granola for topping"],
+    "instructions": "Blend avocado, banana, almond milk, spinach, honey until smooth. Pour into bowl, top with chia seeds and granola. Serve chilled.",
+    "time_minutes": 5,
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 bowl",
+      "calories": 320,
+      "protein_g": 8,
+      "fat_total_g": 14,
+      "carbohydrates_g": 42,
+      "fiber_g": 9,
+      "sugar_g": 18
+    },
+    "tags": ["breakfast", "vegan", "smoothie bowl", "quick"]
+  }
+]

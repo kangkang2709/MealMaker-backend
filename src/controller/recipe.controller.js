@@ -1,7 +1,21 @@
 const RecipeService = require('../services/recipe.service');
 const ApiResponse = require('../utils/response');
+const recipesReader = require('../utils/receiptReader');
 
 class RecipeController {
+
+    static async createAllRecipe(req, res, next) {
+        try {
+            const rawRecipes = await recipesReader();  // rawRecipes: [{ title, description, images }, ...]
+            await RecipeService.createAllRecipes(rawRecipes); // lưu vào Firestore
+            return ApiResponse.success(res, 'All recipes created successfully', null, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+
     static async createRecipe(req, res, next) {
         try {
             const recipe = await RecipeService.createRecipe(req.body, req.files);

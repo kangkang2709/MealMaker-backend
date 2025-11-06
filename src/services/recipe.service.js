@@ -5,6 +5,29 @@ const { uploadImage } = require('../services/upload.service'); // ✅ đúng
 const recipeCollection = db.collection('recipes');
 
 class RecipeService {
+
+    static async createAllRecipes(recipesData) {
+        const batch = db.batch();
+        const createdRecipes = [];
+
+        for (const recipe of recipesData) {
+            // If recipe is a class instance with toJSON:
+            // const data = recipe.toJSON();
+            // Otherwise, if it's already a plain object:
+            const data = recipe;
+
+            const docRef = recipeCollection.doc();
+            batch.set(docRef, data);
+            createdRecipes.push({ id: docRef.id, ...data });
+        }
+
+        await batch.commit();
+        return createdRecipes;
+    }
+
+
+
+
     static async createRecipe(recipeData, files) {
         // Upload tất cả ảnh nếu có
         if (files && files.length > 0) {
@@ -16,8 +39,6 @@ class RecipeService {
             recipeData.images = [];
         }
 
-        recipeData.created_at = new Date();
-        recipeData.updated_at = new Date();
 
         const docRef = recipeCollection.doc();
         await docRef.set(recipeData);
