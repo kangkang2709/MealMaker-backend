@@ -2,22 +2,24 @@
 class Blog {
     constructor({
         _id = null,
-        author_id,
+        user_id,
         title,
-        content,
-        images = [],          // array of image URLs
-        tags = [],            // array of strings
+        receipt,   // id of the recipe
+        tags = [],
+        reject_reason = '',
         created_at = new Date(),
-        updated_at = new Date(),
     }) {
         this._id = _id;
-        this.author_id = author_id;
+        this.user_id = user_id;
         this.title = title;
-        this.content = content;
-        this.images = images;
-        this.tags = tags;
+
+        this.receipt = receipt;
+
+        this.rating = 0;
+        this.bad_rating = 0;
+
+        this.reject_reason = reject_reason;
         this.created_at = created_at;
-        this.updated_at = updated_at;
     }
 }
 

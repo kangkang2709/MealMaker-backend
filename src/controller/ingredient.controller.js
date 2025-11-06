@@ -1,9 +1,31 @@
 const IngredientService = require("../services/ingredient.service");
 const IngredientApiService = require("../services/ingredientapi.services");
 const EdamamIngredientService = require("../services/edamamIngredient.service");
+const EdamamFoodService = require("../services/edamamFood.service");
 const ApiResponse = require("../utils/response");
 
 class IngredientController {
+
+
+    static async getNutritionForList(req, res, next) {
+        try {
+            const { ingredients } = req.body;
+
+            if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
+                return ApiResponse.error(res, "Ingredients list is required and must be an array", 400);
+            }
+
+            const data = await EdamamIngredientService.getNutritionForList(ingredients);
+
+            return ApiResponse.success(
+                res,
+                "Nutrition data for ingredient list fetched successfully",
+                data
+            );
+        } catch (err) {
+            next(err);
+        }
+    }
 
     static async getIngredientRaw(req, res, next) {
 

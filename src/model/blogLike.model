@@ -3,7 +3,7 @@ class RecipeLike {
     constructor({ _id, user_id, recipe_id }) {
         this._id = _id;
         this.user_id = user_id;
-        this.recipe_id = recipe_id;
+        this.blog_id = blog_id;
     }
 }
 

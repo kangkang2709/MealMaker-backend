@@ -1,22 +1,37 @@
-// src/model/ingredient.model.js
-class Ingredient {
+class Recipe {
     constructor({
-        _id = null,
-        name,
-        category,
+        recipe_id,
+        title,
         image_url = '',
-        nutrition = { calories: 0, protein: 0, fat: 0, carb: 0 },
-        created_at = new Date(),
-        updated_at = new Date(),
+        ingredients_list = [],
+        instructions = '',
+        time_minutes = 0,
+        difficulty_score = 0,
+        nutrition_facts = {},
+        tags = []
     }) {
-        this._id = _id;
-        this.name = name;
-        this.category = category;
-        this.image_url = image_url;
-        this.nutrition = nutrition;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.recipe_id = recipe_id;                  // string
+        this.title = title;                          // string
+        this.image_url = image_url;                  // string (URL)
+        this.ingredients_list = ingredients_list;    // array of strings
+        this.instructions = instructions;            // string
+        this.time_minutes = time_minutes;            // number
+
+        this.difficulty_score = difficulty_score;
+
+        this.total
+        // number
+        this.nutrition_facts = {
+            serving_size: nutrition_facts.serving_size || '',
+            calories: nutrition_facts.calories || 0,
+            protein_g: nutrition_facts.protein_g || 0,
+            fat_total_g: nutrition_facts.fat_total_g || 0,
+            carbohydrates_g: nutrition_facts.carbohydrates_g || 0,
+            fiber_g: nutrition_facts.fiber_g || 0,
+            sugar_g: nutrition_facts.sugar_g || 0
+        };
+        this.tags = tags;                            // array of strings
     }
 }
 
-module.exports = Ingredient;
+module.exports = Recipe;
