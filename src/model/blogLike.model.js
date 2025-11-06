@@ -1,8 +1,10 @@
 class BlogLike {
-    constructor({ _id, user_id, blog_id }) {
-        this._id = _id;        // Unique identifier for this like
-        this.user_id = user_id; // The ID of the user who liked the blog
-        this.blog_id = blog_id; // The ID of the blog being liked
+    constructor({ _id, user_id, blog_id, isGoodRating = true, score = null }) {
+        this._id = _id;           // Firestore doc ID
+        this.user_id = user_id;
+        this.blog_id = blog_id;
+        this.isGoodRating = isGoodRating;
+        this.score = isGoodRating ? score : null; // score chỉ dùng cho positive rating
     }
 }
 

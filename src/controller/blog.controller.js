@@ -2,6 +2,7 @@
 const BlogService = require('../services/blog.service');
 const ApiResponse = require('../utils/response');
 const blogReaders = require('../utils/blogReaders');
+const BlogLikeService = require('../services/blogLike.service');
 
 class BlogController {
     static async createAllBlog(req, res, next) {
@@ -9,6 +10,37 @@ class BlogController {
             const blogsData = await blogReaders(); // load blogs từ file JSON
             await BlogService.createAllBlog(blogsData); // gọi method createAllBlog
             return ApiResponse.success(res, 'Blog created successfully', null, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async createBlogLike(req, res, next) {
+        try {
+            const { user_id, blog_id, isGoodRating, score } = req.body;
+            const blogLike = await BlogLikeService.createBlogLike({
+                user_id,
+                blog_id,
+                isGoodRating,
+                score
+            });
+
+            return ApiResponse.success(res, 'Vote đã được thêm', blogLike, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    /**
+     * DELETE /blogLikes
+     * Body: { user_id, blog_id }
+     */
+    static async undoBlogLike(req, res, next) {
+        try {
+            const { user_id, blog_id } = req.body;
+            const result = await BlogLikeService.undoBlogLike({ user_id, blog_id });
+
+            return ApiResponse.success(res, result.message, result.blogLike);
         } catch (err) {
             next(err);
         }

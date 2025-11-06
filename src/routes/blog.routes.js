@@ -10,6 +10,9 @@ router.put('/json', BlogController.createAllBlog);
 
 router.post('/', upload.array('images', 5), BlogController.createBlog);
 
+router.put('/rating', BlogController.createBlogLike);
+router.delete('/rating', BlogController.undoBlogLike);
+
 // Get all blogs
 router.get('/', BlogController.getAllBlogs);
 
