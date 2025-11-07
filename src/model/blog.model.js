@@ -26,7 +26,6 @@ class Blog {
         this.diff_score = 0;
         this.reject_reason = reject_reason;
         this.created_at = created_at;
-        this.is_public = false;
     }
 
     // Tăng vote positive với score
@@ -85,7 +84,7 @@ class Blog {
     // Kiểm tra xem blog có public không
     evaluatePublicStatus() {
         const totalVotes = this.rating + this.bad_rating;
-        this.is_public = totalVotes > 0 && (this.bad_rating / totalVotes) < 0.5;
+        // this.is_public = totalVotes > 0 && (this.bad_rating / totalVotes) < 0.5;
     }
 }
 

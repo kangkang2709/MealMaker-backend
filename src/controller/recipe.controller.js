@@ -18,7 +18,9 @@ class RecipeController {
 
     static async createRecipe(req, res, next) {
         try {
-            const recipe = await RecipeService.createRecipe(req.body, req.files);
+            const file = req.file || null;
+            const recipeData = req.body.data ? JSON.parse(req.body.data) : {};
+            const recipe = await RecipeService.createRecipe(recipeData,file);
             return ApiResponse.success(res, 'Recipe created successfully', recipe, 201);
         } catch (err) {
             next(err);

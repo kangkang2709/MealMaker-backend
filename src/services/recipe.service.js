@@ -28,15 +28,13 @@ class RecipeService {
 
 
 
-    static async createRecipe(recipeData, files) {
+    static async createRecipe(recipeData, file) {
         // Upload tất cả ảnh nếu có
-        if (files && files.length > 0) {
-            const uploadResults = await Promise.all(
-                files.map(file => uploadImage(file.path))
-            );
-            recipeData.images = uploadResults.map(r => r.url);
+        if (file) {
+            const uploadResult = await uploadImage(file.path);
+            recipeData.images = uploadResult.url; // chỉ 1 ảnh
         } else {
-            recipeData.images = [];
+            recipeData.images = null;
         }
 
 

@@ -8,19 +8,18 @@ const upload = require('../middleware/upload'); // multer
 
 router.put('/json', BlogController.createAllBlog);
 
-router.post('/', upload.array('images', 5), BlogController.createBlog);
+router.post('/',  upload.single('file'), BlogController.createBlog);
 
 router.put('/rating', BlogController.createBlogLike);
 router.delete('/rating', BlogController.undoBlogLike);
 
 // Get all blogs
-router.get('/', BlogController.getAllBlogs);
+router.get('/', BlogController.getBlogs);
+
+router.get('/user/:user_id', BlogController.getBlogsByUser);
 
 // Get blog by ID
 router.get('/:id', BlogController.getBlogById);
-
-// Update blog (có thể upload thêm nhiều ảnh mới)
-router.put('/:id', upload.array('images', 5), BlogController.updateBlog);
 
 // Delete blog
 router.delete('/:id', BlogController.deleteBlog);

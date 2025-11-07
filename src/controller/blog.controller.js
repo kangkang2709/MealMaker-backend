@@ -5,6 +5,52 @@ const blogReaders = require('../utils/blogReaders');
 const BlogLikeService = require('../services/blogLike.service');
 
 class BlogController {
+//get blog by user 
+static async getBlogsByUser(req, res, next) {
+        try {
+            const target_user_id = req.params.user_id;
+            const { page = 1, limit = 10 } = req.query;
+
+            const blogs = await BlogService.getBlogsByUser({
+                target_user_id,
+                page: Number(page),
+                limit: Number(limit)
+            });
+
+            return res.json({
+                success: true,
+                page: Number(page),
+                limit: Number(limit),
+                count: blogs.length,
+                blogs
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+    //get all blogs
+  static async getBlogs(req, res, next) {
+        try {
+            const { page = 1, limit = 10, user_id } = req.query;
+            const blogs = await BlogService.getBlogsPaginated({
+                page: Number(page),
+                limit: Number(limit),
+                user_id,
+            });
+
+            return res.json({
+                page: Number(page),
+                limit: Number(limit),
+                count: blogs.length,
+                blogs,
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async createAllBlog(req, res, next) {
         try {
             const blogsData = await blogReaders(); // load blogs từ file JSON
@@ -15,7 +61,7 @@ class BlogController {
         }
     }
 
-    static async createBlogLike(req, res, next) {
+        static async createBlogLike(req, res, next) {
         try {
             const { user_id, blog_id, isGoodRating, score } = req.body;
             const blogLike = await BlogLikeService.createBlogLike({
@@ -46,15 +92,22 @@ class BlogController {
         }
     }
 
-    static async createBlog(req, res, next) {
-        try {
-            const files = req.files || [];
-            const blog = await BlogService.createBlog(req.body, files);
-            return ApiResponse.success(res, 'Blog created successfully', blog, 201);
-        } catch (err) {
-            next(err);
-        }
+static async createBlog(req, res, next) {
+    try {
+        // req.file là ảnh
+        const file = req.file || null;
+
+        // req.body.data chứa JSON string
+        const blogData = req.body.data ? JSON.parse(req.body.data) : {};
+
+        const blog = await BlogService.createBlog(blogData, file);
+        return ApiResponse.success(res, 'Blog created successfully', blog, 201);
+    } catch (err) {
+        next(err);
     }
+}
+
+
 
     static async getAllBlogs(req, res, next) {
         try {

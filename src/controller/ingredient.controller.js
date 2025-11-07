@@ -1,7 +1,6 @@
 const IngredientService = require("../services/ingredient.service");
 const IngredientApiService = require("../services/ingredientapi.services");
 const EdamamIngredientService = require("../services/edamamIngredient.service");
-const EdamamFoodService = require("../services/edamamFood.service");
 const ApiResponse = require("../utils/response");
 
 class IngredientController {
