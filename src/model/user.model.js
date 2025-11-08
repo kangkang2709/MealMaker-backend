@@ -1,32 +1,50 @@
 class User {
-    constructor({
-        _id,
+    constructor(
         user_name,
         full_name,
-        password,
-        avatar_url = '',
-        fridge = [],
-        weekly_menu = {},
-        ai_profile = {}, /*
-        {
-            region:[Vietnamese, Italian, ...],
-            favorite_dishes:[...],  
-            favorite_ingredients:[...],
-            diet:[Vegetarian, Keto, ...],
-            cooking_skill_level: 10,
-        }
-         */
-        weekly_shopping_list = {}
-    }) {
-        this._id = _id;
+        password
+    ) {
         this.user_name = user_name;
         this.full_name = full_name;
         this.password = password;
-        this.avatar_url = avatar_url;
-        this.fridge = fridge;      //[ingredient1: quantity, ingredient2: quantity, ...]
-        this.weekly_menu = weekly_menu; // [monday: {recipe1, recipe2}, tuesday: {...}, ...]
-        this.ai_profile = ai_profile;      // { taste_preferences: [], dietary_restrictions: [], cooking_skill_level: '', favorite_cuisines: [] }
-        this.weekly_shopping_list = weekly_shopping_list; // [ingredient1: quantity, ingredient2: quantity, ...]
+        this.avatar_url ='';
+
+        this.fridge = {}; // { ingredient: quantity, ... }
+        this.ai_profile = {
+            region: [],
+            favorite_dishes: [],
+            favorite_ingredients: [],
+            diet: [],
+            cooking_skill_level: 1
+        };
+
+        this.weekly_shopping_list = {
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: [],
+            sunday: [] 
+        };
+
+        // ✅ Weekly menu chỉ lưu recipe_id
+        this.weekly_menu = {
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: [],
+            sunday: []
+        };
+    }
+
+    // Ví dụ phương thức thêm recipe_id vào ngày
+    addRecipeToDay(day, recipe_id) {
+        if (this.weekly_menu[day]) {
+            this.weekly_menu[day].push(recipe_id);
+        }
     }
 }
 

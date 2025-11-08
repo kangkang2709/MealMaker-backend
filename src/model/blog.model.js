@@ -82,10 +82,11 @@ class Blog {
     }
 
     // Kiểm tra xem blog có public không
-    evaluatePublicStatus() {
-        const totalVotes = this.rating + this.bad_rating;
-        // this.is_public = totalVotes > 0 && (this.bad_rating / totalVotes) < 0.5;
-    }
+   evaluatePublicStatus() {
+    const totalVotes = this.rating + this.bad_rating;
+    if (totalVotes === 0) return false; // Chưa có vote => không public
+    return (this.bad_rating / totalVotes) < 0.5; // Public nếu tỉ lệ vote xấu < 50%
+}
 }
 
 module.exports = Blog;

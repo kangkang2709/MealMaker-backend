@@ -10,8 +10,6 @@ const path = require('path');
 const userRoutes = require('./src/routes/user.routes');
 const recipeRoutes = require('./src/routes/recipe.routes');
 const blogRoutes = require('./src/routes/blog.routes');
-const ingredientRoutes = require('./src/routes/ingredient.routes');
-const uploadRoutes = require('./src/routes/upload.routes');
 const errorHandler = require('./src/middleware/errorHandler');
 
 const app = express();
@@ -29,8 +27,6 @@ app.use('/tmp', express.static(path.join(__dirname, 'tmp')));
 app.use('/api/users', userRoutes);
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/blogs', blogRoutes);
-app.use('/api/ingredients', ingredientRoutes);
-app.use('/api/upload', uploadRoutes);
 
 // ===== Global Error Handler (luôn cuối cùng) =====
 app.use(errorHandler);

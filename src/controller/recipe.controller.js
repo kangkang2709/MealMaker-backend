@@ -4,29 +4,37 @@ const recipesReader = require('../utils/receiptReader');
 
 class RecipeController {
 
+    // ==============================
+    // CREATE ALL RECIPES (FROM FILE)
+    // ==============================
     static async createAllRecipe(req, res, next) {
         try {
             const rawRecipes = await recipesReader();  // rawRecipes: [{ title, description, images }, ...]
-            await RecipeService.createAllRecipes(rawRecipes); // lưu vào Firestore
+            await RecipeService.createAllRecipes(rawRecipes);
             return ApiResponse.success(res, 'All recipes created successfully', null, 201);
         } catch (err) {
             next(err);
         }
     }
 
-
-
+    // ==============================
+    // CREATE SINGLE RECIPE
+    // ==============================
+    
     static async createRecipe(req, res, next) {
         try {
             const file = req.file || null;
             const recipeData = req.body.data ? JSON.parse(req.body.data) : {};
-            const recipe = await RecipeService.createRecipe(recipeData,file);
+            const recipe = await RecipeService.createRecipe(recipeData, file);
             return ApiResponse.success(res, 'Recipe created successfully', recipe, 201);
         } catch (err) {
             next(err);
         }
     }
 
+    // ==============================
+    // UPDATE RECIPE
+    // ==============================
     static async updateRecipe(req, res, next) {
         try {
             const recipe = await RecipeService.updateRecipe(req.params.id, req.body, req.files);
@@ -36,6 +44,9 @@ class RecipeController {
         }
     }
 
+    // ==============================
+    // GET ALL RECIPES
+    // ==============================
     static async getAllRecipes(req, res, next) {
         try {
             const recipes = await RecipeService.getAllRecipes();
@@ -45,10 +56,65 @@ class RecipeController {
         }
     }
 
+    // ==============================
+    // GET RECIPE BY ID
+    // ==============================
     static async getRecipeById(req, res, next) {
         try {
             const recipe = await RecipeService.getRecipeById(req.params.id);
             return ApiResponse.success(res, 'Recipe fetched successfully', recipe);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // ==============================
+    // LIKE RECIPE
+    // ==============================
+    static async likeRecipe(req, res, next) {
+        try {
+            const { user_id, recipe_id } = req.body;
+            const result = await RecipeService.likeRecipe(user_id, recipe_id);
+            return ApiResponse.success(res, result.message, result, result.success ? 200 : 400);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // ==============================
+    // UNLIKE RECIPE
+    // ==============================
+    static async unlikeRecipe(req, res, next) {
+          try {
+            const { user_id, recipe_id } = req.body;
+            const result = await RecipeService.unlikeRecipe(user_id, recipe_id);
+            return ApiResponse.success(res, result.message, result, result.success ? 200 : 400);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // ==============================
+    // GET USER LIKED RECIPES (FULL DATA)
+    // ==============================
+    static async getUserLikedRecipes(req, res, next) {
+        try {
+            const { userId } = req.params;
+            const recipes = await RecipeService.getUserLikedRecipes(userId);
+            return ApiResponse.success(res, 'Liked recipes fetched successfully', recipes);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // ==============================
+    // GET ALL RECIPES WITH LIKE STATUS
+    // ==============================
+    static async getAllRecipesWithLikeStatus(req, res, next) {
+        try {
+            const { userId } = req.params;
+            const recipes = await RecipeService.getAllRecipesWithLikeStatus(userId);
+            return ApiResponse.success(res, 'Recipes with like status fetched successfully', recipes);
         } catch (err) {
             next(err);
         }

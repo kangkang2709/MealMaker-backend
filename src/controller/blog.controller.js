@@ -3,7 +3,6 @@ const BlogService = require('../services/blog.service');
 const ApiResponse = require('../utils/response');
 const blogReaders = require('../utils/blogReaders');
 const BlogLikeService = require('../services/blogLike.service');
-
 class BlogController {
 //get blog by user 
 static async getBlogsByUser(req, res, next) {

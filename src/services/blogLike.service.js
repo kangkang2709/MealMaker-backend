@@ -4,6 +4,7 @@ const Blog = require('../model/blog.model');
 
 const blogCollection = db.collection('blogs');
 const blogLikeCollection = db.collection('blogLikes');
+const RecipeService = require('../services/recipe.service');
 
 class BlogLikeService {
 
@@ -57,6 +58,10 @@ class BlogLikeService {
             blog.incrementRating(score);
         } else {
             blog.incrementBadRating();
+        }
+
+        if (isGoodRating && score == 4){
+            RecipeService.createRecipe2(blogData.recipe);
         }
 
         blog.evaluatePublicStatus();

@@ -5,6 +5,7 @@ const { uploadImage } = require('../services/upload.service');
 const EdamamIngredientService = require("../services/edamamIngredient.service");
 const blogCollection = db.collection('blogs');
 const blogLikeCollection = db.collection('blogLikes');
+const RecipeService = require('../services/recipe.service');
 
 class BlogService {
 
@@ -201,6 +202,7 @@ static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
     });
     blog.difficulty_score = 0;
     blog.image_url = data.image;
+    blog.recipe.image_url =data.image;
     blog.recipe.nutrition_facts =  nutritionResult || "Cannot analyze nutrition";
     // Lưu vào Firestore
     await docRef.set({ ...blog});

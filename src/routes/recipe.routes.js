@@ -1,19 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const RecipeController = require('../controller/recipe.controller');
-const upload = require('../middleware/upload');
 
-
-// tạo recipe 
-router.post('/', upload.single('file'), RecipeController.createRecipe);
-
-
+// CRUD
 router.post('/json', RecipeController.createAllRecipe);
-
-// lấy tất cả recipe
+router.post('/', RecipeController.createRecipe);
 router.get('/', RecipeController.getAllRecipes);
 
-// lấy recipe theo id
+// Like / Unlike
+router.put('/like', RecipeController.likeRecipe);
+router.put('/unlike', RecipeController.unlikeRecipe);
+router.get('/liked/:userId', RecipeController.getUserLikedRecipes);
+router.get('/with-like-status/:userId', RecipeController.getAllRecipesWithLikeStatus);
+
+
+router.put('/:id', RecipeController.updateRecipe);
 router.get('/:id', RecipeController.getRecipeById);
+
+// Get user's liked recipes
+
+// Get all recipes with like status
 
 module.exports = router;

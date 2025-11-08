@@ -3,7 +3,52 @@ const ApiResponse = require('../utils/response');
 const usersReader = require('../utils/userReaders');
 
 class UserController {
+     static async updateAIProfile(req, res, next) {
+        try {
+            const { ai_profile } = req.body;
+            const user = await UserService.updateAIProfile(req.params.id, ai_profile);
+            return ApiResponse.success(res, 'AI profile updated', user);
+        } catch (err) {
+            next(err);
+        }
+    }
+    static async updateWeeklyShoppingList(req, res, next) {
+        try {
+            const userId = req.params.id;
+            const updatedUser = await UserService.updateWeeklyShoppingList(userId);
+            return ApiResponse.success(res, 'Weekly shopping list updated', updatedUser);
+        } catch (err) {
+            next(err);
+        }
+    }
+    static async updateFridge(req, res, next) {
+        try {
+            const { fridge } = req.body;
+            const user = await UserService.updateFridge(req.params.id, fridge);
+            return ApiResponse.success(res, 'Fridge updated', user);
+        } catch (err) {
+            next(err);
+        }
+    }
 
+    static async updateWeeklyMenu(req, res, next) {
+        try {
+            const { weekly_menu } = req.body;
+            const user = await UserService.updateWeeklyMenu(req.params.id, weekly_menu);
+            return ApiResponse.success(res, 'Weekly menu updated', user);
+        } catch (err) {
+            next(err);
+        }
+    }
+ static async login(req, res, next) {
+        try {
+            const { user_name, password } = req.body;
+            const user = await UserService.login(user_name, password);
+            return ApiResponse.success(res, 'Login successful', user);
+        } catch (err) {
+            next(err);
+        }
+    }
     static async createAllUser(req, res, next) {
         try {
             const users = await usersReader();
@@ -16,14 +61,27 @@ class UserController {
 
     static async createUser(req, res, next) {
         try {
-            const user = await UserService.createUser(req.body, req.file);
+       const file = req.file || null;
+       console.log(file)
+       const userData = req.body.data ? JSON.parse(req.body.data) : {};
+       console.log(userData)
+            const user = await UserService.createUser(userData,file);
             return ApiResponse.success(res, 'User created successfully', user, 201);
         } catch (err) {
             next(err);
         }
     }
 
+ static async getUserById(id) {
+        const docRef = userCollection.doc(id);
+        const doc = await docRef.get();
 
+        if (!doc.exists) {
+            throw new Error('User not found');
+        }
+
+        return { id: doc.id, ...doc.data() };
+    }
 
     static async updateUser(req, res, next) {
         try {
