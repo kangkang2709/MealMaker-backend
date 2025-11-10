@@ -9,7 +9,7 @@ class RecipeController {
     // ==============================
     static async createAllRecipe(req, res, next) {
         try {
-            const rawRecipes = await recipesReader();  // rawRecipes: [{ title, description, images }, ...]
+            const rawRecipes = await recipesReader();
             await RecipeService.createAllRecipes(rawRecipes);
             return ApiResponse.success(res, 'All recipes created successfully', null, 201);
         } catch (err) {
@@ -20,7 +20,6 @@ class RecipeController {
     // ==============================
     // CREATE SINGLE RECIPE
     // ==============================
-    
     static async createRecipe(req, res, next) {
         try {
             const file = req.file || null;
@@ -85,7 +84,7 @@ class RecipeController {
     // UNLIKE RECIPE
     // ==============================
     static async unlikeRecipe(req, res, next) {
-          try {
+        try {
             const { user_id, recipe_id } = req.body;
             const result = await RecipeService.unlikeRecipe(user_id, recipe_id);
             return ApiResponse.success(res, result.message, result, result.success ? 200 : 400);
@@ -119,6 +118,35 @@ class RecipeController {
             next(err);
         }
     }
+
+    // ==============================
+    // SEARCH RECIPES BY INGREDIENTS (NEW)
+    // ==============================
+
+    static async searchRecipesByIngredients(req, res, next) {
+        try {
+            const { user_id, ingredients } = req.body;
+            const page = parseInt(req.query.page) || 1;
+            const size = parseInt(req.query.size) || 10;
+
+            if (!user_id || !Array.isArray(ingredients) || ingredients.length === 0) {
+                return ApiResponse.error(res, 'Invalid input', 400);
+            }
+
+            const recipes = await RecipeService.findRecipesByIngredients(user_id, ingredients, page, size);
+
+            return ApiResponse.success(res, 'Recipes found successfully', {
+                page,
+                size,
+                total: recipes.length,
+                data: recipes
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
 }
 
 module.exports = RecipeController;

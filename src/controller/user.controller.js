@@ -3,11 +3,12 @@ const ApiResponse = require('../utils/response');
 const usersReader = require('../utils/userReaders');
 
 class UserController {
-     static async updateAIProfile(req, res, next) {
+    static async updateAIProfile(req, res, next) {
         try {
-            const { ai_profile } = req.body;
-            const user = await UserService.updateAIProfile(req.params.id, ai_profile);
-            return ApiResponse.success(res, 'AI profile updated', user);
+            const userId = req.params.id; // lấy đúng param
+            const ai_profile = req.body; // body hiện tại chính là ai_profile
+            const updatedUser = await UserService.updateAIProfile(userId, ai_profile);
+            return ApiResponse.success(res, 'AI profile updated', updatedUser);
         } catch (err) {
             next(err);
         }
@@ -23,7 +24,7 @@ class UserController {
     }
     static async updateFridge(req, res, next) {
         try {
-            const { fridge } = req.body;
+            const fridge = req.body;
             const user = await UserService.updateFridge(req.params.id, fridge);
             return ApiResponse.success(res, 'Fridge updated', user);
         } catch (err) {
@@ -40,7 +41,7 @@ class UserController {
             next(err);
         }
     }
- static async login(req, res, next) {
+    static async login(req, res, next) {
         try {
             const { user_name, password } = req.body;
             const user = await UserService.login(user_name, password);
@@ -61,18 +62,18 @@ class UserController {
 
     static async createUser(req, res, next) {
         try {
-       const file = req.file || null;
-       console.log(file)
-       const userData = req.body.data ? JSON.parse(req.body.data) : {};
-       console.log(userData)
-            const user = await UserService.createUser(userData,file);
+            const file = req.file || null;
+            console.log(file)
+            const userData = req.body.data ? JSON.parse(req.body.data) : {};
+            console.log(userData)
+            const user = await UserService.createUser(userData, file);
             return ApiResponse.success(res, 'User created successfully', user, 201);
         } catch (err) {
             next(err);
         }
     }
 
- static async getUserById(id) {
+    static async getUserById(id) {
         const docRef = userCollection.doc(id);
         const doc = await docRef.get();
 

@@ -11,6 +11,58 @@ class RecipeService {
     // ==============================
     // CREATE MULTIPLE RECIPES
     // ==============================
+
+    /**
+    * Tìm recipe theo nguyên liệu, có fallback và pagination
+    * @param {string} user_id
+    * @param {string[]} ingredients - mảng tên nguyên liệu
+    * @param {number} page
+    * @param {number} size
+    */
+    static async findRecipesByIngredients(user_id, ingredients, page = 1, size = 10) {
+        if (!Array.isArray(ingredients) || ingredients.length === 0) return [];
+
+        const allRecipesSnap = await recipeCollection.get();
+
+        // Chuẩn hóa search ingredients
+        const searchSet = new Set(ingredients.map(i => i.toLowerCase().trim()));
+
+        // Lấy liked set 1 lần duy nhất
+        const likedSnap = await recipeLikesCollection.where('user_id', '==', user_id).get();
+        const likedSet = new Set(likedSnap.docs.map(d => d.data().recipe_id));
+
+        // Map recipes với số nguyên liệu trùng
+        let recipes = allRecipesSnap.docs.map(doc => {
+            const data = doc.data();
+
+            // Lấy tên nguyên liệu từ ingredients_list
+            const recipeSet = new Set(data.ingredients_list.map(line => line.split(' ')[0].toLowerCase().trim()));
+            const matchCount = [...searchSet].filter(i => recipeSet.has(i)).length;
+
+            return { ...data, id: doc.id, matchCount, liked: likedSet.has(data._id || doc.id) };
+        });
+
+        // Lọc ít nhất 1 nguyên liệu trùng
+        recipes = recipes.filter(r => r.matchCount > 0);
+
+        // Sắp xếp ưu tiên match nhiều nguyên liệu hơn
+        recipes.sort((a, b) => b.matchCount - a.matchCount);
+
+        // Fallback logic: tìm recipe match nhiều nhất có thể (3 → 2 → 1)
+        let fallback = ingredients.length;
+        let result = recipes.filter(r => r.matchCount >= fallback);
+        while (result.length === 0 && fallback > 0) {
+            fallback--;
+            result = recipes.filter(r => r.matchCount >= fallback);
+        }
+
+        // Pagination
+        const start = (page - 1) * size;
+        const end = start + size;
+        return result.slice(start, end);
+    }
+
+
     static async createAllRecipes(recipesData) {
         const batch = db.batch();
         const createdRecipes = [];
@@ -32,9 +84,9 @@ class RecipeService {
     static async createRecipe(recipeData, file = null) {
         if (file) {
             const uploadResult = await uploadImage(file.path);
-            recipeData.images = uploadResult.url;
+            recipeData.image_url = uploadResult.url;
         } else {
-            recipeData.images = null;
+            recipeData.image_url = null;
         }
 
         const docRef = recipeCollection.doc();
@@ -49,19 +101,19 @@ class RecipeService {
     }
 
 
-static async createRecipe2(recipeData) {
-    const docRef = recipeCollection.doc(); // tạo doc mới với ID ngẫu nhiên
-    const newRecipe = {
-        _id: docRef.id,          // field _id sẽ lưu doc.id
-        ...recipeData,
-        likeCount: 0,
-        created_at: new Date(),  // hoặc Firestore Timestamp
-    };
+    static async createRecipe2(recipeData) {
+        const docRef = recipeCollection.doc(); // tạo doc mới với ID ngẫu nhiên
+        const newRecipe = {
+            _id: docRef.id,          // field _id sẽ lưu doc.id
+            ...recipeData,
+            likeCount: 0,
+            created_at: new Date(),  // hoặc Firestore Timestamp
+        };
 
-    await docRef.set(newRecipe); // lưu _id vào Firestore
+        await docRef.set(newRecipe); // lưu _id vào Firestore
 
-    return newRecipe;
-}
+        return newRecipe;
+    }
 
 
 
@@ -75,7 +127,7 @@ static async createRecipe2(recipeData) {
 
         if (files && files.length > 0) {
             const uploadResults = await Promise.all(files.map(file => uploadImage(file.path)));
-            updateData.images = uploadResults.map(r => r.url);
+            updateData.image_url = uploadResults.map(r => r.url);
         }
 
         updateData.updated_at = new Date();
@@ -102,41 +154,41 @@ static async createRecipe2(recipeData) {
     // ==============================
     // LIKE RECIPE
     // ==============================
-  static async likeRecipe(user_id, _id) { // _id là _id của recipe
-    console.log('User:', user_id, 'Recipe _id:', _id);
+    static async likeRecipe(user_id, _id) { // _id là _id của recipe
+        console.log('User:', user_id, 'Recipe _id:', _id);
 
-    // Kiểm tra xem user đã like recipe chưa
-    const likeQuery = await recipeLikesCollection
-        .where('user_id', '==', user_id)
-        .where('recipe_id', '==', _id) // dùng _id của recipe lưu trong field recipe_id
-        .get();
+        // Kiểm tra xem user đã like recipe chưa
+        const likeQuery = await recipeLikesCollection
+            .where('user_id', '==', user_id)
+            .where('recipe_id', '==', _id) // dùng _id của recipe lưu trong field recipe_id
+            .get();
 
-    if (!likeQuery.empty) {
-        return { success: false, message: 'Already liked this recipe' };
-    }
-
-    // Tạo document like mới
-    const newLikeRef = recipeLikesCollection.doc();
-    const newLike = {
-        _id: newLikeRef.id, // _id của document like
-        user_id: user_id,
-        recipe_id: _id       // _id của recipe
-    };
-
-    await newLikeRef.set(newLike);
-
-    // Cập nhật likeCount của recipe
-    const recipeRef = recipeCollection.doc(_id); // doc của recipe
-    await db.runTransaction(async (transaction) => {
-        const recipeDoc = await transaction.get(recipeRef);
-        if (recipeDoc.exists) {
-            const newCount = (recipeDoc.data().likeCount || 0) + 1;
-            transaction.update(recipeRef, { likeCount: newCount });
+        if (!likeQuery.empty) {
+            return { success: false, message: 'Already liked this recipe' };
         }
-    });
 
-    return { success: true, message: 'Recipe liked successfully' };
-}
+        // Tạo document like mới
+        const newLikeRef = recipeLikesCollection.doc();
+        const newLike = {
+            _id: newLikeRef.id, // _id của document like
+            user_id: user_id,
+            recipe_id: _id       // _id của recipe
+        };
+
+        await newLikeRef.set(newLike);
+
+        // Cập nhật likeCount của recipe
+        const recipeRef = recipeCollection.doc(_id); // doc của recipe
+        await db.runTransaction(async (transaction) => {
+            const recipeDoc = await transaction.get(recipeRef);
+            if (recipeDoc.exists) {
+                const newCount = (recipeDoc.data().likeCount || 0) + 1;
+                transaction.update(recipeRef, { likeCount: newCount });
+            }
+        });
+
+        return { success: true, message: 'Recipe liked successfully' };
+    }
 
 
 

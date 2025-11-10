@@ -1,15 +1,59 @@
 // src/services/blog.service.js
 const { db } = require('../config/firebase.config');
 const Blog = require('../model/blog.model');
-const { uploadImage } = require('../services/upload.service'); 
+const { uploadImage } = require('../services/upload.service');
 const EdamamIngredientService = require("../services/edamamIngredient.service");
 const blogCollection = db.collection('blogs');
 const blogLikeCollection = db.collection('blogLikes');
 const RecipeService = require('../services/recipe.service');
 
+const Filter = require('bad-words');
+const spellchecker = require('simple-spellchecker');
+
+
+const filter = new Filter();
+
 class BlogService {
 
-static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
+    static dictionary = null;
+
+    static async loadDictionary() {
+        if (!this.dictionary) {
+            this.dictionary = await new Promise((res, rej) =>
+                spellchecker.getDictionary("en-US", (err, dict) => err ? rej(err) : res(dict))
+            );
+        }
+        return this.dictionary;
+    }
+
+    static sanitizeBlogInput(data) {
+        data.title = data.title || "";
+        data.description = data.description || "";
+        data.recipe = data.recipe || {};
+        data.recipe.description = data.recipe.description || "";
+        data.recipe.ingredients_list = data.recipe.ingredients_list || [];
+        return data;
+    }
+
+    static cleanAndMark(textOrArray, dictionary) {
+        const process = (text) => {
+            return text
+                .split(/\s+/)
+                .map(word => {
+                    let w = dictionary.spellCheck(word) ? word : word + '*';
+                    return filter.clean(w);
+                })
+                .join(' ');
+        };
+
+        if (Array.isArray(textOrArray)) return textOrArray.map(process);
+        if (typeof textOrArray === 'string') return process(textOrArray);
+        return textOrArray;
+    }
+
+
+
+    static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
         const offset = (page - 1) * limit;
 
         // 🔹 Lấy blog (theo created_at mới nhất)
@@ -94,7 +138,7 @@ static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
         return createdBlog;
     }
 
- // Lấy danh sách blog có phân trang + trạng thái vote của user
+    // Lấy danh sách blog có phân trang + trạng thái vote của user
     static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
         const offset = (page - 1) * limit;
 
@@ -176,43 +220,53 @@ static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
 
 
     static async createBlog(data, file = null) {
-
-    const ingredients = data.recipe.ingredients_list;
-
         const docRef = blogCollection.doc();
 
-    // Upload image nếu có
-  
-    const nutritionResult = await EdamamIngredientService.getNutritionForList(ingredients);
-    
-  if (file) {
-        const uploadResult = await uploadImage(file.path);
-        data.image = uploadResult.url; // chỉ 1 ảnh
-    } else {
-        data.image = null;
+        // 🔹 Load dictionary 1 lần
+        const dictionary = await this.loadDictionary();
+
+        // 🔹 Sanitize input tránh undefined
+        data = this.sanitizeBlogInput(data);
+
+        const ingredients = data.recipe.ingredients_list;
+
+        // 🔹 Upload image và tính nutrition song song
+        const [nutritionResult, uploadResult] = await Promise.all([
+            EdamamIngredientService.getNutritionForList(ingredients),
+            file ? uploadImage(file.path) : Promise.resolve({ url: null })
+        ]);
+        data.image = uploadResult.url;
+
+        // 🔹 Replace bad words + mark misspelled
+        // data.title = this.cleanAndMark(data.title, dictionary);
+        data.description = this.cleanAndMark(data.description, dictionary);
+        data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
+        // data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
+
+        // 🔹 Tạo Blog object
+        const blog = new Blog({
+            _id: docRef.id,
+            user_id: data.user_id || 'unknown',
+            title: data.title,
+            recipe: data.recipe,
+            created_at: data.created_at ? new Date(data.created_at) : new Date(),
+        });
+
+        blog.difficulty_score = 0;
+        blog.image_url = data.image;
+        blog.recipe.image_url = data.image;
+        blog.recipe.nutrition_facts = nutritionResult || "Cannot analyze nutrition";
+
+        // 🔹 Lưu vào Firestore
+        await docRef.set({ ...blog });
+
+        return { id: docRef.id, ...blog };
     }
 
-    // Tạo Blog, dùng docRef.id làm _id
-    const blog = new Blog({
-        _id: docRef.id,
-        user_id: data.user_id || 'unknown',
-        title: data.title,
-        recipe: data.recipe,
-        created_at: data.created_at ? new Date(data.created_at) : new Date(),
-    });
-    blog.difficulty_score = 0;
-    blog.image_url = data.image;
-    blog.recipe.image_url =data.image;
-    blog.recipe.nutrition_facts =  nutritionResult || "Cannot analyze nutrition";
-    // Lưu vào Firestore
-    await docRef.set({ ...blog});
-
-    return { id: docRef.id, ...blog };
-}
 
 
 
-     static async getUserVote(req, res, next) {
+    static async getUserVote(req, res, next) {
         try {
             const { user_id, blog_id } = req.query;
 
@@ -273,5 +327,10 @@ static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
         return { message: 'Blog deleted successfully' };
     }
 }
+
+
+
+
+
 
 module.exports = BlogService;

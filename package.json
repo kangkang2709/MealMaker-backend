@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.13.2",
+    "bad-words": "^3.0.4",
     "body-parser": "^2.2.0",
     "cloudinary": "^2.8.0",
     "cors": "^2.8.5",
@@ -20,7 +21,8 @@
     "express": "^5.1.0",
     "firebase-admin": "^13.5.0",
     "module-alias": "^2.2.3",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "simple-spellchecker": "^1.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

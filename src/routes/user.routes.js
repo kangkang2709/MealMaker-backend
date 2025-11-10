@@ -9,7 +9,7 @@ router.put('/all', UserController.createAllUser);
 
 router.get('/', UserController.getAllUsers);
 // user.routes.js
-router.post('/',upload.single('file'), UserController.createUser);
+router.post('/', upload.single('file'), UserController.createUser);
 
 router.get('/:id', UserController.getUserById);
 router.patch('/:id/ai_profile', UserController.updateAIProfile);

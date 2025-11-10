@@ -3,32 +3,90 @@ const { uploadImage } = require('../services/upload.service'); // ✅ đúng
 const User = require('../model/user.model')
 const userCollection = db.collection('users');
 const RecipeService = require('../services/recipe.service');
-   const spices = [
-  'salt',
-  'sugar',
-  'pepper',
-  'cinnamon',
-  'paprika',
-  'turmeric',
-  'garlic powder',
-  'onion powder',
-  'ginger',
-  'chili powder',
-  'basil',
-  'oregano',
-  'thyme',
-  'rosemary',
-  'oil',
-  'butter',
-  'vinegar',
-  'soy sauce',
-  'water'
+const spices = [
+    'salt',
+    'sugar',
+    'pepper',
+    'cinnamon',
+    'paprika',
+    'turmeric',
+    'garlic powder',
+    'onion powder',
+    'ginger',
+    'chili powder',
+    'basil',
+    'oregano',
+    'thyme',
+    'rosemary',
+    'oil',
+    'butter',
+    'vinegar',
+    'soy sauce',
+    'water'
 ];
 class UserService {
 
 
+    // Cập nhật AI profile
+    static async updateAIProfile(userId, ai_profile) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error('User not found');
 
-  static async updateWeeklyShoppingList(userId) {
+        // Flatten fields để update từng key trong map ai_profile
+        const updateData = {
+            updated_at: new Date()
+        };
+
+        if (ai_profile.region) updateData["ai_profile.region"] = ai_profile.region;
+        if (ai_profile.favorite_dishes) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
+        if (ai_profile.favorite_ingredients) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
+        if (ai_profile.diet) updateData["ai_profile.diet"] = ai_profile.diet;
+        if (ai_profile.cooking_skill_level !== undefined) updateData["ai_profile.cooking_skill_level"] = ai_profile.cooking_skill_level;
+
+        await docRef.update(updateData);
+
+        const updatedDoc = await docRef.get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+    // Cập nhật fridge (tủ lạnh)
+    static async updateFridge(userId, fridgeData) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error('User not found');
+
+        const updateData = {};
+
+        // Flatten từng key trong fridge map
+        if (fridgeData && typeof fridgeData === 'object') {
+            for (const [key, value] of Object.entries(fridgeData)) {
+                if (value !== undefined) {
+                    updateData[`fridge.${key}`] = value;
+                }
+            }
+        }
+
+        await docRef.update(updateData);
+
+        const updatedDoc = await docRef.get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+    // Cập nhật weekly menu
+    static async updateWeeklyMenu(userId, weekly_menu) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error('User not found');
+
+        await docRef.update({
+            weekly_menu,
+        });
+
+        const updatedDoc = await docRef.get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+    static async updateWeeklyShoppingList(userId) {
         // Lấy user hiện tại
         const userDoc = await userCollection.doc(userId).get();
         if (!userDoc.exists) throw new Error('User not found');
@@ -71,7 +129,7 @@ class UserService {
     }
 
 
-        static async login(user_name, password) {
+    static async login(user_name, password) {
         const snapshot = await userCollection.where('user_name', '==', user_name).get();
 
         if (snapshot.empty) {
@@ -88,26 +146,26 @@ class UserService {
         return { id: doc.id, ...user };
     }
 
-    
+
     static async createUser(userData, file) {
-    const newUser = new User(userData.user_name, userData.full_name, userData.password);
+        const newUser = new User(userData.user_name, userData.full_name, userData.password);
 
-     
-  if (file) {
-        const uploadResult = await uploadImage(file.path);
-        newUser.avatar_url = uploadResult.url; // chỉ 1 ảnh
-    } else {
-        newUser.avatar_url = null;
-    }
 
-    const docRef = userCollection.doc();
-    newUser._id = docRef.id;
-    const userPlainObject = { ...newUser };
+        if (file) {
+            const uploadResult = await uploadImage(file.path);
+            newUser.avatar_url = uploadResult.url; // chỉ 1 ảnh
+        } else {
+            newUser.avatar_url = null;
+        }
 
-    await docRef.set(userPlainObject);
+        const docRef = userCollection.doc();
+        newUser._id = docRef.id;
+        const userPlainObject = { ...newUser };
 
-    const doc = await docRef.get();
-    return { id: doc.id, ...doc.data() };
+        await docRef.set(userPlainObject);
+
+        const doc = await docRef.get();
+        return { id: doc.id, ...doc.data() };
     }
 
 
@@ -138,7 +196,6 @@ class UserService {
             updateData.avatar_url = url;
         }
 
-        updateData.updated_at = new Date();
         await docRef.update(updateData);
 
         const updatedDoc = await docRef.get();
