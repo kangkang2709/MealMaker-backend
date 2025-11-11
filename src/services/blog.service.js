@@ -166,6 +166,7 @@ class BlogService {
                 userVotesMap[data.blog_id] = {
                     isGoodRating: data.isGoodRating,
                     score: data.score || null,
+                    is_liked: data.is_liked || false
                 };
             });
         }
@@ -178,6 +179,58 @@ class BlogService {
 
         return enrichedBlogs;
     }
+
+    static async getLikedBlogsByUser({ user_id, page = 1, limit = 10, lastDocId = null }) {
+        if (!user_id) throw new Error('user_id là bắt buộc');
+
+        let query = blogLikeCollection
+            .where('user_id', '==', user_id)
+            .where('is_liked', '==', true)
+            .limit(limit);
+
+        if (lastDocId) {
+            const lastDoc = await blogLikeCollection.doc(lastDocId).get();
+            if (lastDoc.exists) query = query.startAfter(lastDoc);
+        }
+
+        const likeSnapshot = await query.get();
+        if (likeSnapshot.empty) return { blogs: [], lastDocId: null };
+
+        const likedBlogIds = likeSnapshot.docs.map(doc => doc.data().blog_id);
+
+        // Batch fetch song song để tối ưu
+        const blogBatchesPromises = [];
+        for (let i = 0; i < likedBlogIds.length; i += 10) {
+            const batchIds = likedBlogIds.slice(i, i + 10);
+            blogBatchesPromises.push(
+                blogCollection.where('__name__', 'in', batchIds).get()
+            );
+        }
+
+        const blogDocsArray = await Promise.all(blogBatchesPromises);
+        const blogs = blogDocsArray.flatMap(snapshot =>
+            snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        );
+
+        const userVotesMap = {};
+        likeSnapshot.forEach(doc => {
+            const data = doc.data();
+            userVotesMap[data.blog_id] = {
+                isGoodRating: data.isGoodRating,
+                score: data.score || null,
+                is_liked: data.is_liked,
+            };
+        });
+
+        const enrichedBlogs = blogs.map(blog => ({
+            ...blog,
+            user_vote: userVotesMap[blog.id] || null,
+        }));
+
+        const newLastDocId = likeSnapshot.docs[likeSnapshot.docs.length - 1].id;
+        return { blogs: enrichedBlogs, lastDocId: newLastDocId };
+    }
+
 
     static async getBlogsByUser({ target_user_id, page = 1, limit = 10 }) {
         if (!target_user_id) throw new Error('Missing target_user_id');
@@ -206,6 +259,7 @@ class BlogService {
             votesMap[data.blog_id] = {
                 isGoodRating: data.isGoodRating,
                 score: data.score || null,
+                is_liked: data.is_liked || false
             };
         });
 
@@ -240,8 +294,9 @@ class BlogService {
         // 🔹 Replace bad words + mark misspelled
         // data.title = this.cleanAndMark(data.title, dictionary);
         data.description = this.cleanAndMark(data.description, dictionary);
-        data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
-        // data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
+        // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
+        data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
+
 
         // 🔹 Tạo Blog object
         const blog = new Blog({
@@ -253,9 +308,25 @@ class BlogService {
         });
 
         blog.difficulty_score = 0;
+        blog.description = data.description;
         blog.image_url = data.image;
         blog.recipe.image_url = data.image;
-        blog.recipe.nutrition_facts = nutritionResult || "Cannot analyze nutrition";
+        blog.user_name = data.user_name || 'Anonymous';
+        blog.recipe.difficulty_score = 0;
+
+
+        const nutrition_facts = nutritionResult || {
+            serving_size: nutrition_facts.serving_size || '',
+            calories: nutrition_facts.calories || 0,
+            protein_g: nutrition_facts.protein_g || 0,
+            fat_total_g: nutrition_facts.fat_total_g || 0,
+            carbohydrates_g: nutrition_facts.carbohydrates_g || 0,
+            fiber_g: nutrition_facts.fiber_g || 0,
+            sugar_g: nutrition_facts.sugar_g || 0
+        };
+
+        blog.recipe.nutrition_facts = nutrition_facts;
+        blog.recipe.ingredients_list = data.recipe.ingredients_list;
 
         // 🔹 Lưu vào Firestore
         await docRef.set({ ...blog });

@@ -38,7 +38,8 @@ class BlogLikeService {
             user_id,
             blog_id,
             isGoodRating,
-            score: isGoodRating ? score : null
+            score: isGoodRating ? score : null,
+            is_liked: false,
         };
         await docRef.set(blogLike);
 
@@ -60,7 +61,7 @@ class BlogLikeService {
             blog.incrementBadRating();
         }
 
-        if (isGoodRating && score == 4){
+        if (isGoodRating && score == 4) {
             RecipeService.createRecipe2(blogData.recipe);
         }
 
@@ -70,13 +71,38 @@ class BlogLikeService {
         return blogLike;
     }
 
+    static async updateBlogLikeStatus({ user_id, blog_id, is_liked }) {
+        // Kiểm tra giá trị hợp lệ
+        if (typeof is_liked !== 'boolean') {
+            throw new Error('Giá trị is_liked phải là boolean');
+        }
+
+        // Tìm blogLike của user và blog
+        const snapshot = await blogLikeCollection
+            .where('user_id', '==', user_id)
+            .where('blog_id', '==', blog_id)
+            .get();
+
+        if (snapshot.empty) {
+            throw new Error('User chưa có đánh giá cho blog này');
+        }
+
+        const doc = snapshot.docs[0];
+        const docRef = blogLikeCollection.doc(doc.id);
+
+        // Cập nhật trạng thái
+        await docRef.update({ is_liked });
+
+        return { message: `Cập nhật trạng thái is_liked = ${is_liked} thành công`, id: doc.id };
+    }
+
     /**
      * Undo vote
      * @param {Object} param0
      * @param {string} param0.user_id
      * @param {string} param0.blog_id
      */
-    static async undoBlogLike({ user_id, blog_id }) {
+    static async undoBlogVote({ user_id, blog_id }) {
         // Tìm BlogLike của user
         const snapshot = await blogLikeCollection
             .where('user_id', '==', user_id)
@@ -90,10 +116,7 @@ class BlogLikeService {
         const blogLikeDoc = snapshot.docs[0];
         const blogLikeData = blogLikeDoc.data();
 
-        // Xóa vote
-        await blogLikeCollection.doc(blogLikeDoc.id).delete();
-
-        // Cập nhật blog
+        // Lấy blog từ Firestore
         const blogRef = blogCollection.doc(blog_id);
         const blogDoc = await blogRef.get();
         if (!blogDoc.exists) throw new Error('Blog không tồn tại');
@@ -104,6 +127,7 @@ class BlogLikeService {
             difficulty_score_distribution: blogData.difficulty_score_distribution || null
         });
 
+        // Nếu vote là positive hoặc negative, giảm điểm trên blog
         if (blogLikeData.isGoodRating) {
             blog.decrementRating(blogLikeData.score);
         } else {
@@ -113,8 +137,15 @@ class BlogLikeService {
         blog.evaluatePublicStatus();
         await blogRef.update({ ...blog });
 
-        return { message: 'Vote đã được hủy', blogLike: blogLikeData };
+        // Cập nhật BlogLike: reset vote nhưng giữ is_liked
+        await blogLikeCollection.doc(blogLikeDoc.id).update({
+            isGoodRating: null,
+            score: null
+        });
+
+        return { message: 'Vote đã được hủy nhưng like vẫn còn', blogLikeId: blogLikeDoc.id };
     }
+
 }
 
 module.exports = BlogLikeService;

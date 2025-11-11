@@ -4,8 +4,8 @@ const ApiResponse = require('../utils/response');
 const blogReaders = require('../utils/blogReaders');
 const BlogLikeService = require('../services/blogLike.service');
 class BlogController {
-//get blog by user 
-static async getBlogsByUser(req, res, next) {
+    //get blog by user 
+    static async getBlogsByUser(req, res, next) {
         try {
             const target_user_id = req.params.user_id;
             const { page = 1, limit = 10 } = req.query;
@@ -28,9 +28,34 @@ static async getBlogsByUser(req, res, next) {
         }
     }
 
+    static async getLikedBlogs(req, res, next) {
+        try {
+            const user_id = req.params.user_id; // lấy từ params
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const lastDocId = req.query.lastDocId || null;
+
+            if (!user_id) {
+                return ApiResponse.error(res, 'user_id là bắt buộc', 400);
+            }
+
+            const result = await BlogService.getLikedBlogsByUser({
+                user_id,  // truyền đúng biến
+                page,
+                limit,
+                lastDocId
+            });
+
+            return ApiResponse.success(res, 'Danh sách blog liked', result, 200);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
 
     //get all blogs
-  static async getBlogs(req, res, next) {
+    static async getBlogs(req, res, next) {
         try {
             const { page = 1, limit = 10, user_id } = req.query;
             const blogs = await BlogService.getBlogsPaginated({
@@ -60,7 +85,7 @@ static async getBlogsByUser(req, res, next) {
         }
     }
 
-        static async createBlogLike(req, res, next) {
+    static async createBlogLike(req, res, next) {
         try {
             const { user_id, blog_id, isGoodRating, score } = req.body;
             const blogLike = await BlogLikeService.createBlogLike({
@@ -76,6 +101,25 @@ static async getBlogsByUser(req, res, next) {
         }
     }
 
+    static async updateBlogLikeStatus(req, res, next) {
+        try {
+            const { user_id, blog_id, is_liked } = req.body;
+
+            const result = await BlogLikeService.updateBlogLikeStatus({
+                user_id,
+                blog_id,
+                is_liked
+            });
+
+            return ApiResponse.success(res, 'Cập nhật trạng thái is_liked thành công', result, 200);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+
+
     /**
      * DELETE /blogLikes
      * Body: { user_id, blog_id }
@@ -83,28 +127,28 @@ static async getBlogsByUser(req, res, next) {
     static async undoBlogLike(req, res, next) {
         try {
             const { user_id, blog_id } = req.body;
-            const result = await BlogLikeService.undoBlogLike({ user_id, blog_id });
+            const result = await BlogLikeService.undoBlogVote({ user_id, blog_id });
 
-            return ApiResponse.success(res, result.message, result.blogLike);
+            return ApiResponse.success(res, result.message, result);
         } catch (err) {
             next(err);
         }
     }
 
-static async createBlog(req, res, next) {
-    try {
-        // req.file là ảnh
-        const file = req.file || null;
+    static async createBlog(req, res, next) {
+        try {
+            // req.file là ảnh
+            const file = req.file || null;
 
-        // req.body.data chứa JSON string
-        const blogData = req.body.data ? JSON.parse(req.body.data) : {};
+            // req.body.data chứa JSON string
+            const blogData = req.body.data ? JSON.parse(req.body.data) : {};
 
-        const blog = await BlogService.createBlog(blogData, file);
-        return ApiResponse.success(res, 'Blog created successfully', blog, 201);
-    } catch (err) {
-        next(err);
+            const blog = await BlogService.createBlog(blogData, file);
+            return ApiResponse.success(res, 'Blog created successfully', blog, 201);
+        } catch (err) {
+            next(err);
+        }
     }
-}
 
 
 

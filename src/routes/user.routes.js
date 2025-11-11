@@ -12,6 +12,7 @@ router.get('/', UserController.getAllUsers);
 router.post('/', upload.single('file'), UserController.createUser);
 
 router.get('/:id', UserController.getUserById);
+
 router.patch('/:id/ai_profile', UserController.updateAIProfile);
 router.patch('/:id/fridge', UserController.updateFridge);
 router.patch('/:id/weekly_menu', UserController.updateWeeklyMenu);
