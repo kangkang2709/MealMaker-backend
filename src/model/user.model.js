@@ -7,7 +7,7 @@ class User {
         this.user_name = user_name;
         this.full_name = full_name;
         this.password = password;
-        this.avatar_url ='';
+        this.avatar_url = '';
 
         this.fridge = {}; // { ingredient: quantity, ... }
         this.ai_profile = {
@@ -15,7 +15,7 @@ class User {
             favorite_dishes: [],
             favorite_ingredients: [],
             diet: [],
-            cooking_skill_level: 1
+            cooking_skill_level: 0
         };
 
         this.weekly_shopping_list = {
@@ -25,7 +25,7 @@ class User {
             thursday: [],
             friday: [],
             saturday: [],
-            sunday: [] 
+            sunday: []
         };
 
         // ✅ Weekly menu chỉ lưu recipe_id

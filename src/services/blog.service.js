@@ -12,6 +12,9 @@ const spellchecker = require('simple-spellchecker');
 
 
 const filter = new Filter();
+const SpellCorrector = require('spelling-corrector');
+const spell = new SpellCorrector();
+spell.loadDictionary();
 
 class BlogService {
 
@@ -34,12 +37,16 @@ class BlogService {
         data.recipe.ingredients_list = data.recipe.ingredients_list || [];
         return data;
     }
-
     static cleanAndMark(textOrArray, dictionary) {
         const process = (text) => {
             return text
                 .split(/\s+/)
                 .map(word => {
+                    // Regex: số nguyên hoặc thập phân theo sau là chữ (unit)
+                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) {
+                        return word; // bỏ qua, giữ nguyên
+                    }
+
                     let w = dictionary.spellCheck(word) ? word : word + '*';
                     return filter.clean(w);
                 })
@@ -50,6 +57,7 @@ class BlogService {
         if (typeof textOrArray === 'string') return process(textOrArray);
         return textOrArray;
     }
+
 
 
 
@@ -282,21 +290,22 @@ class BlogService {
         // 🔹 Sanitize input tránh undefined
         data = this.sanitizeBlogInput(data);
 
-        const ingredients = data.recipe.ingredients_list;
+        data.recipe.ingredients_list_fixed = this.fixIngredientSpelling(data.recipe.ingredients_list);
 
+        const ingredientDetails = data.recipe.ingredients_list_fixed;
         // 🔹 Upload image và tính nutrition song song
         const [nutritionResult, uploadResult] = await Promise.all([
-            EdamamIngredientService.getNutritionForList(ingredients),
+            EdamamIngredientService.getNutritionForList(ingredientDetails),
             file ? uploadImage(file.path) : Promise.resolve({ url: null })
         ]);
         data.image = uploadResult.url;
+        const nutrition_facts = nutritionResult;
 
         // 🔹 Replace bad words + mark misspelled
         // data.title = this.cleanAndMark(data.title, dictionary);
         data.description = this.cleanAndMark(data.description, dictionary);
         // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
         data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
-
 
         // 🔹 Tạo Blog object
         const blog = new Blog({
@@ -315,19 +324,10 @@ class BlogService {
         blog.recipe.difficulty_score = 0;
 
 
-        const nutrition_facts = nutritionResult || {
-            serving_size: nutrition_facts.serving_size || '',
-            calories: nutrition_facts.calories || 0,
-            protein_g: nutrition_facts.protein_g || 0,
-            fat_total_g: nutrition_facts.fat_total_g || 0,
-            carbohydrates_g: nutrition_facts.carbohydrates_g || 0,
-            fiber_g: nutrition_facts.fiber_g || 0,
-            sugar_g: nutrition_facts.sugar_g || 0
-        };
-
+        blog.recipe.seasoning = blog.recipe.seasoning || [];
         blog.recipe.nutrition_facts = nutrition_facts;
         blog.recipe.ingredients_list = data.recipe.ingredients_list;
-
+        blog.recipe.ingredients_list_fixed = data.recipe.ingredients_list_fixed;
         // 🔹 Lưu vào Firestore
         await docRef.set({ ...blog });
 
@@ -397,6 +397,18 @@ class BlogService {
         await docRef.delete();
         return { message: 'Blog deleted successfully' };
     }
+
+
+    static fixIngredientSpelling(ingredientsList) {
+        return ingredientsList.map(item => {
+            const [namePart, ...rest] = item.split(/([0-9].*)/);
+            const words = namePart.trim().toLowerCase().split(/\s+/);
+
+            const correctedWords = words.map(word => spell.correct(word));
+            return correctedWords.join(' ') + ' ' + (rest.join('').trim() || '');
+        });
+    }
+
 }
 
 

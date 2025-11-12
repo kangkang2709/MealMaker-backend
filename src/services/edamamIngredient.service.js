@@ -1,4 +1,5 @@
 const axios = require("axios");
+const e = require("cors");
 
 const EDAMAM_API_URL = process.env.EDAMAM_NUTRIENT_API_URL;
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID;
@@ -29,7 +30,7 @@ class EdamamIngredientService {
                 }
             );
 
-             const nutritionFacts = convertToNutritionFacts(data);
+            const nutritionFacts = convertToNutritionFacts(data);
             return nutritionFacts;
         } catch (err) {
             console.error(
@@ -49,7 +50,7 @@ class EdamamIngredientService {
      */
     static async getNutritionForList(ingredientsList) {
 
-           console.log(ingredientsList)
+        console.log(ingredientsList)
 
         if (!Array.isArray(ingredientsList) || ingredientsList.length === 0) {
             throw new Error("Ingredients list must be a non-empty array");
@@ -74,20 +75,23 @@ class EdamamIngredientService {
                 }
             );
 
-             const nutritionFacts = convertToNutritionFacts(data);
+            const nutritionFacts = convertToNutritionFacts(data);
             return nutritionFacts;
             return data; // data chứa calories, totalNutrients, totalWeight, etc.
         } catch (err) {
-            console.error(
-                "❌ Edamam API Error:",
-                err.response?.data || err.message
-            );
-            throw new Error(
-                err.response?.data?.message || "Ingredients not found"
-            );
+            console.error("Error fetching nutrition:", err);
+            return {
+                serving_size: '',
+                calories: 0,
+                protein_g: 0,
+                fat_total_g: 0,
+                carbohydrates_g: 0,
+                fiber_g: 0,
+                sugar_g: 0
+            };
         }
     }
-    
+
 }
 function convertToNutritionFacts(edamamData) {
     if (!edamamData?.ingredients || !edamamData.yield) {

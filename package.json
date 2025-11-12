@@ -22,7 +22,8 @@
     "firebase-admin": "^13.5.0",
     "module-alias": "^2.2.3",
     "multer": "^2.0.2",
-    "simple-spellchecker": "^1.0.2"
+    "simple-spellchecker": "^1.0.2",
+    "spelling-corrector": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

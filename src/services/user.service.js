@@ -3,27 +3,7 @@ const { uploadImage } = require('../services/upload.service'); // ✅ đúng
 const User = require('../model/user.model')
 const userCollection = db.collection('users');
 const RecipeService = require('../services/recipe.service');
-const spices = [
-    'salt',
-    'sugar',
-    'pepper',
-    'cinnamon',
-    'paprika',
-    'turmeric',
-    'garlic powder',
-    'onion powder',
-    'ginger',
-    'chili powder',
-    'basil',
-    'oregano',
-    'thyme',
-    'rosemary',
-    'oil',
-    'butter',
-    'vinegar',
-    'soy sauce',
-    'water'
-];
+
 class UserService {
 
 
@@ -72,61 +52,100 @@ class UserService {
         const updatedDoc = await docRef.get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
-    // Cập nhật weekly menu
-    static async updateWeeklyMenu(userId, weekly_menu) {
-        const docRef = userCollection.doc(userId);
-        const doc = await docRef.get();
-        if (!doc.exists) throw new Error('User not found');
-
-        await docRef.update({
-            weekly_menu,
-        });
-
-        const updatedDoc = await docRef.get();
-        return { id: updatedDoc.id, ...updatedDoc.data() };
-    }
-
     static async updateWeeklyShoppingList(userId) {
-        // Lấy user hiện tại
         const userDoc = await userCollection.doc(userId).get();
         if (!userDoc.exists) throw new Error('User not found');
 
         const user = userDoc.data();
         const updatedShoppingList = {};
 
-        // Duyệt qua từng ngày trong weekly_menu
+        // Hàm tách tên seasoning (bỏ số lượng/unit đầu)
+        function getSeasoningName(seasoningLine) {
+            const lower = seasoningLine.toLowerCase();
+            const parts = lower.split(' ');
+            if (parts.includes('to') && parts.includes('taste')) return 'salt';
+            const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
+            return nameParts.join(' ').trim();
+        }
+
         for (const day of Object.keys(user.weekly_menu)) {
             const recipesForDay = user.weekly_menu[day] || [];
-            const shoppingListForDay = new Set(); // dùng Set để tránh trùng
+            const tempIngredients = {}; // key = name_unit
+            const seasoningSet = new Set();
 
             for (const recipeId of recipesForDay) {
                 const recipe = await RecipeService.getRecipeById(recipeId);
                 if (!recipe || !recipe.ingredients_list) continue;
 
-                for (const ingredientLine of recipe.ingredients_list) {
-                    const ingredientName = ingredientLine.split(' ')[0].toLowerCase();
+                // Xử lý nguyên liệu
+                for (const line of recipe.ingredients_list) {
+                    const parts = line.trim().split(/\s+/);
+                    if (parts.length < 2) continue;
 
-                    // Bỏ qua gia vị
-                    if (spices.includes(ingredientName)) continue;
+                    const qtyUnit = parts[parts.length - 1].toLowerCase(); // "100g"
+                    const name = parts.slice(0, parts.length - 1).join(' ').toLowerCase(); // "sliced tomato"
 
-                    // Nếu trong fridge đã có, bỏ qua
-                    if (user.fridge[ingredientName]) continue;
+                    const match = qtyUnit.match(/^(\d+(\.\d+)?)([a-zA-Z]+)$/);
+                    if (!match) continue;
 
-                    shoppingListForDay.add(ingredientName);
+                    const quantity = parseFloat(match[1]);
+                    const unit = match[3];
+
+                    const key = `${name}_${unit}`;
+                    if (!tempIngredients[key]) {
+                        tempIngredients[key] = { name, quantity, unit };
+                    } else {
+                        tempIngredients[key].quantity += quantity;
+                    }
+                }
+
+                // Xử lý seasoning
+                if (recipe.seasoning) {
+                    for (const s of recipe.seasoning) {
+                        const sName = getSeasoningName(s);
+                        if (!user.fridge?.[sName]) seasoningSet.add(s);
+                    }
                 }
             }
 
-            updatedShoppingList[day] = shoppingListForDay.size > 0
-                ? Array.from(shoppingListForDay)
-                : [];
+            // Trừ fridge và chuẩn hóa key theo fridge
+            const shoppingListForDay = {};
+            for (const key in tempIngredients) {
+                let { name, quantity, unit } = tempIngredients[key];
+
+                // Kiểm tra fridge
+                let fridgeQty = 0;
+                const fridgeKey = Object.keys(user.fridge || {}).find(fk => fk.toLowerCase() === name.toLowerCase());
+                if (fridgeKey) {
+                    const fridgeMatch = user.fridge[fridgeKey].match(/^(\d+(\.\d+)?)([a-zA-Z]+)$/);
+                    if (fridgeMatch) {
+                        const fridgeValue = parseFloat(fridgeMatch[1]);
+                        const fridgeUnit = fridgeMatch[3].toLowerCase();
+                        if (fridgeUnit === unit.toLowerCase()) fridgeQty = fridgeValue;
+                    }
+                    name = fridgeKey; // chuẩn hóa theo fridge
+                }
+
+                const qtyNeeded = Math.max(quantity - fridgeQty, 0);
+                if (qtyNeeded > 0) shoppingListForDay[name] = `${qtyNeeded}${unit}`;
+            }
+
+            updatedShoppingList[day] = {
+                ingredients: shoppingListForDay,
+                seasoning: Array.from(seasoningSet)
+            };
         }
 
-        // Cập nhật user document
+        // Cập nhật vào firestore
         await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
 
         const updatedDoc = await userCollection.doc(userId).get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
+
+
+
+
 
 
     static async login(user_name, password) {
@@ -230,6 +249,17 @@ class UserService {
         await docRef.delete();
         return { message: 'User deleted successfully' };
     }
+}
+function getSeasoningName(seasoningLine) {
+    // Loại bỏ số lượng/unit đầu (nếu có)
+    // Ví dụ: "1 tbsp soy sauce" → "soy sauce"
+    // Nếu line chứa "to taste" thì giữ nguyên từ cuối
+    const lower = seasoningLine.toLowerCase();
+    const parts = lower.split(' ');
+    if (parts.includes('to') && parts.includes('taste')) return 'salt'; // "salt to taste"
+    // bỏ các số và unit đầu tiên
+    const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
+    return nameParts.join(' ').trim();
 }
 
 module.exports = UserService;
