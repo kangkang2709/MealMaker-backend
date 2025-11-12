@@ -69,6 +69,7 @@ class RecipeService {
 
         for (const recipe of recipesData) {
             const data = recipe;
+            data.created_at = new Date();
             const docRef = recipeCollection.doc();
             batch.set(docRef, data);
             createdRecipes.push({ id: docRef.id, ...data });
@@ -102,6 +103,7 @@ class RecipeService {
 
 
     static async createRecipe2(recipeData) {
+        // recipeData.ingredients_list = recipeData.ingredients_list_fixed || recipeData.ingredients_list || [];
         const docRef = recipeCollection.doc(); // tạo doc mới với ID ngẫu nhiên
         const newRecipe = {
             _id: docRef.id,          // field _id sẽ lưu doc.id

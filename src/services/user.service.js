@@ -18,11 +18,12 @@ class UserService {
             updated_at: new Date()
         };
 
-        if (ai_profile.region) updateData["ai_profile.region"] = ai_profile.region;
-        if (ai_profile.favorite_dishes) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
-        if (ai_profile.favorite_ingredients) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
-        if (ai_profile.diet) updateData["ai_profile.diet"] = ai_profile.diet;
+        if (ai_profile.region !== undefined) updateData["ai_profile.region"] = ai_profile.region;
+        if (ai_profile.favorite_dishes !== undefined) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
+        if (ai_profile.favorite_ingredients !== undefined) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
+        if (ai_profile.diet !== undefined) updateData["ai_profile.diet"] = ai_profile.diet;
         if (ai_profile.cooking_skill_level !== undefined) updateData["ai_profile.cooking_skill_level"] = ai_profile.cooking_skill_level;
+
 
         await docRef.update(updateData);
 
