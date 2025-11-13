@@ -316,6 +316,7 @@ class BlogService {
             created_at: data.created_at ? new Date(data.created_at) : new Date(),
         });
 
+
         blog.difficulty_score = 0;
         blog.description = data.description;
         blog.image_url = data.image;

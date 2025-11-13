@@ -3,6 +3,16 @@ const ApiResponse = require('../utils/response');
 const usersReader = require('../utils/userReaders');
 
 class UserController {
+
+    static async getAllUserIds(req, res, next) {
+        try {
+            const ids = await UserService.getAllDocIds();
+            return ApiResponse.success(res, 'Fetched all user IDs successfully', ids, 200);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async updateAIProfile(req, res, next) {
         try {
             const userId = req.params.id; // lấy đúng param
@@ -35,7 +45,7 @@ class UserController {
     static async updateWeeklyMenu(req, res, next) {
         try {
             const { weekly_menu } = req.body;
-            const user = await UserService.updateWeeklyMenu(req.params.id, weekly_menu);
+            const user = await UserService.updateWeeklyMenuWithDetails(req.params.id, weekly_menu);
             return ApiResponse.success(res, 'Weekly menu updated', user);
         } catch (err) {
             next(err);

@@ -1,12 +1,33 @@
 const RecipeService = require('../services/recipe.service');
 const ApiResponse = require('../utils/response');
 const recipesReader = require('../utils/receiptReader');
-
+const recipesLikeReader = require('../utils/recipesLikeReader');
 class RecipeController {
 
     // ==============================
     // CREATE ALL RECIPES (FROM FILE)
     // ==============================
+
+    static async getAllRecipeIds(req, res, next) {
+        try {
+            const ids = await RecipeService.getAllDocIds();
+            return ApiResponse.success(res, 'Fetched all recipe IDs successfully', ids, 200);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+    static async createAllRecipeLike(req, res, next) {
+        try {
+            const rawRecipes = await recipesLikeReader();
+            await RecipeService.createAllRecipesLike(rawRecipes);
+            return ApiResponse.success(res, 'All recipes created successfully', rawRecipes, 201);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async createAllRecipe(req, res, next) {
         try {
             const rawRecipes = await recipesReader();
@@ -118,6 +139,44 @@ class RecipeController {
             next(err);
         }
     }
+
+    // ==============================
+    static async get10RecipesWithTagList(req, res, next) {
+        try {
+            const { userId } = req.params;
+            const { tags } = req.query;
+
+            // ✅ kiểm tra missing
+            if (!tags) {
+                return ApiResponse.error(
+                    res,
+                    'Missing query parameter: tags.',
+                    400
+                );
+            }
+
+            // ✅ xử lý cho cả dạng string hoặc array
+            const tagsList = Array.isArray(tags)
+                ? tags.map(tag => tag.trim()).filter(Boolean)
+                : tags.split(',').map(tag => tag.trim()).filter(Boolean);
+
+            if (tagsList.length === 0) {
+                return ApiResponse.error(res, 'No valid tags provided', 400);
+            }
+
+            console.log('🔥 Tags list received:', tagsList);
+
+            const recipes = await RecipeService.getTop10RecipesByTags(tagsList, userId);
+            return ApiResponse.success(res, 'Recipes fetched successfully', recipes);
+
+        } catch (err) {
+            console.error('🔥 Error in get10RecipesWithTagList:', err);
+            next(err);
+        }
+    }
+
+
+
 
     // ==============================
     // SEARCH RECIPES BY INGREDIENTS (NEW)

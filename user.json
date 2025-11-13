@@ -1,202 +1,222 @@
 [
   {
-    "_id": "u001",
+    "_id": "USR001",
     "user_name": "user1",
-    "full_name": "Alice Nguyen",
-    "password": "Test1234",
+    "full_name": "User One",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=1",
-    "fridge": {"milk": 2, "eggs": 12, "tomato": 5},
-    "weekly_menu": {
-      "monday": ["Spaghetti Bolognese", "Caesar Salad"],
-      "tuesday": ["Grilled Chicken", "Quinoa Salad"]
-    },
-    "ai_profile": {
-      "region": ["Vietnamese", "Italian"],
-      "favorite_dishes": ["Pho", "Pizza"],
-      "favorite_ingredients": ["Chicken", "Tomato"],
-      "diet": ["Balanced"],
-      "cooking_skill_level": 7
-    },
-    "weekly_shopping_list": {"milk": 1, "chicken": 2, "lettuce": 3}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u002",
+    "_id": "USR002",
     "user_name": "user2",
-    "full_name": "Bob Tran",
-    "password": "Test1234",
+    "full_name": "User Two",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=2",
-    "fridge": {"beef": 1, "onion": 4, "carrot": 3},
-    "weekly_menu": {
-      "wednesday": ["Beef Stew", "Mashed Potatoes"],
-      "thursday": ["Stir-fried Veggies", "Rice"]
-    },
-    "ai_profile": {
-      "region": ["American", "Vietnamese"],
-      "favorite_dishes": ["Burger", "Pho"],
-      "favorite_ingredients": ["Beef", "Garlic"],
-      "diet": ["High-Protein"],
-      "cooking_skill_level": 6
-    },
-    "weekly_shopping_list": {"beef": 2, "garlic": 1, "potato": 5}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u003",
+    "_id": "USR003",
     "user_name": "user3",
-    "full_name": "Carol Le",
-    "password": "Test1234",
+    "full_name": "User Three",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=3",
-    "fridge": {"tofu": 2, "spinach": 1, "rice": 3},
-    "weekly_menu": {
-      "friday": ["Tofu Stir Fry", "Miso Soup"],
-      "saturday": ["Veggie Sushi", "Salad"]
-    },
-    "ai_profile": {
-      "region": ["Japanese", "Vegetarian"],
-      "favorite_dishes": ["Sushi", "Miso Soup"],
-      "favorite_ingredients": ["Tofu", "Seaweed"],
-      "diet": ["Vegetarian"],
-      "cooking_skill_level": 8
-    },
-    "weekly_shopping_list": {"tofu": 2, "seaweed": 1, "rice": 4}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u004",
+    "_id": "USR004",
     "user_name": "user4",
-    "full_name": "David Pham",
-    "password": "Test1234",
+    "full_name": "User Four",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=4",
-    "fridge": {"chicken": 2, "potato": 6, "cheese": 1},
-    "weekly_menu": {
-      "sunday": ["Roast Chicken", "Salad"],
-      "monday": ["Chicken Curry", "Rice"]
-    },
-    "ai_profile": {
-      "region": ["Indian", "Vietnamese"],
-      "favorite_dishes": ["Curry", "Banh Mi"],
-      "favorite_ingredients": ["Chicken", "Curry Powder"],
-      "diet": ["Balanced"],
-      "cooking_skill_level": 5
-    },
-    "weekly_shopping_list": {"chicken": 3, "curry powder": 1, "lettuce": 2}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u005",
+    "_id": "USR005",
     "user_name": "user5",
-    "full_name": "Emma Hoang",
-    "password": "Test1234",
+    "full_name": "User Five",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=5",
-    "fridge": {"salmon": 2, "lemon": 3, "garlic": 2},
-    "weekly_menu": {
-      "tuesday": ["Grilled Salmon", "Quinoa Salad"],
-      "thursday": ["Pasta Primavera", "Caesar Salad"]
-    },
-    "ai_profile": {
-      "region": ["Italian", "Seafood"],
-      "favorite_dishes": ["Pasta", "Salmon"],
-      "favorite_ingredients": ["Salmon", "Parmesan"],
-      "diet": ["Pescatarian"],
-      "cooking_skill_level": 9
-    },
-    "weekly_shopping_list": {"salmon": 2, "lemon": 3, "parmesan": 1}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u006",
+    "_id": "USR006",
     "user_name": "user6",
-    "full_name": "Frank Nguyen",
-    "password": "Test1234",
+    "full_name": "User Six",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=6",
-    "fridge": {"pork": 2, "onion": 2, "pepper": 1},
-    "weekly_menu": {
-      "wednesday": ["Pork Stir Fry", "Steamed Rice"],
-      "friday": ["BBQ Pork", "Salad"]
-    },
-    "ai_profile": {
-      "region": ["Asian", "American"],
-      "favorite_dishes": ["BBQ Pork", "Fried Rice"],
-      "favorite_ingredients": ["Pork", "Soy Sauce"],
-      "diet": ["High-Protein"],
-      "cooking_skill_level": 6
-    },
-    "weekly_shopping_list": {"pork": 3, "soy sauce": 1, "pepper": 1}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u007",
+    "_id": "USR007",
     "user_name": "user7",
-    "full_name": "Gina Do",
-    "password": "Test1234",
+    "full_name": "User Seven",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=7",
-    "fridge": {"shrimp": 5, "noodles": 2, "bok_choy": 1},
-    "weekly_menu": {
-      "monday": ["Shrimp Noodles", "Stir-fried Bok Choy"],
-      "saturday": ["Seafood Paella", "Salad"]
-    },
-    "ai_profile": {
-      "region": ["Spanish", "Asian"],
-      "favorite_dishes": ["Paella", "Shrimp Noodles"],
-      "favorite_ingredients": ["Shrimp", "Rice"],
-      "diet": ["Balanced"],
-      "cooking_skill_level": 8
-    },
-    "weekly_shopping_list": {"shrimp": 5, "noodles": 2, "bok_choy": 1}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u008",
+    "_id": "USR008",
     "user_name": "user8",
-    "full_name": "Henry Vu",
-    "password": "Test1234",
+    "full_name": "User Eight",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=8",
-    "fridge": {"egg": 12, "milk": 2, "bread": 1},
-    "weekly_menu": {
-      "tuesday": ["Omelette", "Toast"],
-      "thursday": ["French Toast", "Salad"]
-    },
-    "ai_profile": {
-      "region": ["French", "American"],
-      "favorite_dishes": ["Omelette", "Crepes"],
-      "favorite_ingredients": ["Egg", "Cheese"],
-      "diet": ["Vegetarian"],
-      "cooking_skill_level": 5
-    },
-    "weekly_shopping_list": {"egg": 12, "milk": 2, "bread": 2}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u009",
+    "_id": "USR009",
     "user_name": "user9",
-    "full_name": "Isabel Tran",
-    "password": "Test1234",
+    "full_name": "User Nine",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=9",
-    "fridge": {"beef": 2, "mushroom": 3, "cream": 1},
-    "weekly_menu": {
-      "friday": ["Beef Stroganoff", "Salad"],
-      "sunday": ["Mushroom Risotto", "Soup"]
-    },
-    "ai_profile": {
-      "region": ["Russian", "Italian"],
-      "favorite_dishes": ["Stroganoff", "Risotto"],
-      "favorite_ingredients": ["Beef", "Mushroom"],
-      "diet": ["Balanced"],
-      "cooking_skill_level": 7
-    },
-    "weekly_shopping_list": {"beef": 2, "mushroom": 3, "cream": 1}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   },
   {
-    "_id": "u010",
+    "_id": "USR010",
     "user_name": "user10",
-    "full_name": "Jackie Le",
-    "password": "Test1234",
+    "full_name": "User Ten",
+    "password": "123",
     "avatar_url": "https://i.pravatar.cc/150?img=10",
-    "fridge": {"chicken": 1, "pasta": 2, "tomato_sauce": 1},
-    "weekly_menu": {
-      "monday": ["Chicken Pasta", "Salad"],
-      "wednesday": ["Tomato Soup", "Grilled Cheese"]
-    },
-    "ai_profile": {
-      "region": ["Italian", "American"],
-      "favorite_dishes": ["Pasta", "Pizza"],
-      "favorite_ingredients": ["Chicken", "Tomato"],
-      "diet": ["Balanced"],
-      "cooking_skill_level": 6
-    },
-    "weekly_shopping_list": {"chicken": 2, "pasta": 2, "tomato_sauce": 1}
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR011",
+    "user_name": "user11",
+    "full_name": "User Eleven",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=11",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR012",
+    "user_name": "user12",
+    "full_name": "User Twelve",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=12",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR013",
+    "user_name": "user13",
+    "full_name": "User Thirteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=13",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR014",
+    "user_name": "user14",
+    "full_name": "User Fourteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=14",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR015",
+    "user_name": "user15",
+    "full_name": "User Fifteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=15",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR016",
+    "user_name": "user16",
+    "full_name": "User Sixteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=16",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR017",
+    "user_name": "user17",
+    "full_name": "User Seventeen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=17",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR018",
+    "user_name": "user18",
+    "full_name": "User Eighteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=18",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR019",
+    "user_name": "user19",
+    "full_name": "User Nineteen",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=19",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
+  },
+  {
+    "_id": "USR020",
+    "user_name": "user20",
+    "full_name": "User Twenty",
+    "password": "123",
+    "avatar_url": "https://i.pravatar.cc/150?img=20",
+    "ai_profile": {"cooking_skill_level": 1,"favorite_ingredients":[],"favorite_dishes":[],"diet":[],"region":[]},
+    "weekly_menu":{"monday":[],"tuesday":[],"wednesday":[],"thursday":[],"friday":[],"saturday":[],"sunday":[]},
+    "weekly_shopping_list":{"monday":{"ingredients":{},"seasoning":[]},"tuesday":{"ingredients":{},"seasoning":[]},"wednesday":{"ingredients":{},"seasoning":[]},"thursday":{"ingredients":{},"seasoning":[]},"friday":{"ingredients":{},"seasoning":[]},"saturday":{"ingredients":{},"seasoning":[]},"sunday":{"ingredients":{},"seasoning":[]}},
+    "fridge":{}
   }
 ]

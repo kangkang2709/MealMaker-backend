@@ -2,17 +2,101 @@ const { db } = require('../config/firebase.config');
 const { uploadImage } = require('../services/upload.service');
 const RecipeLike = require('../model/recipeLike.model');
 
-
 const recipeCollection = db.collection('recipes');
 const recipeLikesCollection = db.collection('recipe_likes');
 
 class RecipeService {
+    /**
+         * Tìm recipes theo list_tags, ưu tiên recipes match nhiều tag nhất
+         * @param {string[]} tagsList - danh sách tags cần tìm
+         * @param {string} userId - id user (để thêm trạng thái liked)
+         * @returns {Promise<Array>} danh sách recipe
+         */
+    static async getTop10RecipesByTags(tagsList, userId) {
+        if (!tagsList || tagsList.length === 0) return [];
 
-    // ==============================
-    // CREATE MULTIPLE RECIPES
-    // ==============================
+        // 1. Lấy recipes có ít nhất 1 tag trong tagsList (max 10 tags vì firestore giới hạn)
+        const querySnapshot = await recipeCollection
+            .where('tags', 'array-contains-any', tagsList.slice(0, 10))
+            .get();
+
+        // 2. Lấy recipes liked của user
+        const likedSnapshot = await recipeLikesCollection
+            .where('user_id', '==', userId)
+            .get();
+        const likedIds = new Set(likedSnapshot.docs.map(doc => doc.data().recipe_id));
+
+        // 3. Tính số lượng tag match và tạo mảng kết quả
+        const recipes = [];
+        querySnapshot.docs.forEach(doc => {
+            const data = doc.data();
+            const matchedTagsCount = data.tags.filter(tag => tagsList.includes(tag)).length;
+            if (matchedTagsCount > 0) { // đảm bảo match ít nhất 1 tag
+                recipes.push({
+                    id: doc.id,
+                    ...data,
+                    liked: likedIds.has(doc.id),
+                    matchedTagsCount
+                });
+            }
+        });
+
+        // 4. Sắp xếp giảm dần theo số tag match
+        recipes.sort((a, b) => b.matchedTagsCount - a.matchedTagsCount);
+
+        // 5. Trả đúng 10 recipe đầu tiên
+        return recipes.slice(0, 10);
+    }
+
+    static async getAllRecipesWithLikeStatus(userId) {
+        const [allRecipes, likedRecipes] = await Promise.all([
+            recipeCollection.get(),
+            recipeLikesCollection.where('user_id', '==', userId).get()
+        ]);
+
+        const likedIds = new Set(likedRecipes.docs.map(doc => doc.data().recipe_id));
+
+        return allRecipes.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+            liked: likedIds.has(doc.id)
+        }));
+    }
+
+
+    static async getAllDocIds() {
+        try {
+            const snapshot = await recipeCollection.get(); // Lấy tất cả document trong collection
+            const ids = snapshot.docs.map(doc => doc.id);  // Lấy ra chỉ ID của mỗi document
+            console.log('All Recipe IDs:', ids);
+            return ids;
+        } catch (error) {
+            console.error('Error fetching recipe IDs:', error);
+            throw error;
+        }
+    }
+
+    static async createAllRecipesLike(recipesLikeData) {
+        const batch = db.batch();
+        const createdRecipesLike = [];
+
+        for (const recipeLike of recipesLikeData) {
+            const data = { ...recipeLike }; // clone để không mutate input
+            data._id = recipeLikesCollection.doc().id; // tạo id và gán cho _id
+
+            const docRef = recipeLikesCollection.doc(data._id); // dùng _id vừa tạo cho docRef
+            batch.set(docRef, data);
+            createdRecipesLike.push(data);
+        }
+
+        await batch.commit(); // commit batch
+        return createdRecipesLike; // trả về mảng đã tạo
+    }
 
     /**
+     * 
+     * 
+     * 
     * Tìm recipe theo nguyên liệu, có fallback và pagination
     * @param {string} user_id
     * @param {string[]} ingredients - mảng tên nguyên liệu
@@ -63,6 +147,8 @@ class RecipeService {
     }
 
 
+
+
     static async createAllRecipes(recipesData) {
         const batch = db.batch();
         const createdRecipes = [];
@@ -105,7 +191,8 @@ class RecipeService {
 
 
     static async createRecipe2(recipeData) {
-        // recipeData.ingredients_list = recipeData.ingredients_list_fixed || recipeData.ingredients_list || [];
+
+        recipeData.ingredients_list = recipeData.ingredients_list_fixed || recipeData.ingredients_list;
         const docRef = recipeCollection.doc(); // tạo doc mới với ID ngẫu nhiên
         const newRecipe = {
             _id: docRef.id,          // field _id sẽ lưu doc.id
@@ -252,20 +339,7 @@ class RecipeService {
     // ==============================
     // MERGE ALL RECIPES WITH LIKE STATUS
     // ==============================
-    static async getAllRecipesWithLikeStatus(userId) {
-        const [allRecipes, likedRecipes] = await Promise.all([
-            recipeCollection.get(),
-            recipeLikesCollection.where('user_id', '==', userId).get()
-        ]);
 
-        const likedIds = new Set(likedRecipes.docs.map(doc => doc.data().recipe_id));
-
-        return allRecipes.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-            liked: likedIds.has(doc.id)
-        }));
-    }
 }
 
 module.exports = RecipeService;

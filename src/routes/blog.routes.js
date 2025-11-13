@@ -13,7 +13,6 @@ router.post('/', upload.single('file'), BlogController.createBlog);
 // Update blog
 
 router.put('/like', BlogController.updateBlogLikeStatus);
-
 router.put('/rating', BlogController.createBlogLike);
 router.put('/unrating', BlogController.undoBlogLike);
 

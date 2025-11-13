@@ -7,6 +7,8 @@ router.post('/login', UserController.login);
 
 router.put('/json', UserController.createAllUser);
 
+router.get('/ids', UserController.getAllUserIds);
+
 router.get('/', UserController.getAllUsers);
 // user.routes.js
 router.post('/', upload.single('file'), UserController.createUser);
@@ -15,7 +17,9 @@ router.get('/:id', UserController.getUserById);
 
 router.patch('/:id/ai_profile', UserController.updateAIProfile);
 router.patch('/:id/fridge', UserController.updateFridge);
+
 router.patch('/:id/weekly_menu', UserController.updateWeeklyMenu);
+
 router.patch('/:id/weekly_shopping_list', UserController.updateWeeklyShoppingList);
 
 module.exports = router;

@@ -6,32 +6,6 @@ const RecipeService = require('../services/recipe.service');
 
 class UserService {
 
-
-    // Cập nhật AI profile
-    static async updateAIProfile(userId, ai_profile) {
-        const docRef = userCollection.doc(userId);
-        const doc = await docRef.get();
-        if (!doc.exists) throw new Error('User not found');
-
-        // Flatten fields để update từng key trong map ai_profile
-        const updateData = {
-            updated_at: new Date()
-        };
-
-        if (ai_profile.region !== undefined) updateData["ai_profile.region"] = ai_profile.region;
-        if (ai_profile.favorite_dishes !== undefined) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
-        if (ai_profile.favorite_ingredients !== undefined) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
-        if (ai_profile.diet !== undefined) updateData["ai_profile.diet"] = ai_profile.diet;
-        if (ai_profile.cooking_skill_level !== undefined) updateData["ai_profile.cooking_skill_level"] = ai_profile.cooking_skill_level;
-
-
-        await docRef.update(updateData);
-
-        const updatedDoc = await docRef.get();
-        return { id: updatedDoc.id, ...updatedDoc.data() };
-    }
-
-    // Cập nhật fridge (tủ lạnh)
     static async updateFridge(userId, fridgeData) {
         const docRef = userCollection.doc(userId);
         const doc = await docRef.get();
@@ -48,6 +22,52 @@ class UserService {
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
 
+    static async updateWeeklyMenuWithDetails(userId, recipeIds) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error('User not found');
+
+        if (!Array.isArray(recipeIds) || recipeIds.length !== 14) {
+            throw new Error('Recipe list must contain exactly 14 recipe IDs');
+        }
+
+        const daysOfWeek = [
+            'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+        ];
+
+        const weeklyMenu = {};
+
+        for (let i = 0; i < daysOfWeek.length; i++) {
+            const dailyIds = recipeIds.slice(i * 2, i * 2 + 2);
+            const dailyRecipes = await Promise.all(
+                dailyIds.map(async id => {
+                    const recipe = await RecipeService.getRecipeById(id);
+                    return {
+                        recipe_id: recipe.id,
+                        title: recipe.title,
+                        ingredients_list: recipe.ingredients_list,
+                        seasoning: recipe.seasoning
+                    };
+                })
+            );
+            weeklyMenu[daysOfWeek[i]] = dailyRecipes;
+        }
+
+        // 1️⃣ Update weekly_menu
+        await docRef.update({ weekly_menu: weeklyMenu });
+
+        // 2️⃣ Gọi hàm khác ngay sau khi update
+        // Ví dụ: cập nhật weekly shopping list
+        await UserService.updateWeeklyShoppingList(userId);
+
+        // 3️⃣ Lấy lại dữ liệu đã update
+        const updatedDoc = await docRef.get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+
+
+
     static async updateWeeklyShoppingList(userId) {
         const userDoc = await userCollection.doc(userId).get();
         if (!userDoc.exists) throw new Error('User not found');
@@ -55,23 +75,16 @@ class UserService {
         const user = userDoc.data();
         const updatedShoppingList = {};
 
-        // Hàm tách tên seasoning (bỏ số lượng/unit đầu)
-        function getSeasoningName(seasoningLine) {
-            const lower = seasoningLine.toLowerCase();
-            if (lower.includes('salt') && lower.includes('pepper')) return ['salt', 'black pepper'];
-            if (lower.includes('salt')) return ['salt'];
-            const parts = lower.split(' ');
-            const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
-            return nameParts.length > 0 ? [nameParts.join(' ').trim()] : [];
-        }
+
 
         for (const day of Object.keys(user.weekly_menu)) {
             const recipesForDay = user.weekly_menu[day] || [];
             const tempIngredients = {}; // key = name_unit
             const seasoningSet = new Set();
 
-            for (const recipeId of recipesForDay) {
-                const recipe = await RecipeService.getRecipeById(recipeId);
+            for (const recipe of recipesForDay) {
+                // const recipeId = recipeDay.recipe_id;
+                // const recipe = await RecipeService.getRecipeById(recipeId);
                 if (!recipe || !recipe.ingredients_list) continue;
 
                 // Xử lý nguyên liệu
@@ -112,7 +125,9 @@ class UserService {
 
                 // Kiểm tra fridge
                 let fridgeQty = 0;
-                const fridgeKey = Object.keys(user.fridge || {}).find(fk => fk.toLowerCase() === name.toLowerCase());
+                const fridgeKey = Object.keys(user.fridge || {}).find(fk =>
+                    normalizeIngredientName(fk) === normalizeIngredientName(name)
+                );
                 if (fridgeKey) {
                     const fridgeMatch = user.fridge[fridgeKey].match(/^(\d+(\.\d+)?)([a-zA-Z]+)$/);
                     if (fridgeMatch) {
@@ -139,6 +154,46 @@ class UserService {
         const updatedDoc = await userCollection.doc(userId).get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
+
+
+    static async getAllDocIds() {
+        try {
+            const snapshot = await userCollection.get(); // Lấy tất cả document trong collection
+            const ids = snapshot.docs.map(doc => doc.id);  // Lấy ra chỉ ID của mỗi document
+            console.log('All User IDs:', ids);
+            return ids;
+        } catch (error) {
+            console.error('Error fetching User IDs:', error);
+            throw error;
+        }
+    }
+
+    // Cập nhật AI profile
+    static async updateAIProfile(userId, ai_profile) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error('User not found');
+
+        // Flatten fields để update từng key trong map ai_profile
+        const updateData = {
+            updated_at: new Date()
+        };
+
+        if (ai_profile.region !== undefined) updateData["ai_profile.region"] = ai_profile.region;
+        if (ai_profile.favorite_dishes !== undefined) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
+        if (ai_profile.favorite_ingredients !== undefined) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
+        if (ai_profile.diet !== undefined) updateData["ai_profile.diet"] = ai_profile.diet;
+        if (ai_profile.cooking_skill_level !== undefined) updateData["ai_profile.cooking_skill_level"] = ai_profile.cooking_skill_level;
+
+
+        await docRef.update(updateData);
+
+        const updatedDoc = await docRef.get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+    // Cập nhật fridge (tủ lạnh)
+
 
 
 
@@ -250,16 +305,30 @@ class UserService {
         return { message: 'User deleted successfully' };
     }
 }
+function normalizeIngredientName(name) {
+    name = name.toLowerCase().trim();
+    if (name.endsWith('es')) return name.slice(0, -2);
+    if (name.endsWith('s')) return name.slice(0, -1);
+    return name;
+}
+
+
+// Hàm tách tên seasoning (bỏ số lượng/unit đầu)
 function getSeasoningName(seasoningLine) {
-    // Loại bỏ số lượng/unit đầu (nếu có)
-    // Ví dụ: "1 tbsp soy sauce" → "soy sauce"
-    // Nếu line chứa "to taste" thì giữ nguyên từ cuối
-    const lower = seasoningLine.toLowerCase();
+    let lower = seasoningLine.toLowerCase();
+
+    // Chuẩn hóa: thay & hoặc + bằng dấu cách
+    lower = lower.replace(/&|\+/g, ' ');
+
+    // Loại bỏ "to taste" vì không phải tên gia vị
+    lower = lower.replace(/\bto taste\b/g, '').trim();
+
+    if (lower.includes('salt') && lower.includes('pepper')) return ['salt', 'black pepper'];
+    if (lower.includes('salt')) return ['salt'];
+
     const parts = lower.split(' ');
-    if (parts.includes('to') && parts.includes('taste')) return 'salt'; // "salt to taste"
-    // bỏ các số và unit đầu tiên
     const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
-    return nameParts.join(' ').trim();
+    return nameParts.length > 0 ? [nameParts.join(' ').trim()] : [];
 }
 
 module.exports = UserService;
