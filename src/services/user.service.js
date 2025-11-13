@@ -37,22 +37,17 @@ class UserService {
         const doc = await docRef.get();
         if (!doc.exists) throw new Error('User not found');
 
-        const updateData = {};
-
-        // Flatten từng key trong fridge map
-        if (fridgeData && typeof fridgeData === 'object') {
-            for (const [key, value] of Object.entries(fridgeData)) {
-                if (value !== undefined) {
-                    updateData[`fridge.${key}`] = value;
-                }
-            }
+        if (!fridgeData || typeof fridgeData !== 'object') {
+            throw new Error('Invalid fridge data');
         }
 
-        await docRef.update(updateData);
+        // Ghi đè toàn bộ fridge
+        await docRef.update({ fridge: fridgeData });
 
         const updatedDoc = await docRef.get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
+
     static async updateWeeklyShoppingList(userId) {
         const userDoc = await userCollection.doc(userId).get();
         if (!userDoc.exists) throw new Error('User not found');
