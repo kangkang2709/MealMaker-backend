@@ -11,7 +11,7 @@ class RecipeController {
         try {
             const rawRecipes = await recipesReader();
             await RecipeService.createAllRecipes(rawRecipes);
-            return ApiResponse.success(res, 'All recipes created successfully', null, 201);
+            return ApiResponse.success(res, 'All recipes created successfully', rawRecipes, 201);
         } catch (err) {
             next(err);
         }

@@ -68,16 +68,18 @@ class RecipeService {
         const createdRecipes = [];
 
         for (const recipe of recipesData) {
-            const data = recipe;
+            const data = { ...recipe }; // clone để không mutate input
+            data._id = recipeCollection.doc().id; // tạo id và gán cho _id
             data.created_at = new Date();
-            const docRef = recipeCollection.doc();
+            const docRef = recipeCollection.doc(data._id); // dùng _id vừa tạo cho docRef
             batch.set(docRef, data);
-            createdRecipes.push({ id: docRef.id, ...data });
+            createdRecipes.push(data);
         }
 
         await batch.commit();
         return createdRecipes;
     }
+
 
     // ==============================
     // CREATE SINGLE RECIPE

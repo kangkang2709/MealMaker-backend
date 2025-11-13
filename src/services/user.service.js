@@ -63,10 +63,11 @@ class UserService {
         // Hàm tách tên seasoning (bỏ số lượng/unit đầu)
         function getSeasoningName(seasoningLine) {
             const lower = seasoningLine.toLowerCase();
+            if (lower.includes('salt') && lower.includes('pepper')) return ['salt', 'black pepper'];
+            if (lower.includes('salt')) return ['salt'];
             const parts = lower.split(' ');
-            if (parts.includes('to') && parts.includes('taste')) return 'salt';
             const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
-            return nameParts.join(' ').trim();
+            return nameParts.length > 0 ? [nameParts.join(' ').trim()] : [];
         }
 
         for (const day of Object.keys(user.weekly_menu)) {
@@ -100,16 +101,16 @@ class UserService {
                     }
                 }
 
-                // Xử lý seasoning
+                // Xử lý seasoning (gộp lại, loại trùng, không trừ fridge)
                 if (recipe.seasoning) {
                     for (const s of recipe.seasoning) {
-                        const sName = getSeasoningName(s);
-                        if (!user.fridge?.[sName]) seasoningSet.add(s);
+                        const names = getSeasoningName(s); // trả về mảng
+                        names.forEach(n => seasoningSet.add(n));
                     }
                 }
             }
 
-            // Trừ fridge và chuẩn hóa key theo fridge
+            // Trừ fridge và chuẩn hóa key theo fridge (nguyên liệu)
             const shoppingListForDay = {};
             for (const key in tempIngredients) {
                 let { name, quantity, unit } = tempIngredients[key];
@@ -143,6 +144,7 @@ class UserService {
         const updatedDoc = await userCollection.doc(userId).get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
+
 
 
 

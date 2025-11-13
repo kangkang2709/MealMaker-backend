@@ -86,8 +86,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":380,"protein_g":22,"fat_total_g":16,"carbohydrates_g":32,"fiber_g":4,"sugar_g":3},
   "likeCount":0,
-  "ingredients_list_fixed": ["ground beef 150g","taco shells 3unit","lettuce 50g"],
-  "ingredients_list": ["ground beef 150g","taco shells 3unit","lettuce 50g"]
+  "ingredients_list_fixed": ["ground beef 150g","taco shells 3 unit","lettuce 50g"],
+  "ingredients_list": ["ground beef 150g","taco shells 3 unit","lettuce 50g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I8",
@@ -146,8 +146,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":220,"protein_g":14,"fat_total_g":16,"carbohydrates_g":2,"fiber_g":0,"sugar_g":1},
   "likeCount":0,
-  "ingredients_list_fixed": ["eggs 3unit","butter 15g","fresh herbs 5g"],
-  "ingredients_list": ["eggs 3unit","butter 15g","fresh herbs 5g"]
+  "ingredients_list_fixed": ["eggs 3 unit","butter 15g","fresh herbs 5g"],
+  "ingredients_list": ["eggs 3 unit","butter 15g","fresh herbs 5g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I12",
@@ -371,8 +371,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":290,"protein_g":12,"fat_total_g":6,"carbohydrates_g":45,"fiber_g":8,"sugar_g":4},
   "likeCount":0,
-  "ingredients_list_fixed": ["whole‑wheat wrap 1unit","chickpeas 120g","lettuce 40g"],
-  "ingredients_list": ["whole‑wheat wrap 1unit","chickpeas 120g","lettuce 40g"]
+  "ingredients_list_fixed": ["whole‑wheat wrap 1 unit","chickpeas 120g","lettuce 40g"],
+  "ingredients_list": ["whole‑wheat wrap 1 unit","chickpeas 120g","lettuce 40g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I27",
@@ -611,8 +611,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":330,"protein_g":11,"fat_total_g":8,"carbohydrates_g":52,"fiber_g":6,"sugar_g":14},
   "likeCount":0,
-  "ingredients_list_fixed": ["banana 100g","oats 50g","egg 1unit"],
-  "ingredients_list": ["banana 100g","oats 50g","egg 1unit"]
+  "ingredients_list_fixed": ["banana 100g","oats 50g","egg 1 unit"],
+  "ingredients_list": ["banana 100g","oats 50g","egg 1 unit"]
 },
 {
   "_id": "R11A2B3C4D5E6F7G8H9I42",
@@ -656,8 +656,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":320,"protein_g":10,"fat_total_g":12,"carbohydrates_g":40,"fiber_g":6,"sugar_g":6},
   "likeCount":0,
-  "ingredients_list_fixed": ["whole grain bread 2unit","zucchini 80g","bell peppers 80g"],
-  "ingredients_list": ["whole grain bread 2unit","zucchini 80g","bell peppers 80g"]
+  "ingredients_list_fixed": ["whole grain bread 2 unit","zucchini 80g","bell peppers 80g"],
+  "ingredients_list": ["whole grain bread 2 unit","zucchini 80g","bell peppers 80g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I45",
@@ -701,8 +701,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":280,"protein_g":10,"fat_total_g":16,"carbohydrates_g":25,"fiber_g":6,"sugar_g":2},
   "likeCount":0,
-  "ingredients_list_fixed": ["whole grain bread 1unit","avocado 80g","egg 1unit"],
-  "ingredients_list": ["whole grain bread 1unit","avocado 80g","egg 1unit"]
+  "ingredients_list_fixed": ["whole grain bread 1 unit","avocado 80g","egg 1 unit"],
+  "ingredients_list": ["whole grain bread 1 unit","avocado 80g","egg 1 unit"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I48",
@@ -731,8 +731,8 @@
   "difficulty_score": 2,
   "nutrition_facts": {"serving_size":"1 serving","calories":380,"protein_g":12,"fat_total_g":16,"carbohydrates_g":45,"fiber_g":6,"sugar_g":4},
   "likeCount":0,
-  "ingredients_list_fixed": ["whole-wheat wrap 1unit","falafel 100g","lettuce 50g"],
-  "ingredients_list": ["whole-wheat wrap 1unit","falafel 100g","lettuce 50g"]
+  "ingredients_list_fixed": ["whole-wheat wrap 1 unit","falafel 100g","lettuce 50g"],
+  "ingredients_list": ["whole-wheat wrap 1 unit","falafel 100g","lettuce 50g"]
 },{
   "_id": "R11A2B3C4D5E6F7G8H9I50",
   "title": "Mediterranean Quinoa Salad",
@@ -790,8 +790,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":280,"protein_g":18,"fat_total_g":20,"carbohydrates_g":4,"fiber_g":2,"sugar_g":1},
   "likeCount":0,
-  "ingredients_list_fixed": ["egg 2unit","spinach 50g","feta 40g"],
-  "ingredients_list": ["egg 2unit","spinach 50g","feta 40g"]
+  "ingredients_list_fixed": ["egg 2 unit","spinach 50g","feta 40g"],
+  "ingredients_list": ["egg 2 unit","spinach 50g","feta 40g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I54",
@@ -866,8 +866,8 @@
   "difficulty_score": 2,
   "nutrition_facts": {"serving_size":"1 serving","calories":450,"protein_g":25,"fat_total_g":20,"carbohydrates_g":40,"fiber_g":6,"sugar_g":4},
   "likeCount":0,
-  "ingredients_list_fixed": ["ground beef 150g","tortilla 2unit","cheese 40g"],
-  "ingredients_list": ["ground beef 150g","tortilla 2unit","cheese 40g"]
+  "ingredients_list_fixed": ["ground beef 150g","tortilla 2 unit","cheese 40g"],
+  "ingredients_list": ["ground beef 150g","tortilla 2 unit","cheese 40g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I59",
@@ -986,8 +986,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":220,"protein_g":6,"fat_total_g":8,"carbohydrates_g":32,"fiber_g":3,"sugar_g":12},
   "likeCount":0,
-  "ingredients_list_fixed": ["banana 100g","egg 1unit","butter 5g"],
-  "ingredients_list": ["banana 100g","egg 1unit","butter 5g"]
+  "ingredients_list_fixed": ["banana 100g","egg 1 unit","butter 5g"],
+  "ingredients_list": ["banana 100g","egg 1 unit","butter 5g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I67",
@@ -1001,8 +1001,8 @@
   "difficulty_score": 1,
   "nutrition_facts": {"serving_size":"1 serving","calories":250,"protein_g":12,"fat_total_g":18,"carbohydrates_g":6,"fiber_g":2,"sugar_g":2},
   "likeCount":0,
-  "ingredients_list_fixed": ["egg 2unit","bell peppers 50g","spinach 30g"],
-  "ingredients_list": ["egg 2unit","bell peppers 50g","spinach 30g"]
+  "ingredients_list_fixed": ["egg 2 unit","bell peppers 50g","spinach 30g"],
+  "ingredients_list": ["egg 2 unit","bell peppers 50g","spinach 30g"]
 }
 ,{
   "_id": "R11A2B3C4D5E6F7G8H9I68",
