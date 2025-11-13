@@ -192,13 +192,15 @@ class UserService {
 
         for (const user of users) {
             const docRef = userCollection.doc(); // tự generate ID
-            await docRef.set(user);
-            const doc = await docRef.get();
-            createdUsers.push({ id: doc.id, ...doc.data() });
+            // Gán _id bằng ID của Firestore
+            const userWithId = { _id: docRef.id, ...user };
+            await docRef.set(userWithId); // lưu cả _id vào Firestore
+            createdUsers.push(userWithId);
         }
 
         return createdUsers;
     }
+
 
 
 

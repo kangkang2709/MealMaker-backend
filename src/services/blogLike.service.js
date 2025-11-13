@@ -16,6 +16,7 @@ class BlogLikeService {
      * @param {boolean} param0.isGoodRating
      * @param {number} param0.score (bắt buộc nếu isGoodRating = true)
      */
+
     static async createBlogLike({ user_id, blog_id, isGoodRating = true, score }) {
         if (isGoodRating && (score === undefined || score < 1 || score > 5)) {
             throw new Error('Score phải được cung cấp từ 1 đến 5 cho positive rating');
@@ -28,7 +29,11 @@ class BlogLikeService {
             .get();
 
         if (!snapshot.empty) {
-            throw new Error('User đã đánh giá blog này');
+            const existingLike = snapshot.docs[0].data();
+            // Nếu isGoodRating khác null thì user đã vote
+            if (existingLike.isGoodRating !== null && existingLike.isGoodRating !== undefined) {
+                throw new Error('User đã đánh giá blog này');
+            }
         }
 
         // Tạo BlogLike mới

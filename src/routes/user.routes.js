@@ -5,7 +5,7 @@ const UserController = require('../controller/user.controller');
 
 router.post('/login', UserController.login);
 
-router.put('/all', UserController.createAllUser);
+router.put('/json', UserController.createAllUser);
 
 router.get('/', UserController.getAllUsers);
 // user.routes.js

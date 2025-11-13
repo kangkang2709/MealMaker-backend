@@ -13,6 +13,7 @@ router.post('/', upload.single('file'), BlogController.createBlog);
 // Update blog
 
 router.put('/like', BlogController.updateBlogLikeStatus);
+
 router.put('/rating', BlogController.createBlogLike);
 router.put('/unrating', BlogController.undoBlogLike);
 
@@ -20,6 +21,7 @@ router.put('/unrating', BlogController.undoBlogLike);
 router.get('/', BlogController.getBlogs);
 
 router.get('/user/:user_id/liked', BlogController.getLikedBlogs);
+
 router.get('/user/:user_id', BlogController.getBlogsByUser);
 
 // Get blog by ID
