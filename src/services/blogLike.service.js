@@ -89,17 +89,26 @@ class BlogLikeService {
             .get();
 
         if (snapshot.empty) {
-            throw new Error('User chưa có đánh giá cho blog này');
+            // Nếu chưa có, tạo mới BlogLike với isGoodRating = null
+            const docRef = blogLikeCollection.doc();
+            const blogLike = {
+                _id: docRef.id,
+                user_id,
+                blog_id,
+                isGoodRating: null, // chưa vote
+                score: null,
+                is_liked,
+            };
+            await docRef.set(blogLike);
+            return { message: 'Tạo mới BlogLike và cập nhật trạng thái is_liked thành công', id: docRef.id };
+        } else {
+            const doc = snapshot.docs[0];
+            const docRef = blogLikeCollection.doc(doc.id);
+            await docRef.update({ is_liked });
+            return { message: `Cập nhật trạng thái is_liked = ${is_liked} thành công`, id: doc.id };
         }
-
-        const doc = snapshot.docs[0];
-        const docRef = blogLikeCollection.doc(doc.id);
-
-        // Cập nhật trạng thái
-        await docRef.update({ is_liked });
-
-        return { message: `Cập nhật trạng thái is_liked = ${is_liked} thành công`, id: doc.id };
     }
+
 
     /**
      * Undo vote

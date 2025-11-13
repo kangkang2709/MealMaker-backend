@@ -88,6 +88,7 @@ class BlogController {
     static async createBlogLike(req, res, next) {
         try {
             const { user_id, blog_id, isGoodRating, score } = req.body;
+
             const blogLike = await BlogLikeService.createBlogLike({
                 user_id,
                 blog_id,
