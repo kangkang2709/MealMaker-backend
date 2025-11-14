@@ -232,10 +232,14 @@ class UserService {
         // Cập nhật lại fridge trong database
         await userCollection.doc(userId).update({ fridge: fridgeLeft });
 
+
+        console.log("Fridge changed, updating weekly shopping list...");
+
+        await UserService.updateWeeklyShoppingListaAftersubtractFridge(userId, targetDay);
+
         // Nếu có thay đổi → gọi hàm khác, truyền targetDay
-        if (isChanged && typeof this.onFridgeChanged === "function") {
-            await UserService.updateWeeklyShoppingListaAftersubtractFridge(userId, targetDay);
-        }
+        // if (isChanged && typeof this.onFridgeChanged === "function") {
+        // }
 
         return { id: userId, fridge: fridgeLeft };
     }
@@ -245,8 +249,7 @@ class UserService {
         if (!userDoc.exists) throw new Error('User not found');
 
         const user = userDoc.data();
-        const updatedShoppingList = { ...user.weekly_shopping_list }; // copy shopping list hiện tại
-
+        const updatedShoppingList = {};
         const dayOrder = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
         // Xác định index bắt đầu
@@ -256,12 +259,14 @@ class UserService {
             startIndex = dayOrder.indexOf(normalizedDay);
             if (startIndex === -1) throw new Error('Invalid target day');
 
-            // Xóa shopping list của targetDay
-            updatedShoppingList[normalizedDay] = { ingredients: {}, totals: {}, seasoning: [] };
+            // Xóa hẳn targetDay khỏi weekly_shopping_list
+            if (user.weekly_shopping_list && user.weekly_shopping_list[normalizedDay]) {
+                delete user.weekly_shopping_list[normalizedDay];
+            }
 
             if (normalizedDay === 'sunday') {
                 // Chủ nhật → không cập nhật gì
-                await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
+                await userCollection.doc(userId).update({ weekly_shopping_list: {} });
                 const updatedDoc = await userCollection.doc(userId).get();
                 return { id: updatedDoc.id, ...updatedDoc.data() };
             }
@@ -270,7 +275,10 @@ class UserService {
             startIndex = startIndex + 1;
         } else {
             // Mặc định là hôm nay
-            const today = new Date();
+
+            const today = new Date(
+                new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
+            );
             let todayIndex = today.getDay(); // 0=Sunday, 1=Monday ...
             startIndex = todayIndex === 0 ? 6 : todayIndex - 1; // chuyển Sunday=6
         }
@@ -394,7 +402,10 @@ class UserService {
             };
         }
 
-        await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
+        // Merge với những ngày trước targetDay (đã giữ nguyên)
+        const finalShoppingList = { ...user.weekly_shopping_list, ...updatedShoppingList };
+
+        await userCollection.doc(userId).update({ weekly_shopping_list: finalShoppingList });
         const updatedDoc = await userCollection.doc(userId).get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
     }
