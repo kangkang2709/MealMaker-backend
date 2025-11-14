@@ -7,7 +7,7 @@ router.get('/ids', RecipeController.getAllRecipeIds);
 router.post('/like/json', RecipeController.createAllRecipeLike);
 
 //find recipes by 3 ingredients
-router.get('/ingredients', RecipeController.searchRecipesByIngredients);
+router.post('/ingredients', RecipeController.searchRecipesByIngredients);
 router.post('/', RecipeController.createRecipe);
 router.get('/', RecipeController.getAllRecipes);
 
