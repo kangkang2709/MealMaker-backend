@@ -508,7 +508,41 @@ class UserService {
 
 
 
+    static async getTopTags(userId, limit = 3) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error("User not found");
 
+        const user = doc.data();
+        const ai = user.ai_profile || { tags: [] };
+        const tags = ai.tags || [];
+
+        // Sắp xếp giảm dần theo score
+        const sortedTags = tags.sort((a, b) => b.score - a.score);
+
+        // Lấy top N (mặc định 3)
+        const topTags = sortedTags.slice(0, limit);
+
+        return topTags;
+    }
+
+    static async getTopTagNames(userId, limit = 3) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error("User not found");
+
+        const user = doc.data();
+        const ai = user.ai_profile || { tags: [] };
+        const tags = ai.tags || [];
+
+        // Sắp xếp giảm dần theo score
+        const sortedTags = tags.sort((a, b) => b.score - a.score);
+
+        // Lấy top N và chỉ return tag_name
+        const topTagNames = sortedTags.slice(0, limit).map(t => t.tag_name);
+
+        return topTagNames;
+    }
 
     static async subtractTagsList(userId, tagNames) {
         const docRef = userCollection.doc(userId);

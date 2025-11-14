@@ -92,6 +92,8 @@ class RecipeService {
         return createdRecipesLike; // trả về mảng đã tạo
     }
 
+
+
     /** 
     * Tìm recipe theo nguyên liệu, có fallback và pagination
     * @param {string} user_id
@@ -99,49 +101,79 @@ class RecipeService {
     * @param {number} page
     * @param {number} size
     */
-    static async findRecipesByIngredients(user_id, ingredients, page = 1, size = 10) {
+    static async findRecipesByIngredients(user_id, ingredients, page = 1, size = 20) {
         if (!Array.isArray(ingredients) || ingredients.length === 0) return [];
 
+        const UserService = require('../services/user.service');
+        const tags = await UserService.getTopTagNames(user_id); // ví dụ: ["sweet","salty","spicy"]
+        const userTagSet = new Set(tags.map(t => t.toLowerCase().trim()));
+
+        // Lấy tất cả recipes
         const allRecipesSnap = await recipeCollection.get();
 
-        // Chuẩn hóa search ingredients
-        const searchSet = new Set(ingredients.map(i => i.toLowerCase().trim()));
+        // Chuẩn hóa ingredients đầu vào của user
+        const searchSet = new Set(ingredients.map(i => normalizeIngredientName(i)));
 
-        // Lấy liked set 1 lần duy nhất
+        // Lấy danh sách recipe đã like của user
         const likedSnap = await recipeLikesCollection.where('user_id', '==', user_id).get();
         const likedSet = new Set(likedSnap.docs.map(d => d.data().recipe_id));
 
-        // Map recipes với số nguyên liệu trùng
+        // Map recipes với số nguyên liệu trùng và tag trùng
         let recipes = allRecipesSnap.docs.map(doc => {
             const data = doc.data();
 
-            // Lấy tên nguyên liệu từ ingredients_list
-            const recipeSet = new Set(data.ingredients_list.map(line => line.split(' ')[0].toLowerCase().trim()));
-            const matchCount = [...searchSet].filter(i => recipeSet.has(i)).length;
+            // Chuẩn hóa nguyên liệu của recipe
+            const recipeSet = new Set(data.ingredients_list.map(line =>
+                normalizeIngredientName(line.replace(/[0-9]/g, '').trim())
+            ));
 
-            return { ...data, id: doc.id, matchCount, liked: likedSet.has(data._id || doc.id) };
+            // Đếm số nguyên liệu trùng (multi-word)
+            const matchCount = [...searchSet].filter(userIng =>
+                [...recipeSet].some(recipeIng => recipeIng.includes(userIng))
+            ).length;
+
+            // Đếm số tag trùng với user
+            const recipeTagSet = new Set((data.tags || []).map(t => t.toLowerCase().trim()));
+            const tagMatchCount = [...recipeTagSet].filter(t => userTagSet.has(t)).length;
+
+            return {
+                ...data,
+                id: doc.id,
+                matchCount,
+                tagMatchCount,
+                liked: likedSet.has(data._id || doc.id)
+            };
         });
 
         // Lọc ít nhất 1 nguyên liệu trùng
         recipes = recipes.filter(r => r.matchCount > 0);
 
-        // Sắp xếp ưu tiên match nhiều nguyên liệu hơn
-        recipes.sort((a, b) => b.matchCount - a.matchCount);
-
-        // Fallback logic: tìm recipe match nhiều nhất có thể (3 → 2 → 1)
+        // Fallback: tìm recipe match nhiều nhất có thể
         let fallback = ingredients.length;
-        let result = recipes.filter(r => r.matchCount >= fallback);
-        while (result.length === 0 && fallback > 0) {
-            fallback--;
+        let result = [];
+        while (fallback > 0) {
             result = recipes.filter(r => r.matchCount >= fallback);
+            if (result.length > 0) break;
+            fallback--;
         }
+
+        // Sắp xếp kết quả:
+        // 1. matchCount giảm dần
+        // 2. Nếu matchCount < total ingredients → tagMatchCount giảm dần
+        // 3. Giữ thứ tự hiện tại nếu bằng nhau
+        result.sort((a, b) => {
+            if (b.matchCount !== a.matchCount) return b.matchCount - a.matchCount;
+            if (b.matchCount < ingredients.length) {
+                return b.tagMatchCount - a.tagMatchCount;
+            }
+            return 0;
+        });
 
         // Pagination
         const start = (page - 1) * size;
         const end = start + size;
         return result.slice(start, end);
     }
-
 
 
 
@@ -342,6 +374,15 @@ class RecipeService {
     // MERGE ALL RECIPES WITH LIKE STATUS
     // ==============================
 
-}
 
+
+}
+// Hàm chuẩn hóa tên nguyên liệu
+function normalizeIngredientName(name) {
+    name = name.toLowerCase().trim();
+    name = name.replace(/[0-9]/g, '').trim();
+    if (name.endsWith('es')) return name.slice(0, -2);
+    if (name.endsWith('s')) return name.slice(0, -1);
+    return name;
+}
 module.exports = RecipeService;
