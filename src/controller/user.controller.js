@@ -3,6 +3,48 @@ const ApiResponse = require('../utils/response');
 const usersReader = require('../utils/userReaders');
 
 class UserController {
+    static async increaseCookingSkill(req, res, next) {
+        try {
+            const userId = req.params.id;
+            const increment = parseInt(req.body.increment) || 1; // tăng mặc định 1
+
+            const result = await UserService.changeCookingSkill(userId, increment);
+
+            return ApiResponse.success(res, 'Cooking skill increased', result);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async decreaseCookingSkill(req, res, next) {
+        try {
+            const userId = req.params.id;
+            const decrement = parseInt(req.body.decrement) || 1; // giảm mặc định 1
+
+            const result = await UserService.changeCookingSkill(userId, -decrement);
+
+            return ApiResponse.success(res, 'Cooking skill decreased', result);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+    static async addTagsList(req, res, next) {
+        try {
+            const userId = req.params.id;
+            const { tags } = req.body;
+
+            if (!Array.isArray(tags)) {
+                return ApiResponse.error(res, "tags must be an array", 400);
+            }
+
+            const result = await UserService.addTagsList(userId, tags);
+            return ApiResponse.success(res, "Tags added successfully", result);
+        } catch (err) {
+            next(err);
+        }
+    }
 
     static async getAllUserIds(req, res, next) {
         try {

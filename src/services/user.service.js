@@ -5,6 +5,36 @@ const userCollection = db.collection('users');
 const RecipeService = require('../services/recipe.service');
 
 class UserService {
+
+
+    // Tăng cooking skill
+    static async changeCookingSkill(userId, delta) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error("User not found");
+
+        const user = doc.data();
+        const ai = user.ai_profile || { cooking_skill_level: 0 };
+        let newLevel = (ai.cooking_skill_level || 0) + delta;
+
+        // ⭐ Clamp giá trị: min 0, max 5
+        if (newLevel < 0) newLevel = 0;
+        if (newLevel > 5) newLevel = 5;
+
+        ai.cooking_skill_level = newLevel;
+
+        await docRef.update({
+            'ai_profile.cooking_skill_level': ai.cooking_skill_level,
+            updated_at: new Date()
+        });
+
+        return { cooking_skill_level: ai.cooking_skill_level };
+    }
+
+
+
+
+
     static async updateWeeklyShoppingList(userId) {
         const userDoc = await userCollection.doc(userId).get();
         if (!userDoc.exists) throw new Error('User not found');
@@ -431,10 +461,81 @@ class UserService {
     }
 
 
+    static async addTagsList(userId, tagNames) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error("User not found");
+
+        const user = doc.data();
+        const ai = user.ai_profile || { tags: [], cooking_skill_level: 0 };
+        ai.tags = ai.tags || [];
+
+        for (const name of tagNames) {
+            const tagName = name.toLowerCase().trim();
+
+            // Tìm tất cả tag trùng
+            let tag = ai.tags.find(t => t.tag_name === tagName);
+
+            if (tag) {
+                tag.score += 1; // nếu tồn tại → tăng 1
+            } else {
+                // Nếu chưa có → thêm mới
+                ai.tags.push({ tag_name: tagName, score: 1 });
+            }
+        }
+
+        // Loại bỏ trùng dư (merge tất cả tag trùng cùng tên)
+        const uniqueTagsMap = {};
+        for (const t of ai.tags) {
+            if (uniqueTagsMap[t.tag_name]) {
+                uniqueTagsMap[t.tag_name].score += t.score; // cộng score nếu trùng
+            } else {
+                uniqueTagsMap[t.tag_name] = { ...t }; // copy object
+            }
+        }
+
+        // Chuyển lại thành array
+        ai.tags = Object.values(uniqueTagsMap);
+
+        // Update Firestore
+        await docRef.update({
+            'ai_profile.tags': ai.tags,
+            updated_at: new Date()
+        });
+
+        return { success: true, tags: ai.tags };
+    }
 
 
 
 
+
+    static async subtractTagsList(userId, tagNames) {
+        const docRef = userCollection.doc(userId);
+        const doc = await docRef.get();
+        if (!doc.exists) throw new Error("User not found");
+
+        const user = doc.data();
+        const ai = user.ai_profile || { tags: [], cooking_skill_level: 0 };
+        ai.tags = ai.tags || [];
+
+        for (const name of tagNames) {
+            const tagName = name.toLowerCase().trim();
+            let tag = ai.tags.find(t => t.tag_name === tagName);
+
+            if (tag) {
+                tag.score -= 1; // trừ 1
+            } else {
+                // Nếu chưa có tag → tạo với điểm âm
+                ai.tags.push({ tag_name: tagName, score: -1 });
+            }
+        }
+
+        // Lưu lại
+        await this.updateAIProfile(userId, { tags: ai.tags });
+
+        return { success: true, tags: ai.tags };
+    }
 
 
     static async getAllDocIds() {
@@ -460,11 +561,11 @@ class UserService {
             updated_at: new Date()
         };
 
-        if (ai_profile.region !== undefined) updateData["ai_profile.region"] = ai_profile.region;
-        if (ai_profile.favorite_dishes !== undefined) updateData["ai_profile.favorite_dishes"] = ai_profile.favorite_dishes;
-        if (ai_profile.favorite_ingredients !== undefined) updateData["ai_profile.favorite_ingredients"] = ai_profile.favorite_ingredients;
-        if (ai_profile.diet !== undefined) updateData["ai_profile.diet"] = ai_profile.diet;
-        if (ai_profile.cooking_skill_level !== undefined) updateData["ai_profile.cooking_skill_level"] = ai_profile.cooking_skill_level;
+        for (const key in ai_profile) {
+            updateData[`ai_profile.${key}`] = ai_profile[key];
+        }
+
+        updateData[`ai_profile.cooking_skill_level`] = ai_profile.cooking_skill_level;
 
 
         await docRef.update(updateData);

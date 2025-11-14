@@ -17,7 +17,9 @@ router.get('/:id', UserController.getUserById);
 
 // User profile updates
 router.patch('/:id/ai_profile', UserController.updateAIProfile);
-
+router.patch('/:id/ai_profile/tags', UserController.addTagsList);
+router.patch('/:id/ai_profile/cooking-skill/increase', UserController.increaseCookingSkill);
+router.patch('/:id/ai_profile/cooking-skill/decrease', UserController.decreaseCookingSkill);
 // Fridge operations
 router.patch('/:id/fridge', UserController.updateFridge);
 router.patch('/:id/fridge/:day', UserController.subtractFridge);

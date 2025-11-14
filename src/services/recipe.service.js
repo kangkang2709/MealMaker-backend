@@ -1,7 +1,6 @@
 const { db } = require('../config/firebase.config');
 const { uploadImage } = require('../services/upload.service');
 const RecipeLike = require('../model/recipeLike.model');
-
 const recipeCollection = db.collection('recipes');
 const recipeLikesCollection = db.collection('recipe_likes');
 
@@ -93,10 +92,7 @@ class RecipeService {
         return createdRecipesLike; // trả về mảng đã tạo
     }
 
-    /**
-     * 
-     * 
-     * 
+    /** 
     * Tìm recipe theo nguyên liệu, có fallback và pagination
     * @param {string} user_id
     * @param {string[]} ingredients - mảng tên nguyên liệu
@@ -245,13 +241,13 @@ class RecipeService {
     // ==============================
     // LIKE RECIPE
     // ==============================
-    static async likeRecipe(user_id, _id) { // _id là _id của recipe
-        console.log('User:', user_id, 'Recipe _id:', _id);
+    static async likeRecipe(user_id, _id) {
+        const UserService = require('../services/user.service')
 
         // Kiểm tra xem user đã like recipe chưa
         const likeQuery = await recipeLikesCollection
             .where('user_id', '==', user_id)
-            .where('recipe_id', '==', _id) // dùng _id của recipe lưu trong field recipe_id
+            .where('recipe_id', '==', _id)
             .get();
 
         if (!likeQuery.empty) {
@@ -261,25 +257,31 @@ class RecipeService {
         // Tạo document like mới
         const newLikeRef = recipeLikesCollection.doc();
         const newLike = {
-            _id: newLikeRef.id, // _id của document like
+            _id: newLikeRef.id,
             user_id: user_id,
-            recipe_id: _id       // _id của recipe
+            recipe_id: _id
         };
 
         await newLikeRef.set(newLike);
 
-        // Cập nhật likeCount của recipe
-        const recipeRef = recipeCollection.doc(_id); // doc của recipe
+        // Cập nhật likeCount của recipe trong transaction
+        let recipeTags = [];
+        const recipeRef = recipeCollection.doc(_id);
         await db.runTransaction(async (transaction) => {
             const recipeDoc = await transaction.get(recipeRef);
             if (recipeDoc.exists) {
                 const newCount = (recipeDoc.data().likeCount || 0) + 1;
                 transaction.update(recipeRef, { likeCount: newCount });
+                recipeTags = recipeDoc.data().tags || [];
             }
         });
 
+        // Cập nhật tags cho user
+        await UserService.addTagsList(user_id, recipeTags);
+
         return { success: true, message: 'Recipe liked successfully' };
     }
+
 
 
 

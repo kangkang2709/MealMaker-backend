@@ -10,13 +10,13 @@ class User {
         this.avatar_url = '';
 
         this.fridge = {}; // { ingredient: quantity, ... }
+
         this.ai_profile = {
-            region: [],
-            favorite_dishes: [],
-            favorite_ingredients: [],
-            diet: [],
+            tags: [],
             cooking_skill_level: 0
         };
+
+
 
         this.weekly_shopping_list = {
             monday: [],
@@ -46,6 +46,37 @@ class User {
             this.weekly_menu[day].push(recipe_id);
         }
     }
+
+    addTag(tagName) {
+        const tag = this.ai_profile.tags.find(t => t.tag_name === tagName);
+
+        if (tag) {
+            tag.score += 1;
+        } else {
+            this.ai_profile.tags.push({
+                tag_name: tagName,
+                score: 1
+            });
+        }
+    }
+
+    addTag(tagName) {
+        const tag = this.ai_profile.tags.find(t => t.tag_name === tagName);
+
+        if (tag) {
+            tag.score += 1;
+        } else {
+            this.ai_profile.tags.push({
+                tag_name: tagName,
+                score: 1
+            });
+        }
+    }
+
+    setCookingSkillLevel(level) {
+        this.ai_profile.cooking_skill_level = level;
+    }
+
 }
 
 module.exports = User;
