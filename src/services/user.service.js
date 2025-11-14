@@ -245,7 +245,7 @@ class UserService {
         if (!userDoc.exists) throw new Error('User not found');
 
         const user = userDoc.data();
-        const updatedShoppingList = {};
+        const updatedShoppingList = { ...user.weekly_shopping_list }; // copy shopping list hiện tại
 
         const dayOrder = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
@@ -256,9 +256,12 @@ class UserService {
             startIndex = dayOrder.indexOf(normalizedDay);
             if (startIndex === -1) throw new Error('Invalid target day');
 
+            // Xóa shopping list của targetDay
+            updatedShoppingList[normalizedDay] = { ingredients: {}, totals: {}, seasoning: [] };
+
             if (normalizedDay === 'sunday') {
                 // Chủ nhật → không cập nhật gì
-                await userCollection.doc(userId).update({ weekly_shopping_list: {} });
+                await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
                 const updatedDoc = await userCollection.doc(userId).get();
                 return { id: updatedDoc.id, ...updatedDoc.data() };
             }
@@ -397,6 +400,7 @@ class UserService {
     }
 
 
+
     static async updateFridge(userId, fridgeData) {
         const docRef = userCollection.doc(userId);
         const doc = await docRef.get();
@@ -412,9 +416,9 @@ class UserService {
         const updatedDoc = await docRef.get();
         const data = updatedDoc.data();
 
-        console.log('Updated user data:', data);
 
         if (data.weekly_menu && Object.keys(data.weekly_menu).length > 0) {
+            console.log('Fridge updated, recalculating weekly shopping list...');
             await UserService.updateWeeklyShoppingList(userId);
         }
 

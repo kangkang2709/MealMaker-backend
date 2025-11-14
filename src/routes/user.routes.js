@@ -22,6 +22,7 @@ router.patch('/:id/ai_profile/cooking-skill/increase', UserController.increaseCo
 router.patch('/:id/ai_profile/cooking-skill/decrease', UserController.decreaseCookingSkill);
 // Fridge operations
 router.patch('/:id/fridge', UserController.updateFridge);
+
 router.patch('/:id/fridge/:day', UserController.subtractFridge);
 
 // Weekly menu & shopping
