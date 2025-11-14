@@ -42,9 +42,15 @@ class UserService {
         const user = userDoc.data();
         const updatedShoppingList = {};
 
-        const today = new Date();
-        let todayIndex = today.getDay(); // 0=Sunday, 1=Monday ...
-        todayIndex = todayIndex === 0 ? 6 : todayIndex - 1; // chuyển Sunday=6
+
+        const today = new Date(
+            new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
+        );
+        // const today = new Date();
+        let todayIndex = today.getDay();
+        todayIndex = todayIndex === 0 ? 6 : todayIndex - 1;
+
+        console.log('Today index:', todayIndex);
 
         const dayOrder = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
@@ -408,7 +414,6 @@ class UserService {
 
         console.log('Updated user data:', data);
 
-        // Gọi updateWeeklyShoppingList nếu weekly_menu có dữ liệu
         if (data.weekly_menu && Object.keys(data.weekly_menu).length > 0) {
             await UserService.updateWeeklyShoppingList(userId);
         }
@@ -429,6 +434,7 @@ class UserService {
         const daysOfWeek = [
             'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
         ];
+
 
         const weeklyMenu = {};
 
