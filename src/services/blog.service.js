@@ -37,6 +37,7 @@ class BlogService {
         data.recipe.ingredients_list = data.recipe.ingredients_list || [];
         return data;
     }
+
     static cleanAndMark(textOrArray, dictionary) {
         const process = (text) => {
             return text
@@ -57,8 +58,6 @@ class BlogService {
         if (typeof textOrArray === 'string') return process(textOrArray);
         return textOrArray;
     }
-
-
 
 
     static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {

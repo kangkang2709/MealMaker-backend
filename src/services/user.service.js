@@ -5,6 +5,361 @@ const userCollection = db.collection('users');
 const RecipeService = require('../services/recipe.service');
 
 class UserService {
+    static async updateWeeklyShoppingList(userId) {
+        const userDoc = await userCollection.doc(userId).get();
+        if (!userDoc.exists) throw new Error('User not found');
+
+        const user = userDoc.data();
+        const updatedShoppingList = {};
+
+        const today = new Date();
+        let todayIndex = today.getDay(); // 0=Sunday, 1=Monday ...
+        todayIndex = todayIndex === 0 ? 6 : todayIndex - 1; // chuyển Sunday=6
+
+        const dayOrder = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+        const fridgeLeft = { ...user.fridge };
+
+        // Lưu tổng tích lũy từ hôm nay → cuối tuần
+        const futureTotals = {};
+
+        // Lưu phần cần mua từng ngày (sau khi trừ fridge)
+        const dailyNeeds = {};
+
+        // 1️⃣ Tính nguyên liệu cần mua từng ngày (sau khi trừ fridge)
+        for (let i = 0; i < dayOrder.length; i++) {
+            const day = dayOrder[i];
+            const recipesForDay = user.weekly_menu[day] || [];
+            const tempIngredients = {};
+            const seasoningSet = new Set();
+
+            // Gộp nguyên liệu trong ngày
+            for (const recipe of recipesForDay) {
+                if (!recipe || !recipe.ingredients_list) continue;
+                for (const line of recipe.ingredients_list) {
+                    const parts = line.trim().split(/\s+/);
+                    if (parts.length < 2) continue;
+                    const qtyUnit = parts[parts.length - 1].toLowerCase();
+                    const name = parts.slice(0, parts.length - 1).join(' ').toLowerCase();
+                    const match = qtyUnit.match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                    if (!match) continue;
+                    const quantity = parseFloat(match[1]);
+                    const unit = match[3] || 'g';
+                    const key = `${name}_${unit}`;
+                    if (!tempIngredients[key]) tempIngredients[key] = { name, quantity, unit };
+                    else tempIngredients[key].quantity += quantity;
+                }
+                if (recipe.seasoning) {
+                    for (const s of recipe.seasoning) {
+                        const names = getSeasoningName(s);
+                        names.forEach(n => seasoningSet.add(n));
+                    }
+                }
+            }
+
+            const ingredientsToday = {};
+            const isTodayOrLater = i >= todayIndex;
+
+            if (isTodayOrLater) {
+                for (const key in tempIngredients) {
+                    let { name, quantity, unit } = tempIngredients[key];
+                    let qtyNeeded = quantity;
+
+                    // Trừ tủ lạnh
+                    let fridgeQty = 0;
+                    const fridgeKey = Object.keys(fridgeLeft || {}).find(fk =>
+                        normalizeIngredientName(fk) === normalizeIngredientName(name)
+                    );
+                    if (fridgeKey) {
+                        const fridgeMatch = fridgeLeft[fridgeKey].match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                        if (fridgeMatch) {
+                            const fridgeValue = parseFloat(fridgeMatch[1]);
+                            const fridgeUnit = fridgeMatch[3] || 'g';
+                            if (fridgeUnit.toLowerCase() === unit.toLowerCase()) fridgeQty = fridgeValue;
+                        }
+
+                        if (fridgeQty >= qtyNeeded) {
+                            fridgeLeft[fridgeKey] = `${fridgeQty - qtyNeeded}${unit}`;
+                            qtyNeeded = 0;
+                        } else {
+                            qtyNeeded -= fridgeQty;
+                            fridgeLeft[fridgeKey] = `0${unit}`;
+                        }
+                    }
+
+                    if (qtyNeeded > 0) ingredientsToday[name] = `${qtyNeeded}${unit}`;
+
+                    // Cập nhật futureTotals tích lũy
+                    if (!futureTotals[key]) futureTotals[key] = qtyNeeded;
+                    else futureTotals[key] += qtyNeeded;
+                }
+
+                dailyNeeds[day] = { ingredients: ingredientsToday, seasoning: Array.from(seasoningSet) };
+            } else {
+                dailyNeeds[day] = { ingredients: {}, seasoning: Array.from(seasoningSet) };
+            }
+        }
+
+        // 2️⃣ Gán totals cho từng ngày (từ hôm nay → cuối tuần)
+        // 2️⃣ Gán totals cho từng ngày (từ hôm nay → cuối tuần)
+        let runningTotals = {}; // lưu theo key=name_unit
+        for (let i = todayIndex; i < dayOrder.length; i++) {
+            const day = dayOrder[i];
+            const todayIngredients = dailyNeeds[day].ingredients;
+
+            // Cập nhật runningTotals
+            for (const key in futureTotals) {
+                if (!runningTotals[key]) runningTotals[key] = 0;
+            }
+
+            for (const key in futureTotals) {
+                const [name, unit] = key.split('_');
+                const qtyTodayStr = todayIngredients[name]; // dạng "2kg" hoặc "50g"
+                let qtyToday = 0;
+                if (qtyTodayStr) {
+                    const match = qtyTodayStr.match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                    if (match) qtyToday = parseFloat(match[1]);
+                }
+                runningTotals[key] += qtyToday;
+            }
+
+            // Chỉ giữ những món >0 và đúng unit
+            const totals = {};
+            for (const key in runningTotals) {
+                if (runningTotals[key] > 0) {
+                    const [name, unit] = key.split('_');
+                    totals[name] = `${runningTotals[key]}${unit}`;
+                }
+            }
+
+            // Chỉ giữ ingredients >0
+            const filteredIngredients = {};
+            for (const ing in todayIngredients) {
+                const match = todayIngredients[ing].match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                if (match && parseFloat(match[1]) > 0) filteredIngredients[ing] = todayIngredients[ing];
+            }
+
+            updatedShoppingList[day] = {
+                ingredients: filteredIngredients,
+                totals,
+                seasoning: dailyNeeds[day].seasoning
+            };
+        }
+
+
+        await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
+        const updatedDoc = await userCollection.doc(userId).get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+
+    static async subtractFridgeForDayRemove(userId, targetDay) {
+        const userDoc = await userCollection.doc(userId).get();
+        if (!userDoc.exists) throw new Error("User not found");
+
+        const user = userDoc.data();
+        const fridgeLeft = { ...user.fridge };
+        const recipesForDay = user.weekly_menu[targetDay] || [];
+
+        let isChanged = false; // flag kiểm tra có thay đổi fridge không
+
+        for (const recipe of recipesForDay) {
+            if (!recipe?.ingredients_list) continue;
+
+            for (const line of recipe.ingredients_list) {
+                const parts = line.trim().split(" ");
+                const qtyUnit = parts.pop();
+                const ingNameRaw = parts.join(" ");
+                const ingName = normalizeIngredientName(ingNameRaw);
+
+                const neededQty = parseFloat(qtyUnit);
+                const neededUnit = qtyUnit.replace(/[0-9.]/g, "");
+
+                const key = Object.keys(fridgeLeft).find(
+                    k => normalizeIngredientName(k) === ingName
+                );
+                if (!key) continue;
+
+                const oldQty = parseFloat(fridgeLeft[key] || "0");
+                const oldUnit = fridgeLeft[key].replace(/[0-9.]/g, "");
+
+                if (oldUnit !== neededUnit || oldQty <= neededQty) {
+                    delete fridgeLeft[key];
+                    isChanged = true;
+                } else {
+                    fridgeLeft[key] = (oldQty - neededQty) + neededUnit;
+                    isChanged = true;
+                }
+            }
+        }
+
+        // Cập nhật lại fridge trong database
+        await userCollection.doc(userId).update({ fridge: fridgeLeft });
+
+        // Nếu có thay đổi → gọi hàm khác, truyền targetDay
+        if (isChanged && typeof this.onFridgeChanged === "function") {
+            await UserService.updateWeeklyShoppingListaAftersubtractFridge(userId, targetDay);
+        }
+
+        return { id: userId, fridge: fridgeLeft };
+    }
+
+    static async updateWeeklyShoppingListaAftersubtractFridge(userId, targetDay) {
+        const userDoc = await userCollection.doc(userId).get();
+        if (!userDoc.exists) throw new Error('User not found');
+
+        const user = userDoc.data();
+        const updatedShoppingList = {};
+
+        const dayOrder = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+        // Xác định index bắt đầu
+        let startIndex;
+        if (targetDay) {
+            const normalizedDay = targetDay.toLowerCase();
+            startIndex = dayOrder.indexOf(normalizedDay);
+            if (startIndex === -1) throw new Error('Invalid target day');
+
+            if (normalizedDay === 'sunday') {
+                // Chủ nhật → không cập nhật gì
+                await userCollection.doc(userId).update({ weekly_shopping_list: {} });
+                const updatedDoc = await userCollection.doc(userId).get();
+                return { id: updatedDoc.id, ...updatedDoc.data() };
+            }
+
+            // Bắt đầu từ ngày tiếp theo của targetDay
+            startIndex = startIndex + 1;
+        } else {
+            // Mặc định là hôm nay
+            const today = new Date();
+            let todayIndex = today.getDay(); // 0=Sunday, 1=Monday ...
+            startIndex = todayIndex === 0 ? 6 : todayIndex - 1; // chuyển Sunday=6
+        }
+
+        const fridgeLeft = { ...user.fridge };
+        const futureTotals = {};
+        const dailyNeeds = {};
+
+        // 1️⃣ Tính nguyên liệu cần mua từng ngày (sau khi trừ fridge)
+        for (let i = 0; i < dayOrder.length; i++) {
+            const day = dayOrder[i];
+            const recipesForDay = user.weekly_menu[day] || [];
+            const tempIngredients = {};
+            const seasoningSet = new Set();
+
+            for (const recipe of recipesForDay) {
+                if (!recipe || !recipe.ingredients_list) continue;
+                for (const line of recipe.ingredients_list) {
+                    const parts = line.trim().split(/\s+/);
+                    if (parts.length < 2) continue;
+                    const qtyUnit = parts[parts.length - 1].toLowerCase();
+                    const name = parts.slice(0, parts.length - 1).join(' ').toLowerCase();
+                    const match = qtyUnit.match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                    if (!match) continue;
+                    const quantity = parseFloat(match[1]);
+                    const unit = match[3] || 'g';
+                    const key = `${name}_${unit}`;
+                    if (!tempIngredients[key]) tempIngredients[key] = { name, quantity, unit };
+                    else tempIngredients[key].quantity += quantity;
+                }
+                if (recipe.seasoning) {
+                    for (const s of recipe.seasoning) {
+                        const names = getSeasoningName(s);
+                        names.forEach(n => seasoningSet.add(n));
+                    }
+                }
+            }
+
+            const ingredientsToday = {};
+            const isStartOrLater = i >= startIndex;
+
+            if (isStartOrLater) {
+                for (const key in tempIngredients) {
+                    let { name, quantity, unit } = tempIngredients[key];
+                    let qtyNeeded = quantity;
+
+                    // Trừ tủ lạnh
+                    let fridgeQty = 0;
+                    const fridgeKey = Object.keys(fridgeLeft || {}).find(fk =>
+                        normalizeIngredientName(fk) === normalizeIngredientName(name)
+                    );
+                    if (fridgeKey) {
+                        const fridgeMatch = fridgeLeft[fridgeKey].match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                        if (fridgeMatch) {
+                            const fridgeValue = parseFloat(fridgeMatch[1]);
+                            const fridgeUnit = fridgeMatch[3] || 'g';
+                            if (fridgeUnit.toLowerCase() === unit.toLowerCase()) fridgeQty = fridgeValue;
+                        }
+
+                        if (fridgeQty >= qtyNeeded) {
+                            fridgeLeft[fridgeKey] = `${fridgeQty - qtyNeeded}${unit}`;
+                            qtyNeeded = 0;
+                        } else {
+                            qtyNeeded -= fridgeQty;
+                            fridgeLeft[fridgeKey] = `0${unit}`;
+                        }
+                    }
+
+                    if (qtyNeeded > 0) ingredientsToday[name] = `${qtyNeeded}${unit}`;
+
+                    // Cập nhật futureTotals tích lũy
+                    if (!futureTotals[key]) futureTotals[key] = qtyNeeded;
+                    else futureTotals[key] += qtyNeeded;
+                }
+
+                dailyNeeds[day] = { ingredients: ingredientsToday, seasoning: Array.from(seasoningSet) };
+            } else {
+                dailyNeeds[day] = { ingredients: {}, seasoning: Array.from(seasoningSet) };
+            }
+        }
+
+        // 2️⃣ Gán totals cho từng ngày (từ startIndex → cuối tuần)
+        let runningTotals = {};
+        for (let i = startIndex; i < dayOrder.length; i++) {
+            const day = dayOrder[i];
+            const todayIngredients = dailyNeeds[day].ingredients;
+
+            for (const key in futureTotals) {
+                if (!runningTotals[key]) runningTotals[key] = 0;
+            }
+
+            for (const key in futureTotals) {
+                const [name, unit] = key.split('_');
+                const qtyTodayStr = todayIngredients[name];
+                let qtyToday = 0;
+                if (qtyTodayStr) {
+                    const match = qtyTodayStr.match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                    if (match) qtyToday = parseFloat(match[1]);
+                }
+                runningTotals[key] += qtyToday;
+            }
+
+            const totals = {};
+            for (const key in runningTotals) {
+                if (runningTotals[key] > 0) {
+                    const [name, unit] = key.split('_');
+                    totals[name] = `${runningTotals[key]}${unit}`;
+                }
+            }
+
+            const filteredIngredients = {};
+            for (const ing in todayIngredients) {
+                const match = todayIngredients[ing].match(/^(\d+(\.\d+)?)([a-zA-Z]*)$/);
+                if (match && parseFloat(match[1]) > 0) filteredIngredients[ing] = todayIngredients[ing];
+            }
+
+            updatedShoppingList[day] = {
+                ingredients: filteredIngredients,
+                totals,
+                seasoning: dailyNeeds[day].seasoning
+            };
+        }
+
+        await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
+        const updatedDoc = await userCollection.doc(userId).get();
+        return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
 
     static async updateFridge(userId, fridgeData) {
         const docRef = userCollection.doc(userId);
@@ -19,8 +374,18 @@ class UserService {
         await docRef.update({ fridge: fridgeData });
 
         const updatedDoc = await docRef.get();
-        return { id: updatedDoc.id, ...updatedDoc.data() };
+        const data = updatedDoc.data();
+
+        console.log('Updated user data:', data);
+
+        // Gọi updateWeeklyShoppingList nếu weekly_menu có dữ liệu
+        if (data.weekly_menu && Object.keys(data.weekly_menu).length > 0) {
+            await UserService.updateWeeklyShoppingList(userId);
+        }
+
+        return { id: updatedDoc.id, ...data };
     }
+
 
     static async updateWeeklyMenuWithDetails(userId, recipeIds) {
         const docRef = userCollection.doc(userId);
@@ -68,92 +433,8 @@ class UserService {
 
 
 
-    static async updateWeeklyShoppingList(userId) {
-        const userDoc = await userCollection.doc(userId).get();
-        if (!userDoc.exists) throw new Error('User not found');
-
-        const user = userDoc.data();
-        const updatedShoppingList = {};
 
 
-
-        for (const day of Object.keys(user.weekly_menu)) {
-            const recipesForDay = user.weekly_menu[day] || [];
-            const tempIngredients = {}; // key = name_unit
-            const seasoningSet = new Set();
-
-            for (const recipe of recipesForDay) {
-                // const recipeId = recipeDay.recipe_id;
-                // const recipe = await RecipeService.getRecipeById(recipeId);
-                if (!recipe || !recipe.ingredients_list) continue;
-
-                // Xử lý nguyên liệu
-                for (const line of recipe.ingredients_list) {
-                    const parts = line.trim().split(/\s+/);
-                    if (parts.length < 2) continue;
-
-                    const qtyUnit = parts[parts.length - 1].toLowerCase(); // "100g"
-                    const name = parts.slice(0, parts.length - 1).join(' ').toLowerCase(); // "sliced tomato"
-
-                    const match = qtyUnit.match(/^(\d+(\.\d+)?)([a-zA-Z]+)$/);
-                    if (!match) continue;
-
-                    const quantity = parseFloat(match[1]);
-                    const unit = match[3];
-
-                    const key = `${name}_${unit}`;
-                    if (!tempIngredients[key]) {
-                        tempIngredients[key] = { name, quantity, unit };
-                    } else {
-                        tempIngredients[key].quantity += quantity;
-                    }
-                }
-
-                // Xử lý seasoning (gộp lại, loại trùng, không trừ fridge)
-                if (recipe.seasoning) {
-                    for (const s of recipe.seasoning) {
-                        const names = getSeasoningName(s); // trả về mảng
-                        names.forEach(n => seasoningSet.add(n));
-                    }
-                }
-            }
-
-            // Trừ fridge và chuẩn hóa key theo fridge (nguyên liệu)
-            const shoppingListForDay = {};
-            for (const key in tempIngredients) {
-                let { name, quantity, unit } = tempIngredients[key];
-
-                // Kiểm tra fridge
-                let fridgeQty = 0;
-                const fridgeKey = Object.keys(user.fridge || {}).find(fk =>
-                    normalizeIngredientName(fk) === normalizeIngredientName(name)
-                );
-                if (fridgeKey) {
-                    const fridgeMatch = user.fridge[fridgeKey].match(/^(\d+(\.\d+)?)([a-zA-Z]+)$/);
-                    if (fridgeMatch) {
-                        const fridgeValue = parseFloat(fridgeMatch[1]);
-                        const fridgeUnit = fridgeMatch[3].toLowerCase();
-                        if (fridgeUnit === unit.toLowerCase()) fridgeQty = fridgeValue;
-                    }
-                    name = fridgeKey; // chuẩn hóa theo fridge
-                }
-
-                const qtyNeeded = Math.max(quantity - fridgeQty, 0);
-                if (qtyNeeded > 0) shoppingListForDay[name] = `${qtyNeeded}${unit}`;
-            }
-
-            updatedShoppingList[day] = {
-                ingredients: shoppingListForDay,
-                seasoning: Array.from(seasoningSet)
-            };
-        }
-
-        // Cập nhật vào firestore
-        await userCollection.doc(userId).update({ weekly_shopping_list: updatedShoppingList });
-
-        const updatedDoc = await userCollection.doc(userId).get();
-        return { id: updatedDoc.id, ...updatedDoc.data() };
-    }
 
 
     static async getAllDocIds() {
@@ -317,18 +598,38 @@ function normalizeIngredientName(name) {
 function getSeasoningName(seasoningLine) {
     let lower = seasoningLine.toLowerCase();
 
-    // Chuẩn hóa: thay & hoặc + bằng dấu cách
+    // Chuẩn hóa dấu & hoặc +
     lower = lower.replace(/&|\+/g, ' ');
 
-    // Loại bỏ "to taste" vì không phải tên gia vị
-    lower = lower.replace(/\bto taste\b/g, '').trim();
+    // Các cụm không phải tên gia vị
+    const ignorePhrases = [
+        'to taste',
+        'for driping',
+        'for dipping',
+        'for garnish',
+        'as needed',
+        "a pinch",
+        "a dash"
 
+    ];
+
+    ignorePhrases.forEach(phrase => {
+        const regex = new RegExp(`\\b${phrase}\\b`, 'gi');
+        lower = lower.replace(regex, '');
+    });
+
+    lower = lower.trim();
+
+    // Xử lý salt & pepper
     if (lower.includes('salt') && lower.includes('pepper')) return ['salt', 'black pepper'];
     if (lower.includes('salt')) return ['salt'];
 
+    // Tách các từ và loại bỏ đơn vị/ số
     const parts = lower.split(' ');
     const nameParts = parts.filter(p => isNaN(parseFloat(p)) && !['tbsp', 'tsp', 'cup', 'ml', 'g', 'unit'].includes(p));
+
     return nameParts.length > 0 ? [nameParts.join(' ').trim()] : [];
 }
+
 
 module.exports = UserService;

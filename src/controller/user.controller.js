@@ -42,6 +42,16 @@ class UserController {
         }
     }
 
+    static async subtractFridge(req, res, next) {
+        try {
+            console.log(req.params.id, req.params.day);
+            const user = await UserService.subtractFridgeForDayRemove(req.params.id, req.params.day);
+            return ApiResponse.success(res, 'Fridge updated', user);
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static async updateWeeklyMenu(req, res, next) {
         try {
             const { weekly_menu } = req.body;
