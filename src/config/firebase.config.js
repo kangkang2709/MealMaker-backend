@@ -1,7 +1,7 @@
 require('module-alias/register');
 const admin = require('firebase-admin');
-
-const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
+const path = require('path');
+const serviceAccount = require(path.resolve(__dirname, '../../firebase.json')); // Thay đường dẫn file JSON của bạn
 
 if (!admin.apps.length) {
     admin.initializeApp({

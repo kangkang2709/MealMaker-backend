@@ -14,8 +14,8 @@ const spellchecker = require('simple-spellchecker');
 const filter = new Filter();
 const SpellCorrector = require('spelling-corrector');
 const spell = new SpellCorrector();
-spell.loadDictionary();
 
+spell.loadDictionary();
 class BlogService {
 
     static dictionary = null;
@@ -38,39 +38,114 @@ class BlogService {
         return data;
     }
 
-    static cleanAndMark(textOrArray, dictionary) {
-        const process = (text) => {
-            return text
-                .split(/\s+/)
-                .map(word => {
-                    // Ignore numbers only (integer or decimal)
-                    if (/^\d+(\.\d+)?$/.test(word)) {
-                        return word;
-                    }
+    static cleanAndMark(text) {
+        if (!text || typeof text !== "string") return "";
 
-                    // Ignore punctuation-only tokens
-                    if (/^[.,!?]+$/.test(word)) {
-                        return word;
-                    }
+        return text
+            .split(/\s+/)
+            .map(word => {
 
-                    // Ignore units like 10kg
-                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) {
-                        return word;
-                    }
+                // Bỏ qua số nguyên/thập phân
+                if (/^\d+(\.\d+)?$/.test(word)) return word;
 
-                    // Spell check: append '*' if not in dictionary
-                    let w = dictionary.spellCheck(word) ? word : word + '*';
+                // Bỏ qua số + đơn vị (300g, 1tbsp)
+                if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) return word;
 
-                    // Clean word (remove unwanted symbols but keep *)
-                    return filter.clean(w);
-                })
-                .join(' ');
-        };
+                // Bỏ qua dấu câu hoặc ký tự đặc biệt đơn lẻ
+                if (/^[.,!?;:()\[\]{}_\-]+$/.test(word)) return word;
 
-        if (Array.isArray(textOrArray)) return textOrArray.map(process);
-        if (typeof textOrArray === 'string') return process(textOrArray);
-        return textOrArray;
+                // Nếu từ bị filter.clean() thay đổi → là từ nhạy cảm
+                let cleaned = "";
+                try {
+                    cleaned = filter.clean(word);
+                } catch {
+                    return word; // fallback
+                }
+
+                if (cleaned !== word) {
+                    return word + "*"; // đánh dấu từ nhạy cảm
+                }
+
+                return word;
+            })
+            .join(" ");
     }
+
+
+
+    static cleanAndCorrect(text) {
+        if (!text || typeof text !== "string") return "";
+
+        // Escape xuống dòng để không phá JSON
+        text = text.replace(/\r\n|\r|\n/g, "\\n");
+
+        return text
+            .split(/\s+/)
+            .map(token => {
+                if (!token) return "";
+
+                // Tách leading và trailing punctuation (giữ lại hyphen '-' trong core)
+                const leadingMatch = token.match(/^[^A-Za-z0-9-]+/);
+                const trailingMatch = token.match(/[^A-Za-z0-9-]+$/);
+
+                const leading = leadingMatch ? leadingMatch[0] : "";
+                const trailing = trailingMatch ? trailingMatch[0] : "";
+
+                // core: phần giữa (có thể chứa letters, numbers, hyphen)
+                const core = token.substring(leading.length, token.length - trailing.length);
+
+                if (!core) {
+                    // token chỉ là punctuation
+                    return token;
+                }
+
+                // Bỏ qua số nguyên / thập phân
+                if (/^\d+(\.\d+)?$/.test(core)) return leading + core + trailing;
+
+                // Bỏ qua số + đơn vị (300g, 1tbsp)
+                if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(core)) return leading + core + trailing;
+
+                // Nếu core chứa underscores (_) coi là ký tự đặc biệt -> không sửa (giữ nguyên)
+                if (/[_]/.test(core)) return leading + core + trailing;
+
+                // Kiểm tra từ nhạy cảm (chỉ trên core)
+                let cleaned = core;
+                try {
+                    // filter.clean có thể thay đổi từ thành '***' hoặc trả null (bắt try)
+                    cleaned = filter.clean(core);
+                } catch (e) {
+                    cleaned = core;
+                }
+
+                // Nếu bad-words thay đổi core => coi là nhạy cảm
+                if (cleaned !== core) {
+                    return leading + "****" + trailing;
+                }
+
+                // Sửa chính tả:
+                // Nếu có hyphen, sửa từng phần riêng (ví dụ: str-fry -> stir-fry)
+                if (core.includes('-')) {
+                    const parts = core.split('-');
+                    const correctedParts = parts.map(p => {
+                        // nếu p là số/đơn vị giữ nguyên
+                        if (/^\d+(\.\d+)?$/.test(p) || /^\d+(\.\d+)?[a-zA-Z]+$/.test(p)) return p;
+                        // nếu empty keep
+                        if (!p) return p;
+                        // Sửa chính tả bằng spell.correct (giữ nguyên case ban đầu)
+                        const corrected = spell.correct(p);
+                        return corrected || p;
+                    });
+                    return leading + correctedParts.join('-') + trailing;
+                }
+
+                // Bình thường: sửa core bằng spell.correct
+                const corrected = spell.correct(core) || core;
+                return leading + corrected + trailing;
+            })
+            .join(" ");
+    }
+
+
 
 
 
@@ -319,6 +394,7 @@ class BlogService {
         data.description = this.cleanAndMark(data.description, dictionary);
         data.description_fixed = this.cleanAndCorrect(data.description) || data.description;
         // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
+
         data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
 
         // 🔹 Tạo Blog object
@@ -407,31 +483,7 @@ class BlogService {
     }
 
 
-    static cleanAndCorrect(textOrArray) {
-        const process = (text) => {
-            return text
-                .split(/\s+/)
-                .map(word => {
-                    // Bỏ qua số nguyên/thập phân
-                    if (/^\d+(\.\d+)?$/.test(word)) return word;
 
-                    // Bỏ qua dấu câu đơn lẻ
-                    if (/^[.,!?]+$/.test(word)) return word;
-
-                    // Bỏ qua số+chữ (unit)
-                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) return word;
-
-                    // Sửa chính tả
-                    let corrected = spell.correct(word);
-                    return filter.clean(corrected);
-                })
-                .join(' ');
-        };
-
-        if (Array.isArray(textOrArray)) return textOrArray.map(process);
-        if (typeof textOrArray === 'string') return process(textOrArray);
-        return textOrArray;
-    }
 
     // Delete blog
     static async deleteBlog(id) {
@@ -444,14 +496,57 @@ class BlogService {
 
 
     static fixIngredientSpelling(ingredientsList) {
-        return ingredientsList.map(item => {
-            const [namePart, ...rest] = item.split(/([0-9].*)/);
-            const words = namePart.trim().toLowerCase().split(/\s+/);
+        const whitelist = ["shanks", "shank"]
 
-            const correctedWords = words.map(word => spell.correct(word));
-            return correctedWords.join(' ') + ' ' + (rest.join('').trim() || '');
+        const lowerWhitelist = whitelist.map(w => w.toLowerCase());
+
+        return ingredientsList.map(item => {
+            // Split ingredient into (empty) namePart + quantity/unit part
+            const [namePart, ...rest] = item.split(/([0-9].*)/);
+
+            // FIX: remove empty words to avoid "" turning into "a"
+            const words = namePart
+                .trim()
+                .toLowerCase()
+                .split(/\s+/)
+                .filter(w => w.length > 0);
+
+            const correctedWords = [];
+
+            let i = 0;
+            while (i < words.length) {
+                let matched = false;
+
+                for (const phrase of lowerWhitelist) {
+                    const phraseWords = phrase.split(/\s+/);
+
+                    if (i + phraseWords.length > words.length) continue;
+
+                    const slice = words.slice(i, i + phraseWords.length);
+
+                    if (slice.join(' ') === phrase) {
+                        correctedWords.push(...slice);
+                        i += phraseWords.length;
+                        matched = true;
+                        break;
+                    }
+                }
+
+                if (!matched) {
+                    correctedWords.push(spell.correct(words[i]));
+                    i++;
+                }
+            }
+
+            const quantityPart = rest.join('').trim();
+
+            // FIX: remove leading space by trimming final string
+            return (correctedWords.join(' ') + (quantityPart ? ' ' + quantityPart : '')).trim();
         });
     }
+
+
+
 
 }
 
