@@ -43,12 +43,25 @@ class BlogService {
             return text
                 .split(/\s+/)
                 .map(word => {
-                    // Regex: số nguyên hoặc thập phân theo sau là chữ (unit)
-                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) {
-                        return word; // bỏ qua, giữ nguyên
+                    // Ignore numbers only (integer or decimal)
+                    if (/^\d+(\.\d+)?$/.test(word)) {
+                        return word;
                     }
 
+                    // Ignore punctuation-only tokens
+                    if (/^[.,!?]+$/.test(word)) {
+                        return word;
+                    }
+
+                    // Ignore units like 10kg
+                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) {
+                        return word;
+                    }
+
+                    // Spell check: append '*' if not in dictionary
                     let w = dictionary.spellCheck(word) ? word : word + '*';
+
+                    // Clean word (remove unwanted symbols but keep *)
                     return filter.clean(w);
                 })
                 .join(' ');
@@ -58,6 +71,7 @@ class BlogService {
         if (typeof textOrArray === 'string') return process(textOrArray);
         return textOrArray;
     }
+
 
 
     static async getBlogsPaginated({ page = 1, limit = 10, user_id }) {
@@ -303,6 +317,7 @@ class BlogService {
         // 🔹 Replace bad words + mark misspelled
         // data.title = this.cleanAndMark(data.title, dictionary);
         data.description = this.cleanAndMark(data.description, dictionary);
+        data.description_fixed = this.cleanAndCorrect(data.description);
         // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
         data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
 
@@ -387,6 +402,33 @@ class BlogService {
         await docRef.update(data);
         const updatedDoc = await docRef.get();
         return { id: updatedDoc.id, ...updatedDoc.data() };
+    }
+
+
+    static cleanAndCorrect(textOrArray) {
+        const process = (text) => {
+            return text
+                .split(/\s+/)
+                .map(word => {
+                    // Bỏ qua số nguyên/thập phân
+                    if (/^\d+(\.\d+)?$/.test(word)) return word;
+
+                    // Bỏ qua dấu câu đơn lẻ
+                    if (/^[.,!?]+$/.test(word)) return word;
+
+                    // Bỏ qua số+chữ (unit)
+                    if (/^\d+(\.\d+)?[a-zA-Z]+$/.test(word)) return word;
+
+                    // Sửa chính tả
+                    let corrected = spell.correct(word);
+                    return filter.clean(corrected);
+                })
+                .join(' ');
+        };
+
+        if (Array.isArray(textOrArray)) return textOrArray.map(process);
+        if (typeof textOrArray === 'string') return process(textOrArray);
+        return textOrArray;
     }
 
     // Delete blog
