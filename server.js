@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-
+const setupSwagger = require('./src/config/swaggerConfig');
 
 
 
@@ -30,6 +30,6 @@ app.use('/api/blogs', blogRoutes);
 
 // ===== Global Error Handler (luôn cuối cùng) =====
 app.use(errorHandler);
-
+setupSwagger(app);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

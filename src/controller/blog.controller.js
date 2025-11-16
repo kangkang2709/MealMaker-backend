@@ -144,6 +144,7 @@ class BlogController {
             // req.body.data chứa JSON string
             const blogData = req.body.data ? JSON.parse(req.body.data) : {};
 
+
             const blog = await BlogService.createBlog(blogData, file);
             return ApiResponse.success(res, 'Blog created successfully', blog, 201);
         } catch (err) {

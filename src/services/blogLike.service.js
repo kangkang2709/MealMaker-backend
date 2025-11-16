@@ -66,9 +66,11 @@ class BlogLikeService {
             blog.incrementBadRating();
         }
 
-        if (isGoodRating && score == 4) {
+        if (isGoodRating && score == 4 && blogData.is_published == false) {
             RecipeService.createRecipe2(blogData.recipe);
+            blog.is_published = true;
         }
+
 
         blog.evaluatePublicStatus();
         await blogRef.update({ ...blog });

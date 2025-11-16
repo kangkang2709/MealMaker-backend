@@ -317,7 +317,7 @@ class BlogService {
         // 🔹 Replace bad words + mark misspelled
         // data.title = this.cleanAndMark(data.title, dictionary);
         data.description = this.cleanAndMark(data.description, dictionary);
-        data.description_fixed = this.cleanAndCorrect(data.description);
+        data.description_fixed = this.cleanAndCorrect(data.description) || data.description;
         // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
         data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
 
@@ -337,6 +337,7 @@ class BlogService {
         blog.recipe.image_url = data.image;
         blog.user_name = data.user_name || 'Anonymous';
         blog.recipe.difficulty_score = 0;
+        blog.is_published = false; // Mặc định là true
 
 
         blog.recipe.seasoning = blog.recipe.seasoning || [];

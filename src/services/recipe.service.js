@@ -221,6 +221,7 @@ class RecipeService {
     static async createRecipe2(recipeData) {
 
         recipeData.ingredients_list = recipeData.ingredients_list_fixed || recipeData.ingredients_list;
+
         const docRef = recipeCollection.doc(); // tạo doc mới với ID ngẫu nhiên
         const newRecipe = {
             _id: docRef.id,          // field _id sẽ lưu doc.id
