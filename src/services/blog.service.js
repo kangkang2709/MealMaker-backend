@@ -338,6 +338,7 @@ class BlogService {
         blog.user_name = data.user_name || 'Anonymous';
         blog.recipe.difficulty_score = 0;
         blog.is_published = false; // Mặc định là true
+        blog.description_fixed = data.description_fixed
 
 
         blog.recipe.seasoning = blog.recipe.seasoning || [];
