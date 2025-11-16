@@ -43,10 +43,10 @@ class UserService {
         const updatedShoppingList = {};
 
 
-        // const today = new Date(
-        //     new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
-        // );
-        const today = new Date("2025-11-13T12:00:00+07:00");
+        const today = new Date(
+            new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
+        );
+        // const today = new Date("2025-11-13T12:00:00+07:00");
 
         let todayIndex = today.getDay();
         todayIndex = todayIndex === 0 ? 6 : todayIndex - 1;
@@ -277,11 +277,11 @@ class UserService {
         } else {
             // Mặc định là hôm nay
 
-            // const today = new Date(
-            //     new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
-            // );
+            const today = new Date(
+                new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
+            );
 
-            const today = new Date("2025-11-13T12:00:00+07:00");
+            // const today = new Date("2025-11-13T12:00:00+07:00");
 
             let todayIndex = today.getDay(); // 0=Sunday, 1=Monday ...
             startIndex = todayIndex === 0 ? 6 : todayIndex - 1; // chuyển Sunday=6

@@ -1,14 +1,19 @@
-require('module-alias/register');
-const admin = require('firebase-admin');
+const fs = require('fs/promises');
+const Recipe = require('../model/recipe.model');
+const path = require('path');
+const filePath = path.join(__dirname, '../data/asian_recipes_50.json');
 
+async function loadRecipes() {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const rawRecipes = JSON.parse(data);
+        const recipes = rawRecipes.map(item => ({ ...item }));
+        return recipes;
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
-
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
-    });
+    } catch (err) {
+        console.error('Lỗi:', err);
+        return [];
+    }
 }
 
-const db = admin.firestore();
-module.exports = { admin, db }; 
+module.exports = loadRecipes;
