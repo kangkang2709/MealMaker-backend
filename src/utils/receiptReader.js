@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const Recipe = require('../model/recipe.model');
 const path = require('path');
-const filePath = path.join(__dirname, '../data/recipes2.json');
+const filePath = path.join(__dirname, '../data/recipes.json');
 
 async function loadRecipes() {
     try {

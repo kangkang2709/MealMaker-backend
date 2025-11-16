@@ -1,0 +1,643 @@
+[
+{
+  "title": "Garlic Butter Shrimp",
+  "description": "Juicy shrimp sautéed in garlic butter, finished with lemon.",
+  "seasoning": ["1/2 tsp black pepper", "1/4 tsp chili flakes", "1/4 tsp salt"],
+  "instructions": [
+    "Melt butter in a pan and add minced garlic.",
+    "Add shrimp and cook until pink.",
+    "Finish with lemon juice."
+  ],
+  "time_minutes": 12,
+  "tags": [
+    "seafood","quick","dinner","high-protein","low-carb","buttery","garlic-lover",
+    "pan-fry","simple","15-min-meal","family-friendly"
+  ],
+  "image_url": "https://pixabay.com/photos/shrimp-garlic-butter-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 290,
+    "protein_g": 26,
+    "fat_total_g": 17,
+    "carbohydrates_g": 3,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["shrimp 200g", "butter 20g", "garlic 3 cloves"],
+  "ingredients_list": ["shrimp 200g", "butter 20g", "garlic 3 cloves"]
+},
+{
+  "title": "Honey Soy Glazed Chicken",
+  "description": "Tender chicken thighs coated in a sweet-savory honey soy glaze.",
+  "seasoning": ["1 tbsp soy sauce", "1 tbsp honey", "1/4 tsp pepper"],
+  "instructions": [
+    "Mix honey and soy sauce.",
+    "Pan-sear chicken until browned.",
+    "Pour glaze and cook until thickened."
+  ],
+  "time_minutes": 18,
+  "tags": [
+    "chicken","savory","sweet-savory","asian-flavor","quick-dinner","budget-friendly",
+    "glazed","family-meal","pan-sear","under-20-min","comfort-food"
+  ],
+  "image_url": "https://pixabay.com/photos/honey-soy-chicken-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 360,
+    "protein_g": 28,
+    "fat_total_g": 14,
+    "carbohydrates_g": 28,
+    "fiber_g": 0,
+    "Sugar_g": 22
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["chicken thigh 250g", "honey 1 tbsp", "soy sauce 1 tbsp"],
+  "ingredients_list": ["chicken thigh 250g", "honey 1 tbsp", "soy sauce 1 tbsp"]
+},
+{
+  "title": "Beef and Onion Stir-Fry",
+  "description": "Thin-sliced beef stir-fried with onions.",
+  "seasoning": ["1 tsp oyster sauce", "1/4 tsp salt", "1/4 tsp pepper"],
+  "instructions": [
+    "Slice beef thinly and season.",
+    "Stir-fry onions until fragrant.",
+    "Add beef and cook on high heat."
+  ],
+  "time_minutes": 16,
+  "tags": [
+    "beef","stir-fry","asian-style","high-protein","one-pan","quick-meal","low-effort",
+    "savory","under-20-min","weeknight-dinner","umami"
+  ],
+  "image_url": "https://pixabay.com/photos/beef-onion-stirfry-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 420,
+    "protein_g": 29,
+    "fat_total_g": 24,
+    "carbohydrates_g": 10,
+    "fiber_g": 1,
+    "sugar_g": 4
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["beef 200g", "onion 1 medium", "oil 1 tbsp"],
+  "ingredients_list": ["beef 200g", "onion 1 medium", "oil 1 tbsp"]
+},
+{
+  "title": "Crispy Pork Belly Bites",
+  "description": "Crispy pan-fried pork belly with salt and pepper.",
+  "seasoning": ["1/3 tsp salt", "1/3 tsp pepper", "1/4 tsp garlic powder"],
+  "instructions": [
+    "Cut pork belly into cubes and season.",
+    "Pan-fry until crispy.",
+    "Serve immediately."
+  ],
+  "time_minutes": 20,
+  "tags": [
+    "pork","crispy","snack","indulgent","high-fat","asian-flavor","low-carb",
+    "pan-fry","bold-flavor","keto-friendly","simple-cooking"
+  ],
+  "image_url": "https://pixabay.com/photos/pork-belly-crispy-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 520,
+    "protein_g": 16,
+    "fat_total_g": 48,
+    "carbohydrates_g": 1,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["pork belly 200g", "salt 1/3 tsp", "pepper 1/3 tsp"],
+  "ingredients_list": ["pork belly 200g", "salt 1/3 tsp", "pepper 1/3 tsp"]
+},
+{
+  "title": "Tuna Corn Mayo Rice Bowl",
+  "description": "A comforting rice bowl topped with tuna, corn and mayo.",
+  "seasoning": ["1 tbsp mayonnaise", "1/4 tsp soy sauce", "pepper a pinch"],
+  "instructions": [
+    "Mix tuna with corn and mayonnaise.",
+    "Warm rice.",
+    "Top rice with tuna mixture."
+  ],
+  "time_minutes": 10,
+  "tags": [
+    "rice-bowl","comfort-food","quick-lunch","budget-meal","pantry-friendly",
+    "creamy","no-cook","japanese-inspired","under-10-min","lazy-day","family-friendly"
+  ],
+  "image_url": "https://pixabay.com/photos/tuna-corn-ricebowl-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 bowl",
+    "calories": 450,
+    "protein_g": 19,
+    "fat_total_g": 15,
+    "carbohydrates_g": 63,
+    "fiber_g": 3,
+    "sugar_g": 5
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["rice 200g", "canned tuna 100g", "corn 50g"],
+  "ingredients_list": ["rice 200g", "canned tuna 100g", "corn 50g"]
+},
+{
+  "title": "Lemon Butter Salmon",
+  "description": "Pan-seared salmon finished with lemon butter sauce.",
+  "seasoning": ["1/4 tsp pepper", "1/4 tsp salt", "1 tbsp lemon juice"],
+  "instructions": [
+    "Season salmon lightly.",
+    "Pan-sear until golden.",
+    "Add lemon butter and melt."
+  ],
+  "time_minutes": 12,
+  "tags": ["fish","quick","buttery","high-protein","low-carb","15-min","pan-sear","omega-3","simple","weeknight"],
+  "image_url": "https://pixabay.com/photos/salmon-lemon-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 fillet",
+    "calories": 380,
+    "protein_g": 30,
+    "fat_total_g": 26,
+    "carbohydrates_g": 2,
+    "fiber_g": 0,
+    "sugar_g": 1
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["salmon 180g", "butter 15g", "lemon 1 tbsp"],
+  "ingredients_list": ["salmon 180g", "butter 15g", "lemon 1 tbsp"]
+},
+{
+  "title": "Spicy Garlic Chicken Wings",
+  "description": "Crispy wings tossed in spicy garlic sauce.",
+  "seasoning": ["1 tbsp chili sauce", "1 tsp garlic powder", "1/4 tsp salt"],
+  "instructions": [
+    "Bake or air-fry wings until crispy.",
+    "Mix sauce ingredients.",
+    "Toss wings in spicy garlic sauce."
+  ],
+  "time_minutes": 20,
+  "tags": ["chicken","wings","spicy","snack","party-food","airfryer","crispy","bold-flavor","weekend","easy","garlic"],
+  "image_url": "https://pixabay.com/photos/chicken-wings-spicy-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "6 wings",
+    "calories": 510,
+    "protein_g": 28,
+    "fat_total_g": 38,
+    "carbohydrates_g": 8,
+    "fiber_g": 1,
+    "sugar_g": 3
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["chicken wings 300g", "chili sauce 1 tbsp", "garlic 2 cloves"],
+  "ingredients_list": ["chicken wings 300g", "chili sauce 1 tbsp", "garlic 2 cloves"]
+},
+{
+  "title": "Teriyaki Beef Bowl",
+  "description": "Sautéed beef in teriyaki sauce served over rice.",
+  "seasoning": ["1 tbsp teriyaki sauce", "pepper pinch", "1/4 tsp sugar"],
+  "instructions": [
+    "Cook beef in pan.",
+    "Add teriyaki sauce.",
+    "Serve over warm rice."
+  ],
+  "time_minutes": 15,
+  "tags": ["beef","rice-bowl","savory","japanese","comfort","quick","glazed","family-friendly","15-min","simple"],
+  "image_url": "https://pixabay.com/photos/beef-teriyaki-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 bowl",
+    "calories": 520,
+    "protein_g": 26,
+    "fat_total_g": 18,
+    "carbohydrates_g": 60,
+    "fiber_g": 1,
+    "sugar_g": 12
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["rice 180g", "beef 150g", "teriyaki sauce 1 tbsp"],
+  "ingredients_list": ["rice 180g", "beef 150g", "teriyaki sauce 1 tbsp"]
+},
+{
+  "title": "Pepper Lime Pork Chops",
+  "description": "Tender pork chops seasoned with pepper and lime.",
+  "seasoning": ["1 tbsp lime juice", "1/2 tsp black pepper", "1/4 tsp salt"],
+  "instructions": [
+    "Season pork chops.",
+    "Pan-sear both sides.",
+    "Finish with lime juice."
+  ],
+  "time_minutes": 17,
+  "tags": ["pork","zesty","pan-fry","low-carb","protein-rich","simple","citrus","under-20","weeknight","bright-flavor"],
+  "image_url": "https://pixabay.com/photos/pork-chops-lime-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 chop",
+    "calories": 410,
+    "protein_g": 29,
+    "fat_total_g": 28,
+    "carbohydrates_g": 1,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["pork chop 200g", "lime 1 tbsp", "pepper 1/2 tsp"],
+  "ingredients_list": ["pork chop 200g", "lime 1 tbsp", "pepper 1/2 tsp"]
+},
+{
+  "title": "Chili Lime Shrimp Tacos",
+  "description": "Zesty shrimp stuffed in soft tortillas.",
+  "seasoning": ["1 tsp chili powder", "1 tbsp lime juice", "salt pinch"],
+  "instructions": [
+    "Season shrimp with chili and lime.",
+    "Sear until pink.",
+    "Serve in tortillas."
+  ],
+  "time_minutes": 14,
+  "tags":["tacos","shrimp","mexican","zesty","spicy","street-food","quick-lunch","fresh","under-15","light-meal"],
+  "image_url": "https://pixabay.com/photos/shrimp-tacos-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "2 tacos",
+    "calories": 380,
+    "protein_g": 22,
+    "fat_total_g": 12,
+    "carbohydrates_g": 45,
+    "fiber_g": 3,
+    "sugar_g": 3
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["shrimp 150g", "tortilla 2 pieces", "lime 1 tbsp"],
+  "ingredients_list": ["shrimp 150g", "tortilla 2 pieces", "lime 1 tbsp"]
+},
+{
+  "title": "Honey Mustard Pork Tenderloin",
+  "description": "Juicy pork coated in honey mustard glaze.",
+  "seasoning": ["1 tbsp honey", "1 tbsp mustard", "pepper pinch"],
+  "instructions": [
+    "Mix honey and mustard.",
+    "Pan-sear pork.",
+    "Glaze and cook through."
+  ],
+  "time_minutes": 18,
+  "tags":["pork","glazed","sweet-savory","high-protein","budget-friendly","simple","under-20","pan-fry","family-dinner"],
+  "image_url": "https://pixabay.com/photos/honey-mustard-pork-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 410,
+    "protein_g": 32,
+    "fat_total_g": 14,
+    "carbohydrates_g": 25,
+    "fiber_g": 0,
+    "sugar_g": 18
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["pork tenderloin 200g", "honey 1 tbsp", "mustard 1 tbsp"],
+  "ingredients_list": ["pork tenderloin 200g", "honey 1 tbsp", "mustard 1 tbsp"]
+},
+{
+  "title": "Simple Garlic Beef Steak",
+  "description": "Seared steak with garlic butter topping.",
+  "seasoning": ["salt pinch", "pepper pinch", "1 tbsp garlic butter"],
+  "instructions": [
+    "Season steak.",
+    "Pan-sear to preferred doneness.",
+    "Top with garlic butter."
+  ],
+  "time_minutes": 10,
+  "tags":["beef","steak","quick-dinner","luxury","low-carb","high-protein","buttery","keto-friendly","one-pan","10-min"],
+  "image_url": "https://pixabay.com/photos/steak-garlic-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 steak",
+    "calories": 460,
+    "protein_g": 35,
+    "fat_total_g": 33,
+    "carbohydrates_g": 1,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["beef steak 200g", "garlic 2 cloves", "butter 15g"],
+  "ingredients_list": ["beef steak 200g", "garlic 2 cloves", "butter 15g"]
+},
+{
+  "title": "Ginger Soy Fish Fillet",
+  "description": "Light pan-seared fish with ginger soy sauce.",
+  "seasoning": ["1 tbsp soy sauce", "1 tsp grated ginger", "pepper pinch"],
+  "instructions": [
+    "Season fish lightly.",
+    "Pan-sear until flaky.",
+    "Pour ginger soy sauce on top."
+  ],
+  "time_minutes": 14,
+  "tags": ["fish","asian","light-meal","under-15","simple","healthy","low-fat","one-pan","soy-flavor","family-friendly"],
+  "image_url": "https://pixabay.com/photos/ginger-soy-fish-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 fillet",
+    "calories": 260,
+    "protein_g": 28,
+    "fat_total_g": 10,
+    "carbohydrates_g": 4,
+    "fiber_g": 0,
+    "sugar_g": 2
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["white fish 180g", "soy sauce 1 tbsp", "ginger 1 tsp"],
+  "ingredients_list": ["white fish 180g", "soy sauce 1 tbsp", "ginger 1 tsp"]
+},
+
+{
+  "title": "Spicy Beef Garlic Noodles",
+  "description": "Stir-fried noodles with chili beef and garlic.",
+  "seasoning": ["1 tsp chili oil", "1 tbsp soy sauce", "garlic 3 cloves"],
+  "instructions": [
+    "Cook noodles.",
+    "Stir-fry beef with garlic.",
+    "Add noodles and chili oil."
+  ],
+  "time_minutes": 17,
+  "tags": ["noodles","spicy","asian","stir-fry","comfort","quick-dinner","garlic","umami","budget","under-20","street-food"],
+  "image_url": "https://pixabay.com/photos/beef-noodles-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 bowl",
+    "calories": 540,
+    "protein_g": 24,
+    "fat_total_g": 20,
+    "carbohydrates_g": 68,
+    "fiber_g": 3,
+    "sugar_g": 5
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["noodles 150g", "beef 120g", "chili oil 1 tsp"],
+  "ingredients_list": ["noodles 150g", "beef 120g", "chili oil 1 tsp"]
+},
+{
+  "title": "Crispy Fried Chicken Cutlet",
+  "description": "Golden crispy chicken cutlet with minimal seasoning.",
+  "seasoning": ["salt pinch", "pepper pinch", "1 tbsp flour"],
+  "instructions": [
+    "Coat chicken in flour.",
+    "Shallow-fry until golden.",
+    "Serve hot."
+  ],
+  "time_minutes": 18,
+  "tags": ["chicken","fried","crispy","snack","comfort","street-food","budget-friendly","weekend","simple","kids-favorite","indulgent"],
+  "image_url": "https://pixabay.com/photos/chicken-cutlet-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 cutlet",
+    "calories": 480,
+    "protein_g": 27,
+    "fat_total_g": 26,
+    "carbohydrates_g": 28,
+    "fiber_g": 1,
+    "Sugar_g": 1
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["chicken breast 180g", "flour 1 tbsp", "oil 2 tbsp"],
+  "ingredients_list": ["chicken breast 180g", "flour 1 tbsp", "oil 2 tbsp"]
+},
+{
+  "title": "Butter Garlic Pork Bites",
+  "description": "Crispy pork bites coated with garlic butter.",
+  "seasoning": ["salt pinch", "pepper pinch", "butter 15g"],
+  "instructions": [
+    "Pan-fry pork until crisp.",
+    "Add garlic butter.",
+    "Cook until fragrant."
+  ],
+  "time_minutes": 15,
+  "tags": ["pork","crispy","garlic","pan-fry","low-carb","fast-cooking","keto","bold","snack","15-min","family-meal"],
+  "image_url": "https://pixabay.com/photos/pork-bites-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 520,
+    "protein_g": 22,
+    "fat_total_g": 46,
+    "carbohydrates_g": 2,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["pork belly 180g", "butter 15g", "garlic 2 cloves"],
+  "ingredients_list": ["pork belly 180g", "butter 15g", "garlic 2 cloves"]
+},
+{
+  "title": "Sweet Chili Glazed Chicken",
+  "description": "Juicy chicken coated in sweet chili sauce.",
+  "seasoning": ["2 tbsp sweet chili sauce", "pepper pinch", "garlic powder 1/4 tsp"],
+  "instructions": [
+    "Sear chicken.",
+    "Add sweet chili sauce.",
+    "Cook until glaze thickens."
+  ],
+  "time_minutes": 16,
+  "tags": ["chicken","sweet","spicy","glazed","asian","fast-meal","sticky","umami","under-20","family-friendly","simple"],
+  "image_url": "https://pixabay.com/photos/chili-chicken-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 430,
+    "protein_g": 29,
+    "fat_total_g": 14,
+    "carbohydrates_g": 48,
+    "fiber_g": 1,
+    "sugar_g": 30
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["chicken thigh 200g", "sweet chili sauce 2 tbsp", "oil 1 tbsp"],
+  "ingredients_list": ["chicken thigh 200g", "sweet chili sauce 2 tbsp", "oil 1 tbsp"]
+},
+{
+  "title": "Garlic Butter Mussels",
+  "description": "Steamed mussels tossed in garlic butter.",
+  "seasoning": ["butter 20g", "garlic 3 cloves", "parsley pinch"],
+  "instructions": [
+    "Steam mussels.",
+    "Make garlic butter.",
+    "Toss mussels and serve."
+  ],
+  "time_minutes": 10,
+  "tags": ["seafood","mussels","garlic","buttery","quick","elegant","dinner","low-carb","10-min","restaurant-style","simple"],
+  "image_url": "https://pixabay.com/photos/mussels-garlic-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 bowl",
+    "calories": 360,
+    "protein_g": 28,
+    "fat_total_g": 20,
+    "carbohydrates_g": 8,
+    "fiber_g": 0,
+    "sugar_g": 1
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["mussels 300g", "butter 20g", "garlic 3 cloves"],
+  "ingredients_list": ["mussels 300g", "butter 20g", "garlic 3 cloves"]
+},
+{
+  "title": "Black Pepper Beef Cubes",
+  "description": "Stir-fried beef cubes coated in black pepper sauce.",
+  "seasoning": ["1 tsp black pepper", "1 tbsp soy sauce", "salt pinch"],
+  "instructions": [
+    "Season beef.",
+    "Stir-fry on high heat.",
+    "Finish with pepper sauce."
+  ],
+  "time_minutes": 12,
+  "tags": ["beef","peppery","umami","stir-fry","quick-meal","asian","15-min","savory","protein-rich","one-pan"],
+  "image_url": "https://pixabay.com/photos/pepper-beef-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 450,
+    "protein_g": 30,
+    "fat_total_g": 26,
+    "carbohydrates_g": 8,
+    "fiber_g": 1,
+    "sugar_g": 3
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["beef 200g", "black pepper 1 tsp", "soy sauce 1 tbsp"],
+  "ingredients_list": ["beef 200g", "black pepper 1 tsp", "soy sauce 1 tbsp"]
+},
+{
+  "title": "Garlic Butter Scallops",
+  "description": "Golden seared scallops coated in garlic butter.",
+  "seasoning": ["butter 20g", "garlic 2 cloves", "pepper pinch"],
+  "instructions": [
+    "Sear scallops until golden.",
+    "Add garlic butter.",
+    "Serve immediately."
+  ],
+  "time_minutes": 10,
+  "tags": ["scallops","seafood","luxury","buttery","garlic","quick-cook","10-min","elegant","one-pan","special-dinner"],
+  "image_url": "https://pixabay.com/photos/scallops-garlic-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 plate",
+    "calories": 290,
+    "protein_g": 24,
+    "fat_total_g": 16,
+    "carbohydrates_g": 4,
+    "fiber_g": 0,
+    "sugar_g": 1
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["scallops 150g", "butter 20g", "garlic 2 cloves"],
+  "ingredients_list": ["scallops 150g", "butter 20g", "garlic 2 cloves"]
+},
+{
+  "title": "Soy Garlic Chicken Rice",
+  "description": "Savory soy garlic chicken served over warm rice.",
+  "seasoning": ["1 tbsp soy sauce", "garlic 2 cloves", "pepper pinch"],
+  "instructions": [
+    "Cook chicken with garlic.",
+    "Add soy sauce.",
+    "Serve with rice."
+  ],
+  "time_minutes": 15,
+  "tags": ["rice-bowl","chicken","savory","asian","comfort","15-min","simple","home-style","budget","family"],
+  "image_url": "https://pixabay.com/photos/soy-garlic-chicken-12345/",
+  "difficulty_score": 1,
+  "nutrition_facts": {
+    "serving_size": "1 bowl",
+    "calories": 480,
+    "protein_g": 25,
+    "fat_total_g": 12,
+    "carbohydrates_g": 68,
+    "fiber_g": 2,
+    "sugar_g": 5
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["rice 180g", "chicken thigh 150g", "soy sauce 1 tbsp"],
+  "ingredients_list": ["rice 180g", "chicken thigh 150g", "soy sauce 1 tbsp"]
+},
+{
+  "title": "Lime Chili Grilled Squid",
+  "description": "Charred squid marinated in lime and chili.",
+  "seasoning": ["1 tbsp lime juice", "1 tsp chili flakes", "salt pinch"],
+  "instructions": [
+    "Marinate squid.",
+    "Grill until lightly charred.",
+    "Serve with extra lime."
+  ],
+  "time_minutes": 13,
+  "tags": ["seafood","squid","grill","zesty","spicy","fresh","summer-food","quick","light-meal","under-15","street-food"],
+  "image_url": "https://pixabay.com/photos/grilled-squid-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 230,
+    "protein_g": 32,
+    "fat_total_g": 6,
+    "carbohydrates_g": 3,
+    "fiber_g": 0,
+    "sugar_g": 1
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["squid 200g", "lime 1 tbsp", "chili flakes 1 tsp"],
+  "ingredients_list": ["squid 200g", "lime 1 tbsp", "chili flakes 1 tsp"]
+},
+{
+  "title": "Spicy Korean Pork Stir-Fry",
+  "description": "Gochujang-coated pork stir-fry bursting with flavor.",
+  "seasoning": ["1 tbsp gochujang", "1 tsp soy sauce", "1/4 tsp sugar"],
+  "instructions": [
+    "Stir-fry pork.",
+    "Add gochujang mixture.",
+    "Cook until well coated."
+  ],
+  "time_minutes": 14,
+  "tags": ["pork","korean","spicy","stir-fry","umami","15-min","asian","bold","street-food","quick-cook"],
+  "image_url": "https://pixabay.com/photos/korean-pork-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 serving",
+    "calories": 450,
+    "protein_g": 28,
+    "fat_total_g": 22,
+    "carbohydrates_g": 30,
+    "fiber_g": 1,
+    "sugar_g": 12
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["pork belly 180g", "gochujang 1 tbsp", "soy sauce 1 tsp"],
+  "ingredients_list": ["pork belly 180g", "gochujang 1 tbsp", "soy sauce 1 tsp"]
+},
+{
+  "title": "Butter Herb Roast Chicken Thigh",
+  "description": "Roasted chicken thigh with butter and herbs.",
+  "seasoning": ["butter 15g", "mixed herbs 1 tsp", "salt pinch"],
+  "instructions": [
+    "Coat chicken thigh with butter.",
+    "Bake until golden.",
+    "Serve warm."
+  ],
+  "time_minutes": 18,
+  "tags": ["chicken","roast","buttery","herby","comfort","simple","oven","quick-dinner","family-meal","warm-flavor"],
+  "image_url": "https://pixabay.com/photos/roast-chicken-12345/",
+  "difficulty_score": 2,
+  "nutrition_facts": {
+    "serving_size": "1 thigh",
+    "calories": 420,
+    "protein_g": 29,
+    "fat_total_g": 30,
+    "carbohydrates_g": 2,
+    "fiber_g": 0,
+    "sugar_g": 0
+  },
+  "likeCount": 0,
+  "ingredients_list_fixed": ["chicken thigh 200g", "butter 15g", "herbs 1 tsp"],
+  "ingredients_list": ["chicken thigh 200g", "butter 15g", "herbs 1 tsp"]
+}
+]
+

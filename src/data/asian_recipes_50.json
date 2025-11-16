@@ -1,0 +1,2446 @@
+[
+  {
+    "title": "Korean Spicy Pork Bulgogi",
+    "description": "Quick Asian-style dish: Korean Spicy Pork Bulgogi.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 16,
+    "tags": [
+      "20-min",
+      "fusion",
+      "noodle",
+      "home-cook",
+      "bold-flavor",
+      "pan-fry",
+      "street-food",
+      "savory",
+      "budget-friendly",
+      "family-meal",
+      "rice-dish",
+      "one-pan",
+      "comfort"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 537,
+      "protein_g": 38,
+      "fat_total_g": 15,
+      "carbohydrates_g": 31,
+      "fiber_g": 0,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Japanese Chicken Katsu",
+    "description": "Quick Asian-style dish: Japanese Chicken Katsu.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "wok",
+      "20-min",
+      "family-meal",
+      "pan-fry",
+      "spicy",
+      "high-protein",
+      "street-food",
+      "budget-friendly"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 582,
+      "protein_g": 34,
+      "fat_total_g": 19,
+      "carbohydrates_g": 41,
+      "fiber_g": 3,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Thai Basil Chicken",
+    "description": "Quick Asian-style dish: Thai Basil Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "15-min",
+      "bold-flavor",
+      "fusion",
+      "pan-fry",
+      "family-meal",
+      "noodle",
+      "budget-friendly",
+      "easy",
+      "20-min"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 597,
+      "protein_g": 28,
+      "fat_total_g": 24,
+      "carbohydrates_g": 44,
+      "fiber_g": 2,
+      "sugar_g": 3
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Vietnamese Caramelized Pork",
+    "description": "Quick Asian-style dish: Vietnamese Caramelized Pork.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "one-pan",
+      "wok",
+      "spicy",
+      "noodle",
+      "asian",
+      "bold-flavor",
+      "family-meal",
+      "savory",
+      "pan-fry",
+      "quick",
+      "comfort",
+      "umami",
+      "street-food",
+      "rice-dish"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 394,
+      "protein_g": 27,
+      "fat_total_g": 23,
+      "carbohydrates_g": 30,
+      "fiber_g": 3,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Chinese Mapo Tofu with Pork",
+    "description": "Quick Asian-style dish: Chinese Mapo Tofu with Pork.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "comfort",
+      "fusion",
+      "savory",
+      "family-meal",
+      "pan-fry",
+      "home-cook",
+      "15-min",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 453,
+      "protein_g": 33,
+      "fat_total_g": 15,
+      "carbohydrates_g": 47,
+      "fiber_g": 2,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Filipino Chicken Adobo",
+    "description": "Quick Asian-style dish: Filipino Chicken Adobo.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 20,
+    "tags": [
+      "15-min",
+      "quick",
+      "family-meal",
+      "20-min",
+      "bold-flavor",
+      "street-food",
+      "high-protein",
+      "budget-friendly",
+      "savory"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 377,
+      "protein_g": 25,
+      "fat_total_g": 11,
+      "carbohydrates_g": 45,
+      "fiber_g": 2,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Malaysian Beef Rendang Quick",
+    "description": "Quick Asian-style dish: Malaysian Beef Rendang Quick.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "fusion",
+      "high-protein",
+      "street-food",
+      "umami",
+      "rice-dish",
+      "wok",
+      "asian",
+      "pan-fry"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 593,
+      "protein_g": 16,
+      "fat_total_g": 18,
+      "carbohydrates_g": 53,
+      "fiber_g": 3,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indonesian Ayam Geprek",
+    "description": "Quick Asian-style dish: Indonesian Ayam Geprek.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 13,
+    "tags": [
+      "15-min",
+      "asian",
+      "high-protein",
+      "20-min",
+      "spicy",
+      "one-pan",
+      "comfort",
+      "savory",
+      "wok",
+      "family-meal",
+      "bold-flavor",
+      "noodle",
+      "home-cook",
+      "fusion"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 553,
+      "protein_g": 23,
+      "fat_total_g": 10,
+      "carbohydrates_g": 49,
+      "fiber_g": 4,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Singaporean Hainanese Chicken",
+    "description": "Quick Asian-style dish: Singaporean Hainanese Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 16,
+    "tags": [
+      "bold-flavor",
+      "savory",
+      "street-food",
+      "rice-dish",
+      "easy",
+      "asian",
+      "noodle",
+      "pan-fry",
+      "family-meal"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 559,
+      "protein_g": 29,
+      "fat_total_g": 14,
+      "carbohydrates_g": 21,
+      "fiber_g": 0,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indian Butter Chicken Quick",
+    "description": "Quick Asian-style dish: Indian Butter Chicken Quick.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "asian",
+      "home-cook",
+      "spicy",
+      "bold-flavor",
+      "street-food",
+      "umami",
+      "comfort",
+      "noodle"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 596,
+      "protein_g": 18,
+      "fat_total_g": 30,
+      "carbohydrates_g": 38,
+      "fiber_g": 1,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Japanese Gyudon Beef Bowl",
+    "description": "Quick Asian-style dish: Japanese Gyudon Beef Bowl.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 15,
+    "tags": [
+      "comfort",
+      "wok",
+      "family-meal",
+      "one-pan",
+      "rice-dish",
+      "bold-flavor",
+      "street-food",
+      "spicy",
+      "budget-friendly"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 598,
+      "protein_g": 38,
+      "fat_total_g": 22,
+      "carbohydrates_g": 36,
+      "fiber_g": 0,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Korean Soy Garlic Chicken",
+    "description": "Quick Asian-style dish: Korean Soy Garlic Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 15,
+    "tags": [
+      "20-min",
+      "fusion",
+      "wok",
+      "street-food",
+      "quick",
+      "home-cook",
+      "noodle",
+      "family-meal",
+      "spicy",
+      "bold-flavor",
+      "comfort"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 595,
+      "protein_g": 25,
+      "fat_total_g": 19,
+      "carbohydrates_g": 32,
+      "fiber_g": 2,
+      "sugar_g": 1
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Thai Red Curry Chicken",
+    "description": "Quick Asian-style dish: Thai Red Curry Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "budget-friendly",
+      "home-cook",
+      "asian",
+      "fusion",
+      "one-pan",
+      "easy",
+      "bold-flavor",
+      "noodle",
+      "20-min",
+      "savory",
+      "rice-dish",
+      "wok",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 586,
+      "protein_g": 21,
+      "fat_total_g": 25,
+      "carbohydrates_g": 21,
+      "fiber_g": 4,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Vietnamese Lemongrass Chicken",
+    "description": "Quick Asian-style dish: Vietnamese Lemongrass Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "savory",
+      "noodle",
+      "umami",
+      "pan-fry",
+      "street-food",
+      "15-min",
+      "wok",
+      "quick",
+      "one-pan",
+      "fusion",
+      "bold-flavor"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 500,
+      "protein_g": 40,
+      "fat_total_g": 27,
+      "carbohydrates_g": 37,
+      "fiber_g": 1,
+      "sugar_g": 3
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Chinese Kung Pao Chicken",
+    "description": "Quick Asian-style dish: Chinese Kung Pao Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "bold-flavor",
+      "easy",
+      "15-min",
+      "one-pan",
+      "20-min",
+      "home-cook",
+      "spicy",
+      "pan-fry",
+      "noodle",
+      "street-food",
+      "umami",
+      "comfort",
+      "rice-dish"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 478,
+      "protein_g": 15,
+      "fat_total_g": 28,
+      "carbohydrates_g": 21,
+      "fiber_g": 3,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Filipino Pork Sisig Quick",
+    "description": "Quick Asian-style dish: Filipino Pork Sisig Quick.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 12,
+    "tags": [
+      "budget-friendly",
+      "bold-flavor",
+      "comfort",
+      "fusion",
+      "rice-dish",
+      "pan-fry",
+      "umami",
+      "savory",
+      "wok",
+      "asian",
+      "20-min"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 585,
+      "protein_g": 24,
+      "fat_total_g": 21,
+      "carbohydrates_g": 39,
+      "fiber_g": 4,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Malaysian Sambal Prawns",
+    "description": "Quick Asian-style dish: Malaysian Sambal Prawns.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 15,
+    "tags": [
+      "20-min",
+      "15-min",
+      "pan-fry",
+      "savory",
+      "budget-friendly",
+      "rice-dish",
+      "bold-flavor",
+      "noodle",
+      "home-cook"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 374,
+      "protein_g": 20,
+      "fat_total_g": 26,
+      "carbohydrates_g": 47,
+      "fiber_g": 2,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indonesian Beef Sate",
+    "description": "Quick Asian-style dish: Indonesian Beef Sate.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "umami",
+      "family-meal",
+      "noodle",
+      "savory",
+      "home-cook",
+      "budget-friendly",
+      "high-protein",
+      "20-min",
+      "bold-flavor",
+      "15-min"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 398,
+      "protein_g": 18,
+      "fat_total_g": 17,
+      "carbohydrates_g": 48,
+      "fiber_g": 0,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Singapore Chili Crab Lite",
+    "description": "Quick Asian-style dish: Singapore Chili Crab Lite.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 18,
+    "tags": [
+      "asian",
+      "comfort",
+      "budget-friendly",
+      "fusion",
+      "noodle",
+      "spicy",
+      "street-food",
+      "family-meal",
+      "pan-fry",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 428,
+      "protein_g": 36,
+      "fat_total_g": 14,
+      "carbohydrates_g": 28,
+      "fiber_g": 2,
+      "sugar_g": 3
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indian Chicken Tikka Pan",
+    "description": "Quick Asian-style dish: Indian Chicken Tikka Pan.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "street-food",
+      "spicy",
+      "noodle",
+      "budget-friendly",
+      "wok",
+      "one-pan",
+      "asian",
+      "home-cook",
+      "bold-flavor",
+      "family-meal",
+      "fusion",
+      "quick"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 584,
+      "protein_g": 15,
+      "fat_total_g": 12,
+      "carbohydrates_g": 20,
+      "fiber_g": 1,
+      "sugar_g": 2
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Japanese Teriyaki Chicken",
+    "description": "Quick Asian-style dish: Japanese Teriyaki Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 18,
+    "tags": [
+      "comfort",
+      "fusion",
+      "noodle",
+      "quick",
+      "rice-dish",
+      "savory",
+      "20-min",
+      "high-protein",
+      "home-cook",
+      "pan-fry",
+      "budget-friendly",
+      "street-food",
+      "asian",
+      "family-meal"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 528,
+      "protein_g": 29,
+      "fat_total_g": 13,
+      "carbohydrates_g": 47,
+      "fiber_g": 4,
+      "sugar_g": 1
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Korean Jeyuk Bokkeum",
+    "description": "Quick Asian-style dish: Korean Jeyuk Bokkeum.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "budget-friendly",
+      "wok",
+      "comfort",
+      "one-pan",
+      "bold-flavor",
+      "20-min",
+      "15-min",
+      "asian",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 414,
+      "protein_g": 29,
+      "fat_total_g": 28,
+      "carbohydrates_g": 60,
+      "fiber_g": 2,
+      "sugar_g": 5
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Thai Garlic Pork",
+    "description": "Quick Asian-style dish: Thai Garlic Pork.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 13,
+    "tags": [
+      "home-cook",
+      "savory",
+      "one-pan",
+      "bold-flavor",
+      "wok",
+      "15-min",
+      "spicy",
+      "umami",
+      "rice-dish",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 489,
+      "protein_g": 16,
+      "fat_total_g": 20,
+      "carbohydrates_g": 36,
+      "fiber_g": 2,
+      "sugar_g": 3
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Vietnamese Fish Sauce Chicken Wings",
+    "description": "Quick Asian-style dish: Vietnamese Fish Sauce Chicken Wings.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "savory",
+      "quick",
+      "noodle",
+      "comfort",
+      "easy",
+      "one-pan",
+      "pan-fry",
+      "15-min",
+      "20-min",
+      "bold-flavor",
+      "asian",
+      "rice-dish"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 442,
+      "protein_g": 24,
+      "fat_total_g": 23,
+      "carbohydrates_g": 33,
+      "fiber_g": 0,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Chinese Sweet Sour Pork",
+    "description": "Quick Asian-style dish: Chinese Sweet Sour Pork.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 19,
+    "tags": [
+      "savory",
+      "rice-dish",
+      "home-cook",
+      "15-min",
+      "asian",
+      "bold-flavor",
+      "easy",
+      "20-min",
+      "noodle",
+      "high-protein",
+      "street-food",
+      "comfort",
+      "spicy",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 353,
+      "protein_g": 35,
+      "fat_total_g": 27,
+      "carbohydrates_g": 22,
+      "fiber_g": 1,
+      "sugar_g": 5
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Filipino Lechon Kawali Quick",
+    "description": "Quick Asian-style dish: Filipino Lechon Kawali Quick.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "comfort",
+      "bold-flavor",
+      "asian",
+      "quick",
+      "noodle",
+      "wok",
+      "spicy",
+      "high-protein",
+      "15-min",
+      "home-cook"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 381,
+      "protein_g": 32,
+      "fat_total_g": 14,
+      "carbohydrates_g": 32,
+      "fiber_g": 3,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Malaysian Curry Laksa Mini",
+    "description": "Quick Asian-style dish: Malaysian Curry Laksa Mini.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "quick",
+      "one-pan",
+      "bold-flavor",
+      "fusion",
+      "family-meal",
+      "pan-fry",
+      "savory",
+      "wok",
+      "easy",
+      "high-protein",
+      "comfort",
+      "rice-dish",
+      "15-min",
+      "spicy"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 412,
+      "protein_g": 16,
+      "fat_total_g": 27,
+      "carbohydrates_g": 22,
+      "fiber_g": 4,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indonesian Fried Noodles Meat",
+    "description": "Quick Asian-style dish: Indonesian Fried Noodles Meat.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 14,
+    "tags": [
+      "20-min",
+      "bold-flavor",
+      "high-protein",
+      "comfort",
+      "wok",
+      "fusion",
+      "quick",
+      "umami",
+      "noodle",
+      "15-min",
+      "budget-friendly"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 476,
+      "protein_g": 31,
+      "fat_total_g": 25,
+      "carbohydrates_g": 30,
+      "fiber_g": 4,
+      "sugar_g": 5
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Singaporean Beef Hor Fun",
+    "description": "Quick Asian-style dish: Singaporean Beef Hor Fun.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "bold-flavor",
+      "street-food",
+      "asian",
+      "savory",
+      "rice-dish",
+      "comfort",
+      "15-min",
+      "home-cook",
+      "one-pan",
+      "budget-friendly",
+      "pan-fry"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 428,
+      "protein_g": 35,
+      "fat_total_g": 15,
+      "carbohydrates_g": 23,
+      "fiber_g": 2,
+      "sugar_g": 1
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indian Keema Quick",
+    "description": "Quick Asian-style dish: Indian Keema Quick.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "bold-flavor",
+      "spicy",
+      "one-pan",
+      "noodle",
+      "20-min",
+      "asian",
+      "umami",
+      "quick",
+      "home-cook",
+      "fusion"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 435,
+      "protein_g": 36,
+      "fat_total_g": 23,
+      "carbohydrates_g": 24,
+      "fiber_g": 3,
+      "sugar_g": 1
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Japanese Shrimp Tempura Lite",
+    "description": "Quick Asian-style dish: Japanese Shrimp Tempura Lite.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "wok",
+      "budget-friendly",
+      "savory",
+      "bold-flavor",
+      "street-food",
+      "high-protein",
+      "family-meal",
+      "quick"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 522,
+      "protein_g": 16,
+      "fat_total_g": 23,
+      "carbohydrates_g": 22,
+      "fiber_g": 3,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Korean Dakgangjeong",
+    "description": "Quick Asian-style dish: Korean Dakgangjeong.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 17,
+    "tags": [
+      "spicy",
+      "home-cook",
+      "quick",
+      "20-min",
+      "wok",
+      "high-protein",
+      "budget-friendly",
+      "family-meal",
+      "pan-fry",
+      "bold-flavor",
+      "15-min"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 358,
+      "protein_g": 20,
+      "fat_total_g": 13,
+      "carbohydrates_g": 36,
+      "fiber_g": 0,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Thai Pad See Ew Chicken",
+    "description": "Quick Asian-style dish: Thai Pad See Ew Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 15,
+    "tags": [
+      "asian",
+      "easy",
+      "wok",
+      "home-cook",
+      "pan-fry",
+      "street-food",
+      "umami",
+      "spicy"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 353,
+      "protein_g": 34,
+      "fat_total_g": 26,
+      "carbohydrates_g": 41,
+      "fiber_g": 1,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Vietnamese Grilled Pork Rice",
+    "description": "Quick Asian-style dish: Vietnamese Grilled Pork Rice.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "fusion",
+      "20-min",
+      "quick",
+      "asian",
+      "street-food",
+      "home-cook",
+      "wok",
+      "rice-dish",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 431,
+      "protein_g": 24,
+      "fat_total_g": 22,
+      "carbohydrates_g": 48,
+      "fiber_g": 3,
+      "sugar_g": 7
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Chinese Beef Chow Fun",
+    "description": "Quick Asian-style dish: Chinese Beef Chow Fun.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 14,
+    "tags": [
+      "budget-friendly",
+      "rice-dish",
+      "spicy",
+      "comfort",
+      "noodle",
+      "street-food",
+      "fusion",
+      "umami",
+      "pan-fry",
+      "home-cook",
+      "bold-flavor",
+      "one-pan"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 381,
+      "protein_g": 18,
+      "fat_total_g": 18,
+      "carbohydrates_g": 53,
+      "fiber_g": 0,
+      "sugar_g": 2
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Filipino Beef Tapa",
+    "description": "Quick Asian-style dish: Filipino Beef Tapa.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "rice-dish",
+      "street-food",
+      "wok",
+      "fusion",
+      "umami",
+      "asian",
+      "20-min",
+      "easy",
+      "bold-flavor",
+      "spicy",
+      "quick"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 400,
+      "protein_g": 38,
+      "fat_total_g": 20,
+      "carbohydrates_g": 48,
+      "fiber_g": 0,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Malaysian Nasi Goreng Ayam",
+    "description": "Quick Asian-style dish: Malaysian Nasi Goreng Ayam.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 14,
+    "tags": [
+      "savory",
+      "home-cook",
+      "noodle",
+      "asian",
+      "quick",
+      "family-meal",
+      "easy",
+      "wok",
+      "15-min",
+      "one-pan",
+      "bold-flavor",
+      "street-food",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 450,
+      "protein_g": 31,
+      "fat_total_g": 25,
+      "carbohydrates_g": 45,
+      "fiber_g": 4,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indonesian Soto Ayam Simple",
+    "description": "Quick Asian-style dish: Indonesian Soto Ayam Simple.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 19,
+    "tags": [
+      "savory",
+      "family-meal",
+      "wok",
+      "quick",
+      "fusion",
+      "pan-fry",
+      "easy",
+      "one-pan",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 351,
+      "protein_g": 26,
+      "fat_total_g": 29,
+      "carbohydrates_g": 39,
+      "fiber_g": 2,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Singapore Satay Chicken",
+    "description": "Quick Asian-style dish: Singapore Satay Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "home-cook",
+      "one-pan",
+      "rice-dish",
+      "spicy",
+      "comfort",
+      "street-food",
+      "15-min",
+      "easy",
+      "savory",
+      "budget-friendly",
+      "high-protein",
+      "asian",
+      "fusion",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 397,
+      "protein_g": 32,
+      "fat_total_g": 16,
+      "carbohydrates_g": 52,
+      "fiber_g": 1,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indian Masala Fried Fish",
+    "description": "Quick Asian-style dish: Indian Masala Fried Fish.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 15,
+    "tags": [
+      "family-meal",
+      "pan-fry",
+      "umami",
+      "bold-flavor",
+      "quick",
+      "spicy",
+      "15-min",
+      "wok",
+      "fusion",
+      "asian",
+      "rice-dish",
+      "noodle",
+      "20-min",
+      "high-protein"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 379,
+      "protein_g": 37,
+      "fat_total_g": 20,
+      "carbohydrates_g": 34,
+      "fiber_g": 0,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Japanese Garlic Butter Scallops",
+    "description": "Quick Asian-style dish: Japanese Garlic Butter Scallops.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 16,
+    "tags": [
+      "home-cook",
+      "high-protein",
+      "quick",
+      "15-min",
+      "spicy",
+      "easy",
+      "family-meal",
+      "fusion",
+      "pan-fry",
+      "street-food",
+      "wok",
+      "savory"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 569,
+      "protein_g": 35,
+      "fat_total_g": 12,
+      "carbohydrates_g": 60,
+      "fiber_g": 2,
+      "sugar_g": 5
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Korean Galbi Short Ribs",
+    "description": "Quick Asian-style dish: Korean Galbi Short Ribs.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "easy",
+      "umami",
+      "home-cook",
+      "street-food",
+      "noodle",
+      "savory",
+      "wok",
+      "one-pan",
+      "bold-flavor",
+      "quick",
+      "family-meal",
+      "asian"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 517,
+      "protein_g": 31,
+      "fat_total_g": 10,
+      "carbohydrates_g": 33,
+      "fiber_g": 2,
+      "sugar_g": 1
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Thai Green Curry Beef",
+    "description": "Quick Asian-style dish: Thai Green Curry Beef.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "spicy",
+      "20-min",
+      "rice-dish",
+      "wok",
+      "quick",
+      "high-protein",
+      "15-min",
+      "umami",
+      "one-pan",
+      "comfort",
+      "pan-fry",
+      "asian"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 3,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 534,
+      "protein_g": 18,
+      "fat_total_g": 27,
+      "carbohydrates_g": 24,
+      "fiber_g": 3,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Vietnamese Garlic Butter Shrimp",
+    "description": "Quick Asian-style dish: Vietnamese Garlic Butter Shrimp.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 10,
+    "tags": [
+      "bold-flavor",
+      "comfort",
+      "asian",
+      "noodle",
+      "fusion",
+      "easy",
+      "family-meal",
+      "spicy",
+      "savory",
+      "rice-dish",
+      "pan-fry",
+      "15-min"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 392,
+      "protein_g": 15,
+      "fat_total_g": 21,
+      "carbohydrates_g": 32,
+      "fiber_g": 3,
+      "sugar_g": 4
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Chinese Sichuan Spicy Chicken",
+    "description": "Quick Asian-style dish: Chinese Sichuan Spicy Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 11,
+    "tags": [
+      "home-cook",
+      "pan-fry",
+      "20-min",
+      "budget-friendly",
+      "asian",
+      "savory",
+      "comfort",
+      "family-meal",
+      "quick"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 439,
+      "protein_g": 34,
+      "fat_total_g": 20,
+      "carbohydrates_g": 35,
+      "fiber_g": 0,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Filipino Pancit Canton Meat",
+    "description": "Quick Asian-style dish: Filipino Pancit Canton Meat.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 12,
+    "tags": [
+      "budget-friendly",
+      "family-meal",
+      "wok",
+      "bold-flavor",
+      "street-food",
+      "home-cook",
+      "comfort",
+      "asian",
+      "rice-dish",
+      "easy",
+      "noodle",
+      "pan-fry",
+      "quick"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 1,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 561,
+      "protein_g": 39,
+      "fat_total_g": 24,
+      "carbohydrates_g": 34,
+      "fiber_g": 4,
+      "sugar_g": 2
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Malaysian Char Kway Teow Prawns",
+    "description": "Quick Asian-style dish: Malaysian Char Kway Teow Prawns.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 12,
+    "tags": [
+      "quick",
+      "family-meal",
+      "comfort",
+      "wok",
+      "noodle",
+      "one-pan",
+      "15-min",
+      "pan-fry"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 416,
+      "protein_g": 16,
+      "fat_total_g": 12,
+      "carbohydrates_g": 49,
+      "fiber_g": 1,
+      "sugar_g": 8
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indonesian Ayam Bakar",
+    "description": "Quick Asian-style dish: Indonesian Ayam Bakar.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 14,
+    "tags": [
+      "noodle",
+      "umami",
+      "asian",
+      "savory",
+      "20-min",
+      "street-food",
+      "high-protein",
+      "wok",
+      "budget-friendly",
+      "home-cook",
+      "one-pan",
+      "comfort"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 598,
+      "protein_g": 34,
+      "fat_total_g": 22,
+      "carbohydrates_g": 42,
+      "fiber_g": 4,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  },
+  {
+    "title": "Indian Chili Chicken",
+    "description": "Quick Asian-style dish: Indian Chili Chicken.",
+    "seasoning": [
+      "salt pinch",
+      "pepper pinch",
+      "1 tbsp sauce"
+    ],
+    "instructions": [
+      "Prepare and season ingredients.",
+      "Cook in pan or wok until done.",
+      "Serve warm with rice or noodles."
+    ],
+    "time_minutes": 19,
+    "tags": [
+      "street-food",
+      "savory",
+      "rice-dish",
+      "budget-friendly",
+      "home-cook",
+      "fusion",
+      "wok",
+      "15-min",
+      "pan-fry",
+      "umami"
+    ],
+    "image_url": "https://example.com/image.jpg",
+    "difficulty_score": 2,
+    "nutrition_facts": {
+      "serving_size": "1 serving",
+      "calories": 529,
+      "protein_g": 21,
+      "fat_total_g": 30,
+      "carbohydrates_g": 38,
+      "fiber_g": 2,
+      "sugar_g": 6
+    },
+    "likeCount": 0,
+    "ingredients_list_fixed": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ],
+    "ingredients_list": [
+      "meat 150g",
+      "sauce 20g",
+      "aromatic 10g"
+    ]
+  }
+]
