@@ -380,7 +380,8 @@ class BlogService {
 
         data.recipe.ingredients_list_fixed = this.fixIngredientSpelling(data.recipe.ingredients_list);
 
-        const ingredientDetails = data.recipe.ingredients_list_fixed;
+        const ingredientDetails = data.recipe.ingredients_list;
+
         // 🔹 Upload image và tính nutrition song song
         const [nutritionResult, uploadResult] = await Promise.all([
             EdamamIngredientService.getNutritionForList(ingredientDetails),
@@ -391,11 +392,11 @@ class BlogService {
 
         // 🔹 Replace bad words + mark misspelled
         // data.title = this.cleanAndMark(data.title, dictionary);
+        data.description_fixed = data.description;
+
         data.description = this.cleanAndMark(data.description, dictionary);
-        data.description_fixed = this.cleanAndCorrect(data.description) || data.description;
         // data.recipe.description = this.cleanAndMark(data.recipe.description, dictionary);
 
-        data.recipe.ingredients_list = this.cleanAndMark(data.recipe.ingredients_list, dictionary);
 
         // 🔹 Tạo Blog object
         const blog = new Blog({
@@ -415,7 +416,6 @@ class BlogService {
         blog.recipe.difficulty_score = 0;
         blog.is_published = false; // Mặc định là true
         blog.description_fixed = data.description_fixed
-
 
         blog.recipe.seasoning = blog.recipe.seasoning || [];
         blog.recipe.nutrition_facts = nutrition_facts;
@@ -496,7 +496,7 @@ class BlogService {
 
 
     static fixIngredientSpelling(ingredientsList) {
-        const whitelist = ["shanks", "shank"]
+        const whitelist = ["shanks", "shank", "noodles"]
 
         const lowerWhitelist = whitelist.map(w => w.toLowerCase());
 
